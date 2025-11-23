@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Buy Power Play | Dynamic Studios</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700|Roboto:400,500" rel="stylesheet">
+  <!-- Social icons CDN: -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --main-black: #191b22;
+      --muted-grey: #23252e;
+      --muted-line: #24262b;
+      --yellow: #ffe059;
+      --steel: #b0b6c2;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--main-black);
+      color: #efefef;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--muted-grey);
+      border-bottom: 1.5px solid var(--muted-line);
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 36px;
+    }
+    .navbar a {
+      color: var(--yellow);
+      font-family: 'Montserrat', sans-serif;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.13rem;
+      letter-spacing: 0.02em;
+      padding: 20px 8px;
+      display: block;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .navbar a:hover,
+    .navbar a.active {
+      border-bottom: 2px solid var(--yellow);
+    }
+    header { text-align: center; margin-top: 42px; }
+    header img {
+      height: 90px;
+      margin-bottom: 2px;
+      display: block;
+      margin: 0 auto;
+    }
+    .main-buy-section {
+      max-width: 720px;
+      background: none;
+      margin: 46px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 8px;
+      text-align: center;
+    }
+    .buy-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin: 0 0 14px 0;
+      color: var(--yellow);
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 14px #23232645;
+    }
+    .buy-desc {
+      max-width: 480px;
+      font-size: 1.15rem;
+      color: #e1e5ef;
+      font-family: 'Roboto', Arial, sans-serif;
+      font-weight: 400;
+      background: none;
+      margin: 0 auto 46px auto;
+    }
+    .back-row {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0 0 0;
+    }
+    .back-btn {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.01rem;
+      background: none;
+      color: var(--yellow);
+      border: 2px solid var(--yellow);
+      border-radius: 32px;
+      padding: 8px 34px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background 0.17s, color .13s;
+    }
+    .back-btn:hover {
+      background: var(--yellow);
+      color: #232326;
+    }
+    /* Social Popup */
+    .modal-bg {
+      display:none;
+      position:fixed;
+      left:0;top:0;width:100vw;height:100vh;
+      background:rgba(20,21,24,0.97);
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+      animation:modalFadeIn .35s;
+    }
+    .modal-bg.show {display:flex;}
+    @keyframes modalFadeIn{
+      from{opacity:0;}
+      to{opacity:1;}
+    }
+    .social-modal {
+      background:#222641;
+      color:#ffe059;
+      border-radius:18px;
+      box-shadow:0 8px 42px #10101033;
+      min-width:320px;
+      width:95vw;
+      max-width:390px;
+      padding:32px 26px 28px 26px;
+      text-align:center;
+      position:relative;
+    }
+    .social-modal-title {
+      font-family:'Montserrat',sans-serif;
+      font-size:1.34rem;
+      font-weight:900;
+      margin-bottom:7px;
+      letter-spacing:0.04em;
+      color:#ffe059;
+    }
+    .social-modal-list {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:13px;
+      margin:18px 0 0 0;
+    }
+    .social-modal-list a {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:1.13rem;
+      background:#191d2d;
+      color:#ffe059;
+      padding:12px 18px 10px 18px;
+      border-radius:10px;
+      font-family:'Montserrat',sans-serif;
+      font-weight:700;
+      text-decoration:none;
+      transition:background .16s, color .12s;
+    }
+    .social-modal-list a:hover {
+      background:#ffe059;
+      color:#191b22;
+    }
+    .social-modal-close {
+      position:absolute;
+      top:11px; right:18px;
+      font-size:1.65rem;
+      color:#ffe059;
+      cursor:pointer;
+    }
+    .social-modal-close:hover { color:#fff4a1;}
+    @media (max-width:600px){
+      .social-modal{min-width:95vw;font-size:1rem;}
+      .main-buy-section{padding:0 2px;}
+      .buy-title{font-size:1.05rem;}
+      .buy-desc{font-size:1rem;}
+    }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #b0bad6;
+      font-size: 1rem;
+      padding: 24px 8px 18px 8px;
+    }
+    .footer-link {
+      color: #ffe059;
+      text-decoration: underline;
+      font-weight:700;
+      cursor:pointer;
+      transition:color .13s;
+    }
+    .footer-link:hover { color: #fff4a1;}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="buy.html" class="active">Buy</a></li>
+      <li><a href="invest.html">Invest</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <header>
+    <img src="logo-white-slogan.png" alt="Dynamic Studios logo with slogan">
+  </header>
+  <div class="main-buy-section">
+    <div class="buy-title">Buy Power Play</div>
+    <div class="buy-desc">
+      Thank you for your interest in Power Play! The game will be available for purchase soon. Please check back for updates and details.
+    </div>
+    <div class="back-row">
+      <a class="back-btn" href="index.html">&larr; Back to Home</a>
+    </div>
+  </div>
+  <footer>
+    &copy; 2025 Dynamic Studios &mdash;
+    Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
+    | <span class="footer-link" id="socialFooter">Our Social</span>
+  </footer>
+  <div class="modal-bg" id="socialModal">
+    <div class="social-modal">
+      <span class="social-modal-close" id="closeSocialModal">&times;</span>
+      <div class="social-modal-title">Connect with us</div>
+      <div class="social-modal-list">
+        <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
+        <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
+        <a href="https://youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://www.tiktok.com/@PowerPlayGame" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("socialFooter").onclick = function(){
+      document.getElementById("socialModal").classList.add("show");
+    };
+    document.getElementById("closeSocialModal").onclick = function(){
+      document.getElementById("socialModal").classList.remove("show");
+    };
+    window.onclick = function(e){
+      if(e.target === document.getElementById("socialModal")) {
+        document.getElementById("socialModal").classList.remove("show");
+      }
+    };
+  </script>
+</body>
+</html>
