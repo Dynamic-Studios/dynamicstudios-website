@@ -226,7 +226,7 @@
       transform: scale(1.04);
     }
     .newsletter-section {
-      max-width: 520px;
+      max-width: 580px;
       margin: 54px auto 24px auto;
       padding: 32px 18px 24px 18px;
       background:#222641;
@@ -234,6 +234,13 @@
       text-align:center;
       box-shadow:0 2px 18px #191b22a0;
     }
+    .newsletter-section iframe {
+      max-width: 100%;
+      border: none;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
     .newsletter-title {
       font-family:'Montserrat',sans-serif;
       color:#ffe059;
@@ -490,11 +497,12 @@
     <div class="newsletter-desc">
       Get updates about Dynamic Studios, new games, releases, and more—straight to your inbox.
     </div>
-    <form class="newsletter-form" action="https://formspree.io/f/mqajokak" method="POST">
-      <input type="email" name="email" required placeholder="Your email address">
-      <button type="submit">Subscribe</button>
-    </form>
+    <!-- Brevo Form Iframe -->
+    <div style="margin-top:20px;">
+      <iframe width="100%" height="305" src="https://b800a5c1.sibforms.com/serve/MUIFACO3p5sN94AJkzED3p-9vbenmdJnQHZOer10S6HfaJa-GXQdTiY193gQExmmrFgweBL1OvpILLVivAzofDCVq2f9n4z2KsEintk4YcmECQ24Dr_j-UzQcxV9sBUk_RUbe6ZcJ0hyQbDgfpeR6H9rnktN0eASKkaQ4hs4Z_dXGVRqTIJB8xT-Jyfwk_KKvaiNFu-dNJ4NYDFocg==" frameborder="0" scrolling="auto" allowfullscreen style="display: block;max-width: 540px;margin:0 auto;border-radius:12px;border:none;"></iframe>
+    </div>
   </section>
+
   <hr class="separator">
   <section class="main-game-section">
     <div class="product-title">Power Play</div>
