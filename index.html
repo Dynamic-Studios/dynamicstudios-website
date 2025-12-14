@@ -1,565 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Dynamic Studios</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700|Roboto:400,500" rel="stylesheet">
-  <!-- Social icons CDN: -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <style>
-    :root {
-      --main-black: #191b22;
-      --muted-grey: #23252e;
-      --muted-line: #24262b;
-      --yellow: #ffe059;
-      --steel: #b0b6c2;
-    }
-    body {
-      margin: 0;
-      font-family: 'Roboto', Arial, sans-serif;
-      background: var(--main-black);
-      color: #efefef;
-      min-height: 100vh;
-    }
-    .navbar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--muted-grey);
-      border-bottom: 1.5px solid var(--muted-line);
-    }
-    .navbar ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 36px;
-    }
-    .navbar a {
-      color: var(--yellow);
-      font-family: 'Montserrat', sans-serif;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.13rem;
-      letter-spacing: 0.02em;
-      padding: 20px 8px;
-      display: block;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.2s;
-    }
-    .navbar a:hover,.navbar a.active {
-      border-bottom: 2px solid var(--yellow);
-    }
-    .separator {
-      display: block;
-      width: 100%;
-      border: none;
-      border-top: 1px solid var(--muted-line);
-      margin: 34px 0 34px 0;
-      opacity: 0.5;
-    }
-    header { text-align: center; margin-top: 42px; }
-    header img {
-      height: 90px;
-      margin-bottom: 2px;
-      display: block;
-      margin: 0 auto;
-    }
-    .studio-desc {
-      max-width: 710px;
-      margin: 22px auto 0 auto;
-      font-size: 1.12rem;
-      color: var(--steel);
-      text-align: center;
-      font-family: 'Roboto', Arial, sans-serif;
-      font-weight: 400;
-      line-height: 1.6;
-    }
-    .main-game-section {
-      max-width: 1000px;
-      margin: 0 auto 0 auto;
-      text-align: center;
-      padding: 8px 0 0 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .product-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: var(--yellow);
-      margin-top: 0;
-      margin-bottom: 8px;
-      letter-spacing: 0.04em;
-      text-shadow: 0 2px 14px #23232645;
-    }
-    .game-desc {
-      max-width: 540px;
-      margin: 0 auto 18px auto;
-      text-align: center;
-      font-size: 1.13rem;
-      color: #e1e5ef;
-      font-family: 'Roboto', Arial, sans-serif;
-    }
-    .slogan {
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--yellow);
-      margin: 16px auto 18px auto;
-      letter-spacing: 0.03em;
-    }
-    .instruction {
-      text-align: center;
-      font-family: 'Roboto', Arial, sans-serif;
-      font-size: 1.11rem;
-      color: var(--steel);
-      margin: 2px auto 22px auto;
-      letter-spacing: 0.01em;
-    }
-    .cards-section {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 36px;
-      padding: 0 10px 0 10px;
-      min-height: 350px;
-      flex-wrap: wrap;
-    }
-    .card-real {
-      width: 200px;
-      height: 300px;
-      text-align: center;
-      cursor: pointer;
-      position: relative;
-      opacity: 0;
-      top: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      background: none;
-      border: none;
-      box-shadow: none;
-      transition: opacity 1s, top 0.8s;
-    }
-    .card-real.animated {
-      opacity: 1;
-      top: 0;
-    }
-    .card-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.06rem;
-      margin: 19px 0 5px 0;
-      color: var(--yellow);
-      font-weight: 700;
-      letter-spacing: 0.025em;
-      text-align: center;
-      user-select: none;
-      pointer-events: none;
-    }
-    .flip-wrap {
-      position: relative;
-      width: 180px; 
-      height: 240px; 
-      perspective: 1100px;
-      margin-top: 15px;
-      margin-bottom: -10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .flip-card-inner {
-      width: 100%; 
-      height: 100%;
-      transition: transform 0.65s cubic-bezier(.68,-0.55,.27,1.55);
-      transform-style: preserve-3d;
-      will-change: transform;
-      position: relative;
-    }
-    .flip-wrap:hover .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-    .card-img-front, .card-img-back {
-      position: absolute;
-      left: 0; top: 0;
-      width: 180px; height: 240px;
-      object-fit: contain;
-      background: none;
-      border-radius: 13px;
-      backface-visibility: hidden;
-      box-shadow: none;
-      pointer-events: none;
-    }
-    .card-img-back { 
-      transform: rotateY(180deg); 
-    }
-    .buy-row {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin: 22px 0 0 0;
-    }
-    .buy-btn {
-      display: inline-block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.03rem;
-      background: linear-gradient(90deg, #fee059b2 0%, #ffe059 100%);
-      color: #232326;
-      padding: 10px 28px;
-      border: none;
-      border-radius: 38px;
-      font-weight: 800;
-      box-shadow: 0 2px 16px #ffe05922;
-      cursor: pointer;
-      letter-spacing: 0.04em;
-      transition: background 0.19s, color 0.13s, transform 0.13s;
-      text-decoration: none;
-    }
-    .buy-btn:hover {
-      background: linear-gradient(90deg, #ffe059 0%, #fff5c1 100%);
-      color: #101114;
-      transform: scale(1.04);
-    }
-    .newsletter-section {
-      max-width: 580px;
-      margin: 54px auto 24px auto;
-      padding: 32px 18px 24px 18px;
-      background:#222641;
-      border-radius:16px;
-      text-align:center;
-      box-shadow:0 2px 18px #191b22a0;
-    }
-    .newsletter-section iframe {
-      max-width: 100%;
-      border: none;
-      border-radius: 8px;
-      margin-top: 15px;
-    }
-
-    .newsletter-title {
-      font-family:'Montserrat',sans-serif;
-      color:#ffe059;
-      font-size:1.7rem;
-      font-weight:900;
-      margin-bottom:8px;
-    }
-    .newsletter-desc {
-      font-size:1.07rem;
-      color:#e2e6f3;
-      margin-bottom:16px;
-    }
-    .newsletter-form {
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .newsletter-form input[type="email"] {
-      padding:10px 16px;
-      border:1.5px solid #ffe059;
-      border-radius:6px;
-      font-size:1.08rem;
-      outline:none;
-      width:64%;
-      max-width:260px;
-    }
-    .newsletter-form button {
-      padding:10px 22px;
-      border:none;
-      border-radius:6px;
-      background:#ffe059;
-      color:#23222b;
-      font-weight:700;
-      font-size:1.08rem;
-      cursor:pointer;
-      transition:background 0.14s;
-    }
-    .newsletter-form button:hover {
-      background:#fff4a1;
-    }
-    /* Social Popup */
-    .modal-bg {
-      display:none;
-      position:fixed;
-      left:0;top:0;width:100vw;height:100vh;
-      background:rgba(20,21,24,0.97);
-      z-index:9999;
-      align-items:center;
-      justify-content:center;
-      animation:modalFadeIn .35s;
-    }
-    .modal-bg.show {display:flex;}
-    @keyframes modalFadeIn{
-      from{opacity:0;}
-      to{opacity:1;}
-    }
-    .social-modal {
-      background:#222641;
-      color:#ffe059;
-      border-radius:18px;
-      box-shadow:0 8px 42px #10101033;
-      min-width:320px;
-      width:95vw;
-      max-width:390px;
-      padding:32px 26px 28px 26px;
-      text-align:center;
-      position:relative;
-    }
-    .social-modal-title {
-      font-family:'Montserrat',sans-serif;
-      font-size:1.34rem;
-      font-weight:900;
-      margin-bottom:7px;
-      letter-spacing:0.04em;
-      color:#ffe059;
-    }
-    .social-modal-list {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:13px;
-      margin:18px 0 0 0;
-    }
-    .social-modal-list a {
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:1.13rem;
-      background:#191d2d;
-      color:#ffe059;
-      padding:12px 18px 10px 18px;
-      border-radius:10px;
-      font-family:'Montserrat',sans-serif;
-      font-weight:700;
-      text-decoration:none;
-      transition:background .16s, color .12s;
-    }
-    .social-modal-list a:hover {
-      background:#ffe059;
-      color:#191b22;
-    }
-    .social-modal-close {
-      position:absolute;
-      top:11px; right:18px;
-      font-size:1.65rem;
-      color:#ffe059;
-      cursor:pointer;
-    }
-    .social-modal-close:hover { color:#fff4a1;}
-    /* Card detail modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1500;
-      left: 0; top: 0; width: 100vw; height: 100vh;
-      background: rgba(12,13,18,0.97);
-      justify-content: center;
-      align-items: center;
-      animation: modal-fade-in 0.4s;
-    }
-    .modal.show { display: flex; }
-    @keyframes modal-fade-in { from{opacity:0;} to{opacity:1;} }
-    .modal-content {
-      background: #26272e;
-      color: #f8f8f8;
-      padding: 24px 32px;
-      border-radius: 18px;
-      box-shadow: 0 8px 60px #181818b2;
-      max-width: 340px;
-      width: 90vw;
-      text-align: center;
-      font-size: 1.08rem;
-      position: relative;
-    }
-    .close-modal {
-      position: absolute; top: 9px; right: 16px;
-      font-size: 1.7rem; color: var(--yellow);
-      cursor: pointer; transition: color 0.12s;
-    }
-    .close-modal:hover { color: #fff0a1; }
-    @media (max-width:1100px) { .cards-section { gap: 15px;} }
-    @media (max-width:900px) {
-      .navbar ul { gap: 14px; }
-      .main-game-section{max-width:100vw;}
-      .cards-section { flex-direction: column; align-items: center;}
-      .studio-desc{font-size:1rem;}
-      header img{height:54px;}
-      .newsletter-section{padding:14px 4vw;}
-      .newsletter-title{font-size:1.07rem;}
-      .newsletter-form input[type="email"]{width:96%;max-width:96vw;}
-    }
-    @media (max-width:600px) {
-      .product-title{font-size:1.03rem;}
-      .slogan{font-size:1rem;}
-      .game-desc{font-size:0.98rem;}
-      .main-game-section{padding:0;}
-      .card-real{width:90vw; height:185px;}
-      .card-img-front, .card-img-back{width:84vw; height:111px;}
-      .buy-btn{font-size:0.97rem;padding:8px 22px;}
-      .flip-wrap {width:84vw; height:111px;}
-      .social-modal{min-width:95vw;font-size:1rem;}
-    }
-    .footer-link {
-      color: #ffe059;
-      text-decoration: underline;
-      font-weight:700;
-      cursor:pointer;
-      transition:color .13s;
-    }
-    .footer-link:hover { color: #fff4a1;}
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      color: #b0bad6;
-      font-size: 1rem;
-      padding: 24px 8px 18px 8px;
-    }
-  </style>
-
- <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.card-real');
-    
-    // Animate cards in
-    cards.forEach((card, i) => {
-      setTimeout(() => card.classList.add('animated'), 210 + i * 180);
-    });
-    
-    // Social modal logic
-    document.getElementById("socialFooter").onclick = function(){
-      document.getElementById("socialModal").classList.add("show");
-    };
-    document.getElementById("closeSocialModal").onclick = function(){
-      document.getElementById("socialModal").classList.remove("show");
-    };
-    
-    // Card modal logic
-    const modal = document.getElementById('card-modal');
-    const close = document.getElementById('closeModal');
-    
-    document.querySelectorAll('.card-real').forEach(card => {
-      card.onclick = function () {
-        const cardType = this.getAttribute('data-type');
-        let title = '';
-        let desc = '';
-        if(cardType === 'event'){
-          title = 'Events Card';
-          desc = 'Flip to reveal the front (Steal Card) and back (Events Card). The Events card unleashes unpredictable twists for tactical matches!';
-        } else if(cardType === 'character'){
-          title = 'Character Card';
-          desc = 'Flip to reveal character powers and artwork. Unleash each hero\'s special abilities!';
-        }
-        document.getElementById('modal-title').textContent = title;
-        document.getElementById('modal-desc').textContent = desc;
-        modal.classList.add('show');
-      };
-    });
-    
-    close.onclick = () => { modal.classList.remove('show'); };
-    
-    window.onclick = function(e){
-      // Close social modal
-      if(e.target === document.getElementById("socialModal")) {
-        document.getElementById("socialModal").classList.remove("show");
-      }
-      // Close card modal
-      if (e.target === modal) {
-        modal.classList.remove('show');
-      }
-    };
-  });
-</script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Play | Dynamic Studios</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="navbar">
-    <ul>
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="buy.html">Buy</a></li>
-      <li><a href="invest.html">Invest</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
-  <header>
-    <img src="logo-white-slogan.png" alt="Dynamic Studios logo with slogan">
-  </header>
-  <div class="studio-desc">
-      Dynamic Studios is a student-led enterprise in High Wycombe, dedicated to creating innovative tabletop card games. Strategy, social play, and creativity drive our team’s passion to deliver quality entertainment for everyone—one game at a time.
-  </div>
-  <section class="newsletter-section">
-    <div class="newsletter-title">Sign up for our newsletter</div>
-    <div class="newsletter-desc">
-      Get updates about Dynamic Studios, new games, releases, and more—straight to your inbox.
-    </div>
-    <!-- Brevo Form Iframe -->
-    <div style="margin-top:20px;">
-      <iframe width="100%" height="305" src="https://b800a5c1.sibforms.com/serve/MUIFACO3p5sN94AJkzED3p-9vbenmdJnQHZOer10S6HfaJa-GXQdTiY193gQExmmrFgweBL1OvpILLVivAzofDCVq2f9n4z2KsEintk4YcmECQ24Dr_j-UzQcxV9sBUk_RUbe6ZcJ0hyQbDgfpeR6H9rnktN0eASKkaQ4hs4Z_dXGVRqTIJB8xT-Jyfwk_KKvaiNFu-dNJ4NYDFocg==" frameborder="0" scrolling="auto" allowfullscreen style="display: block;max-width: 540px;margin:0 auto;border-radius:12px;border:none;"></iframe>
-    </div>
-  </section>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Studios Logo"></a>
+            <nav id="nav">
+                <a href="index.html">Home</a>
+                <a href="buy.html">Buy</a>
+                <a href="invest.html">Invest</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
 
-  <hr class="separator">
-  <section class="main-game-section">
-    <div class="product-title">Power Play</div>
-    <div class="game-desc">
-      Power Play is the strategic tabletop card game by Dynamic Studios. Outsmart rivals, execute clever combos, and claim victory in thrilling rounds designed for players of all ages and abilities. Easy to learn, deeply tactical, and perfect for friends, family, or competitive tournaments—can you master the Power Play?
-    </div>
-    <div class="slogan">Challenge. Strategise. Dominate!</div>
-    <div class="instruction">Click on any card below to see a description about it.</div>
-    <div class="cards-section">
-      <div class="card-real flippable events-card" data-type="event" tabindex="0" title="Click for Events card details">
-        <div class="flip-wrap">
-          <div class="flip-card-inner">
-            <img class="card-img-front" src="card-steal.png" alt="Steal Card Front">
-            <img class="card-img-back" src="card-events.png" alt="Event Card Back">
-          </div>
+    <!-- Newsletter Banner (Below navbar) -->
+    <div class="newsletter-banner">
+        <div class="newsletter-banner-content">
+            <div class="newsletter-banner-text">
+                <span>📬</span>
+                <span>Get exclusive updates, news & launch announcements!</span>
+            </div>
+            <button class="btn-newsletter" onclick="openNewsletter()">Sign Up for Newsletter</button>
         </div>
-        <div class="card-title">Events Card</div>
-      </div>
-      <div class="card-real flippable character-card" data-type="character" tabindex="0" title="Click for Character card details">
-        <div class="flip-wrap">
-          <div class="flip-card-inner">
-            <img class="card-img-front" src="card-c-front.png" alt="Character Card Front">
-            <img class="card-img-back" src="card-characters.png" alt="Character Card Back">
-          </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- About Dynamic Studios -->
+            <div class="about-intro">
+                <img src="logo-white.png" alt="Dynamic Studios Logo" class="logo-intro">
+                <h2>Welcome to Dynamic Studios!</h2>
+                <p>
+                    We're a Young Enterprise team based in High Wycombe, UK, passionate about creating engaging and innovative tabletop games. We believe in the power of play—bringing people together, sparking creativity, and building strategy skills for everyone. Join us on our journey to make games that everyone can enjoy!
+                </p>
+            </div>
+
+            <!-- Game Divider -->
+            <div class="game-divider">
+                <h2>Our First Game</h2>
+            </div>
+
+            <!-- Power Play Section -->
+            <h1>Power Play</h1>
+            <p class="hero-desc">
+                Power Play is the strategic tabletop card game by Dynamic Studios. Outsmart rivals, execute clever combos, and claim victory in thrilling rounds designed for players of all ages and abilities. Easy to learn, deeply tactical, and perfect for friends, family, or competitive tournaments—can you master the Power Play?
+            </p>
+            <p class="hero-tagline">Challenge. Strategise. Dominate!</p>
+            <div class="cta-group">
+                <a href="buy.html" class="btn btn-primary">Get Power Play</a>
+                <a href="about.html" class="btn btn-secondary">Meet the Team</a>
+            </div>
         </div>
-        <div class="card-title">Character Card</div>
-      </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+        <div class="section-header">
+            <h2>Discover the Cards</h2>
+            <p>Click on any card below to see a description about it.</p>
+        </div>
+        <div class="cards-container">
+            <!-- Events Card -->
+            <div class="card" data-card="event" onclick="openModal('event')">
+                <div class="card-images">
+                    <img class="card-img-front" src="card-steal.png" alt="Steal Card Front">
+                    <img class="card-img-back" src="card-events.png" alt="Event Card Back">
+                </div>
+                <h3>Events Card</h3>
+                <p class="card-hint">Click to learn more →</p>
+            </div>
+
+            <!-- Character Card -->
+            <div class="card" data-card="character" onclick="openModal('character')">
+                <div class="card-images">
+                    <img class="card-img-front" src="card-c-front.png" alt="Character Card Front">
+                    <img class="card-img-back" src="card-characters.png" alt="Character Card Back">
+                </div>
+                <h3>Character Card</h3>
+                <p class="card-hint">Click to learn more →</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <img src="logo-white-slogan.png" alt="Dynamic Studios Logo" class="footer-logo">
+        <div class="social-links">
+            <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
+            <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
+            <a href="https://www.youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+        <p class="footer-text">
+            &copy; 2025 Dynamic Studios &mdash; 
+            Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
+        </p>
+    </footer>
+
+    <!-- Card Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Card Title</h3>
+            <p id="modal-desc">Card description</p>
+        </div>
     </div>
-  </section>
-  <hr class="separator">
-  <div class="buy-row">
-      <a class="buy-btn" href="buy.html">Buy Now</a>
-  </div>
-  <footer>
-    &copy; 2025 Dynamic Studios &mdash;
-    Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
-    | <span class="footer-link" id="socialFooter">Our Social</span>
-  </footer>
-  <div class="modal-bg" id="socialModal">
-    <div class="social-modal">
-      <span class="social-modal-close" id="closeSocialModal">&times;</span>
-      <div class="social-modal-title">Connect with us</div>
-      <div class="social-modal-list">
-        <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
-        <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
-        <a href="https://youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-      </div>
+
+    <!-- Newsletter Popup -->
+    <div class="newsletter-popup" id="newsletterPopup">
+        <div class="newsletter-popup-content">
+            <span class="popup-close" onclick="closeNewsletter()">&times;</span>
+            <h3>Join Our Newsletter</h3>
+            <p>Get updates about Dynamic Studios, new games, releases, and more—straight to your inbox.</p>
+            <iframe width="100%" height="305" src="https://b800a5c1.sibforms.com/serve/MUIFACO3p5sN94AJkzED3p-9vbenmdJnQHZOer10S6HfaJa-GXQdTiY193gQExmmrFgweBL1OvpILLVivAzofDCVq2f9n4z2KsEintk4YcmECQ24Dr_j-UzQcxV9sBUk_RUbe6ZcJ0hyQbDgfpeR6H9rnktN0eASKkaQ4hs4Z_dXGVRqTIJB8xT-Jyfwk_KKvaiNFu-dNJ4NYDFocg==" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin:0 auto;border-radius:12px;border:none;"></iframe>
+        </div>
     </div>
-  </div>
-  <div class="modal" id="card-modal" aria-hidden="true">
-    <div class="modal-content">
-      <span class="close-modal" id="closeModal">&times;</span>
-      <h2 id="modal-title"></h2>
-      <p id="modal-desc"></p>
-    </div>
-  </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

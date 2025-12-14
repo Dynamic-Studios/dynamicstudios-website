@@ -1,405 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>About Us | Dynamic Studios</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700|Roboto:400,500" rel="stylesheet">
-  <!-- Social icons CDN: -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <style>
-    :root {
-      --main-black: #191b22;
-      --muted-grey: #23252e;
-      --muted-line: #24262b;
-      --yellow: #ffe059;
-      --steel: #b0b6c2;
-      --about-bg: #20212a;
-      --modal-bg: rgba(20,21,24,0.97);
-    }
-    body {
-      margin: 0;
-      font-family: 'Roboto', Arial, sans-serif;
-      background: var(--main-black);
-      color: #efefef;
-      min-height: 100vh;
-    }
-    .navbar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--muted-grey);
-      border-bottom: 1.5px solid var(--muted-line);
-    }
-    .navbar ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 36px;
-    }
-    .navbar a {
-      color: var(--yellow);
-      font-family: 'Montserrat', sans-serif;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.13rem;
-      letter-spacing: 0.02em;
-      padding: 20px 8px;
-      display: block;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.2s;
-    }
-    .navbar a:hover,
-    .navbar a.active {
-      border-bottom: 2px solid var(--yellow);
-    }
-    header { text-align: center; margin-top: 42px; }
-    header img {
-      height: 90px;
-      margin-bottom: 2px;
-      display: block;
-      margin: 0 auto;
-    }
-    .about-main {
-      max-width: 800px;
-      margin: 48px auto 42px auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 36px 14px 38px 14px;
-      background: var(--about-bg);
-      box-shadow: 0 6px 34px 0 #10101014;
-      border-radius: 18px;
-    }
-    .about-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.15rem;
-      font-weight: 900;
-      color: var(--yellow);
-      letter-spacing: 0.04em;
-      margin: 0 0 15px 0;
-      text-align: center;
-    }
-    .about-desc {
-      color: #e8eaf1;
-      font-size: 1.16rem;
-      margin: 0 0 30px 0;
-      text-align: center;
-      line-height: 1.7;
-      font-family: 'Roboto', Arial, sans-serif;
-    }
-    .about-section-title {
-      color: #ffe059;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.18rem;
-      margin: 24px 0 10px 0;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-align: center;
-    }
-    .about-section {
-      margin-bottom: 22px;
-      text-align: center;
-      color: var(--steel);
-    }
-    .about-values {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      margin-top: 6px;
-      flex-wrap: wrap;
-    }
-    .about-value {
-      background: #232440;
-      padding: 18px 14px;
-      border-radius: 13px;
-      min-width: 120px;
-      max-width: 200px;
-      margin-bottom: 10px;
-      font-size: 1rem;
-      color: #ffe059;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-    .about-timeline {
-      margin: 16px auto 0 auto;
-      max-width: 420px;
-      border-left: 3px solid #333541;
-      padding-left: 20px;
-    }
-    .about-timeline .event {
-      margin-bottom: 18px;
-      text-align: left;
-      color: #dfdfed;
-    }
-    .about-timeline .event-year {
-      color: #ffe059;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      margin-right: 8px;
-      font-size: 1.04rem;
-    }
-    .about-team-cards{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      margin-top: 14px;
-      width: 100%;
-    }
-    .team-row{
-      display: flex;
-      gap: 22px;
-      justify-content: center;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
-    }
-    .team-card {
-      border-radius: 13px;
-      padding: 22px 22px 12px 22px;
-      min-width: 175px;
-      max-width: 240px;
-      box-shadow: 0 2px 18px 0 #10101024;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: 'Montserrat',sans-serif;
-      font-weight: 600;
-      border: 2.2px solid transparent;
-      text-decoration: none;
-      background: #232641;
-      color: #ffe059;
-    }
-    .team-card.leader {
-      border-color: #ffe059;
-      background: linear-gradient(120deg,#ffe059 35%, #23222b 100%);
-      color: #23222b;
-    }
-    .team-card.finance {
-      border-color: #2bfd7f;
-      background: linear-gradient(120deg,#2bfd7f 0%, #169d43 100%);
-      color: #fff;
-    }
-    .team-card.designer {
-      border-color: #ff193d;
-      background: linear-gradient(120deg,#2676fb 0%, #ff193d 100%);
-      color: #fff;
-    }
-    .team-card.team-purple {
-      border-color: #8e6fff;
-      background: linear-gradient(120deg,#8e6fff 0%, #6ed8fb 100%);
-      color: #fff;
-    }
-    .team-card.team-orange {
-      border-color: #ff8e53;
-      background: linear-gradient(120deg,#ff8e53 0%, #ff3860 100%);
-      color: #fff;
-    }
-    .team-card.leader .team-name,
-    .team-card.leader .team-role { color: #23222b;}
-    .team-card:hover {
-      border-color: #ffe059;
-      box-shadow: 0 4px 36px #ffe05923;
-      filter: brightness(1.12) saturate(1.09);
-    }
-    .team-name {
-      font-size: 1.19rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .team-role {
-      font-size: 1.04rem;
-      font-family: 'Roboto',sans-serif;
-      font-weight: 500;
-      margin-bottom: 7px;
-      letter-spacing: 0.01em;
-    }
-    /* Social Popup */
-    .modal-bg {
-      display:none;
-      position:fixed;
-      left:0;top:0;width:100vw;height:100vh;
-      background:var(--modal-bg);
-      z-index:9999;
-      align-items:center;
-      justify-content:center;
-      animation:modalFadeIn .35s;
-    }
-    .modal-bg.show {display:flex;}
-    @keyframes modalFadeIn{
-      from{opacity:0;}
-      to{opacity:1;}
-    }
-    .social-modal {
-      background:#222641;
-      color:#ffe059;
-      border-radius:18px;
-      box-shadow:0 8px 42px #10101033;
-      min-width:320px;
-      width:95vw;
-      max-width:390px;
-      padding:32px 26px 28px 26px;
-      text-align:center;
-      position:relative;
-    }
-    .social-modal-title {
-      font-family:'Montserrat',sans-serif;
-      font-size:1.34rem;
-      font-weight:900;
-      margin-bottom:7px;
-      letter-spacing:0.04em;
-      color:#ffe059;
-    }
-    .social-modal-list {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:13px;
-      margin:18px 0 0 0;
-    }
-    .social-modal-list a {
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:1.13rem;
-      background:#191d2d;
-      color:#ffe059;
-      padding:12px 18px 10px 18px;
-      border-radius:10px;
-      font-family:'Montserrat',sans-serif;
-      font-weight:700;
-      text-decoration:none;
-      transition:background .16s, color .12s;
-    }
-    .social-modal-list a:hover {
-      background:#ffe059;
-      color:#191b22;
-    }
-    .social-modal-close {
-      position:absolute;
-      top:11px; right:18px;
-      font-size:1.65rem;
-      color:#ffe059;
-      cursor:pointer;
-    }
-    .social-modal-close:hover { color:#fff4a1;}
-    @media (max-width:600px){
-      .social-modal{min-width:95vw;font-size:1rem;}
-      .about-main { padding:14px 2vw;}
-    }
-    footer {
-      text-align: center;
-      margin-top: 54px;
-      color: #b0bad6;
-      font-size: 1rem;
-      padding: 24px 8px 18px 8px;
-    }
-    .footer-link {
-      color: #ffe059;
-      text-decoration: underline;
-      font-weight:700;
-      cursor:pointer;
-      transition:color .13s;
-    }
-    .footer-link:hover { color: #fff4a1;}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Dynamic Studios</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="navbar">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="buy.html">Buy</a></li>
-      <li><a href="invest.html">Invest</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-    </ul>
-  </nav>
-  <header>
-    <img src="logo-white-slogan.png" alt="Dynamic Studios logo with slogan">
-  </header>
-  <main class="about-main">
-    <div class="about-title">About Dynamic Studios</div>
-    <div class="about-desc">
-      Dynamic Studios is a Young Enterprise team based in High Wycombe, UK, passionate about creating engaging and innovative tabletop games. We believe in the power of play—bringing people together, sparking creativity, and building strategy skills for everyone.
-    </div>
-    <div class="about-section-title">Our Values</div>
-    <div class="about-values">
-      <div class="about-value">Creativity</div>
-      <div class="about-value">Inclusivity</div>
-      <div class="about-value">Fair Play</div>
-      <div class="about-value">Community</div>
-      <div class="about-value">Innovation</div>
-    </div>
-    <div class="about-section-title">Our Story</div>
-    <div class="about-section">
-      <div class="about-timeline">
-        <div class="event"><span class="event-year">2025</span>Dynamic Studios is founded by students at The Highcrest Academy through Young Enterprise, with a vision to make games for everyone.</div>
-        <div class="event"><span class="event-year">2025</span>We launch our first project: <strong>Power Play</strong>, designing every detail ourselves and building for launch.</div>
-        <div class="event"><span class="event-year">2025</span>We invite others to join our journey—invest, play, and grow with us!</div>
-      </div>
-    </div>
-    <div class="about-section-title">Meet the Team</div>
-    <div class="about-team-cards">
-      <div class="team-row">
-        <div class="team-card leader">
-          <div class="team-name">Armaan Tahir</div>
-          <div class="team-role">Group Leader</div>
+    <header>
+        <div class="header-content">
+            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Studios Logo"></a>
+            <nav id="nav">
+                <a href="index.html">Home</a>
+                <a href="buy.html">Buy</a>
+                <a href="invest.html">Invest</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-      </div>
-      <div class="team-row">
-        <div class="team-card finance">
-          <div class="team-name">Hashim Mistry</div>
-          <div class="team-role">Financial Manager</div>
+    </header>
+
+    <main class="about-page">
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <h1>About Dynamic Studios</h1>
+            <p>We're a Young Enterprise team based in High Wycombe, UK, passionate about creating engaging and innovative tabletop games. We believe in the power of play—bringing people together, sparking creativity, and building strategy skills for everyone.</p>
+            <div class="company-info">
+                <div class="company-number">
+                    <i class="fas fa-certificate"></i>
+                    <span>YE Company Number: <strong>38762357</strong></span>
+                </div>
+                <div class="company-details">
+                    <span><i class="fas fa-school"></i> The Highcrest Academy</span>
+                    <span><i class="fas fa-map-marker-alt"></i> High Wycombe</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="values-section">
+            <h2 class="section-title">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎨</div>
+                    <h3>Creativity</h3>
+                    <p>Innovation drives everything we create</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Inclusivity</h3>
+                    <p>Games for everyone, everywhere</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚖️</div>
+                    <h3>Fair Play</h3>
+                    <p>Balanced and rewarding gameplay</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Community</h3>
+                    <p>Building connections through play</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>Pushing boundaries in game design</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Timeline -->
+        <section class="story-section">
+            <h2 class="section-title">Our Story</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h3>The Beginning</h3>
+                        <p>Dynamic Studios is founded by students at The Highcrest Academy through Young Enterprise, with a vision to make games for everyone.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h3>Power Play Concept Created</h3>
+                        <p>We develop the concept for our first project: <strong>Power Play</strong>, a strategic tabletop card game designed to bring people together through fun and tactical gameplay.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h3>Dragons' Den Success! 🏆</h3>
+                        <p>We pitched to Young Enterprise Dragons at Pipers Corner School and secured <strong>£50 in investment</strong>—a major milestone and validation of our vision!</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Now</div>
+                    <div class="timeline-content">
+                        <h3>Building for Launch</h3>
+                        <p>We're working hard to bring Power Play to life! Join us on our journey—invest, play, and grow with us as we prepare for launch.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <h2 class="section-title">Meet the Team</h2>
+            <div class="team-grid">
+                <!-- Armaan Tahir -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Armaan Tahir</h3>
+                    <div class="team-roles-multi">
+                        <span class="role-badge">Managing Director</span>
+                    </div>
+                    <p class="team-desc">Leading our vision and driving strategic direction for Dynamic Studios</p>
+                </div>
+
+                <!-- Hashim Mistry -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Hashim Mistry</h3>
+                    <div class="team-roles-multi">
+                        <span class="role-badge">Finance Director</span>
+                        <span class="role-badge">Finance Team Member</span>
+                        <span class="role-badge">Operations Director</span>
+                        <span class="role-badge">Operations Team Member</span>
+                    </div>
+                    <p class="team-desc">Managing finances, operations, and ensuring smooth business growth</p>
+                </div>
+
+                <!-- Qasim Mistry -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Qasim Mistry</h3>
+                    <div class="team-roles-multi">
+                        <span class="role-badge">Product Designer</span>
+                    </div>
+                    <p class="team-desc">Crafting the Power Play experience and bringing creative visions to life</p>
+                </div>
+
+                <!-- Muhammad Asghar -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Muhammad Asghar</h3>
+                    <div class="team-roles-multi">
+                        <span class="role-badge">Company Secretary (Director)</span>
+                        <span class="role-badge">Company Secretary Team Member</span>
+                    </div>
+                    <p class="team-desc">Managing company affairs and ensuring compliance as Company Secretary</p>
+                </div>
+
+                <!-- Callum Hand -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Callum Hand</h3>
+                    <div class="team-roles-multi">
+                        <span class="role-badge">Marketing Director</span>
+                        <span class="role-badge">Marketing Team Member</span>
+                    </div>
+                    <p class="team-desc">Building our brand and connecting with our growing community</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="about-cta">
+            <h2>Join Our Journey</h2>
+            <p>Be part of the Dynamic Studios story. Invest in our vision or get ready for when Power Play launches!</p>
+            <div class="cta-group">
+                <a href="invest.html" class="btn btn-primary">Invest in Us</a>
+                <a href="buy.html" class="btn btn-secondary">Learn About Power Play</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="logo-white-slogan.png" alt="Dynamic Studios Logo" class="footer-logo">
+        <div class="social-links">
+            <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
+            <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
+            <a href="https://www.youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
         </div>
-        <div class="team-card designer">
-          <div class="team-name">Qasim Mistry</div>
-          <div class="team-role">Product Designer</div>
-        </div>
-      </div>
-      <div class="team-row">
-        <div class="team-card team-purple">
-          <div class="team-name">Muhammad Asghar</div>
-          <div class="team-role">Team Member</div>
-        </div>
-        <div class="team-card team-orange">
-          <div class="team-name">Callum Hand</div>
-          <div class="team-role">Team Member</div>
-        </div>
-      </div>
-    </div>
-  </main>
-  <footer>
-    &copy; 2025 Dynamic Studios &mdash;
-    Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
-    | <span class="footer-link" id="socialFooter">Our Social</span>
-  </footer>
-  <div class="modal-bg" id="socialModal">
-    <div class="social-modal">
-      <span class="social-modal-close" id="closeSocialModal">&times;</span>
-      <div class="social-modal-title">Connect with us</div>
-      <div class="social-modal-list">
-        <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
-        <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
-        <a href="https://youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-      </div>
-    </div>
-  </div>
-  <script>
-    document.getElementById("socialFooter").onclick = function(){
-      document.getElementById("socialModal").classList.add("show");
-    };
-    document.getElementById("closeSocialModal").onclick = function(){
-      document.getElementById("socialModal").classList.remove("show");
-    };
-    window.onclick = function(e){
-      if(e.target === document.getElementById("socialModal")) {
-        document.getElementById("socialModal").classList.remove("show");
-      }
-    };
-  </script>
+        <p class="footer-text">
+            &copy; 2025 Dynamic Studios &mdash; 
+            Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

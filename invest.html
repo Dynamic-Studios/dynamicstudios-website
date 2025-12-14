@@ -1,368 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Invest in Dynamic Studios</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700|Roboto:400,500" rel="stylesheet">
-  <!-- Social icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <style>
-    :root {
-      --main-black: #191b22;
-      --muted-grey: #23252e;
-      --muted-line: #24262b;
-      --yellow: #ffe059;
-      --steel: #b0b6c2;
-    }
-    body {
-      margin: 0;
-      font-family: 'Roboto', Arial, sans-serif;
-      background: var(--main-black);
-      color: #efefef;
-      min-height: 100vh;
-    }
-    .navbar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--muted-grey);
-      border-bottom: 1.5px solid var(--muted-line);
-    }
-    .navbar ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 36px;
-    }
-    .navbar a {
-      color: var(--yellow);
-      font-family: 'Montserrat', sans-serif;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.13rem;
-      letter-spacing: 0.02em;
-      padding: 20px 8px;
-      display: block;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.2s;
-    }
-    .navbar a:hover,
-    .navbar a.active {
-      border-bottom: 2px solid var(--yellow);
-    }
-    header { text-align: center; margin-top: 42px; }
-    header img {
-      height: 90px;
-      margin-bottom: 2px;
-      display: block;
-      margin: 0 auto;
-    }
-    .invest-section {
-      max-width: 680px;
-      margin: 48px auto 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 8px;
-    }
-    .invest-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.1rem;
-      font-weight: 900;
-      margin: 0 0 13px 0;
-      color: var(--yellow);
-      letter-spacing: 0.04em;
-    }
-    .invest-details {
-      font-size: 1.13rem;
-      color: #e1e5ef;
-      font-family: 'Roboto', Arial, sans-serif;
-      font-weight: 400;
-      max-width: 530px;
-      margin: 0 auto 24px auto;
-      line-height: 1.6;
-    }
-    .share-benefits {
-      margin: 26px 0 30px 0;
-      background: rgba(35,37,46,0.8);
-      border-radius: 20px;
-      padding: 20px 28px 18px 28px;
-      box-shadow: 0 2px 18px 0 #10101527;
-      max-width: 430px;
-      color: #ffe059;
-      font-size: 1.11rem;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-    }
-    .invest-note {
-      font-size: 0.99rem;
-      color: #d0d7ea;
-      max-width: 440px;
-      margin: 18px auto 24px auto;
-      opacity: 0.83;
-      font-style: italic;
-    }
-    .invest-form-section {
-      max-width: 480px;
-      background: #232641;
-      color: #ffe059;
-      border-radius: 16px;
-      box-shadow: 0 2px 16px #19204026;
-      margin: 35px auto 0 auto;
-      padding: 30px 18px 22px 18px;
-      text-align: center;
-    }
-    .invest-form-title {
-      font-family: 'Montserrat',sans-serif;
-      font-size: 1.29rem;
-      font-weight: 900;
-      color: #ffe059;
-      margin-bottom: 3px;
-    }
-    .invest-form-desc {
-      color: #e1e5ef;
-      font-size: 1.09rem;
-      margin-bottom: 17px;
-    }
-    .invest-form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      align-items: stretch;
-    }
-    .invest-form input,
-    .invest-form textarea {
-      font-size: 1.1rem;
-      border: 1.6px solid #ffe059;
-      border-radius: 7px;
-      padding: 10px 13px;
-      outline: none;
-      margin-bottom: 2px;
-      background: #191b22;
-      color: #ffe059;
-      font-family: inherit;
-    }
-    .invest-form textarea { resize: vertical; }
-    .invest-form button {
-      background: #ffe059;
-      color: #23222b;
-      border: none;
-      border-radius: 7px;
-      padding: 12px 24px;
-      font-size: 1.1rem;
-      font-family: 'Montserrat',sans-serif;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.13s;
-    }
-    .invest-form button:hover {
-      background: #fff4a1;
-    }
-    .back-row {
-      display: flex;
-      justify-content: center;
-      margin: 32px 0 0 0;
-    }
-    .back-btn {
-      display: inline-block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.01rem;
-      background: none;
-      color: var(--yellow);
-      border: 2px solid var(--yellow);
-      border-radius: 32px;
-      padding: 8px 34px;
-      font-weight: 700;
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: background 0.17s, color .13s;
-    }
-    .back-btn:hover {
-      background: var(--yellow);
-      color: #232326;
-    }
-    /* Social Popup */
-    .modal-bg {
-      display:none;
-      position:fixed;
-      left:0;top:0;width:100vw;height:100vh;
-      background:rgba(20,21,24,0.97);
-      z-index:9999;
-      align-items:center;
-      justify-content:center;
-      animation:modalFadeIn .35s;
-    }
-    .modal-bg.show {display:flex;}
-    @keyframes modalFadeIn{
-      from{opacity:0;}
-      to{opacity:1;}
-    }
-    .social-modal {
-      background:#222641;
-      color:#ffe059;
-      border-radius:18px;
-      box-shadow:0 8px 42px #10101033;
-      min-width:320px;
-      width:95vw;
-      max-width:390px;
-      padding:32px 26px 28px 26px;
-      text-align:center;
-      position:relative;
-    }
-    .social-modal-title {
-      font-family:'Montserrat',sans-serif;
-      font-size:1.34rem;
-      font-weight:900;
-      margin-bottom:7px;
-      letter-spacing:0.04em;
-      color:#ffe059;
-    }
-    .social-modal-list {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:13px;
-      margin:18px 0 0 0;
-    }
-    .social-modal-list a {
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:1.13rem;
-      background:#191d2d;
-      color:#ffe059;
-      padding:12px 18px 10px 18px;
-      border-radius:10px;
-      font-family:'Montserrat',sans-serif;
-      font-weight:700;
-      text-decoration:none;
-      transition:background .16s, color .12s;
-    }
-    .social-modal-list a:hover {
-      background:#ffe059;
-      color:#191b22;
-    }
-    .social-modal-close {
-      position:absolute;
-      top:11px; right:18px;
-      font-size:1.65rem;
-      color:#ffe059;
-      cursor:pointer;
-    }
-    .social-modal-close:hover { color:#fff4a1;}
-    @media (max-width:900px) {
-      .navbar ul { gap: 18px; }
-      header img{height:54px;}
-      .invest-section{margin-top:30px;}
-      .invest-title{font-size:1.29rem;}
-      .share-benefits{font-size:1rem;}
-      .invest-form-section {padding:13px 3vw;}
-      .invest-form-title {font-size:1.03rem;}
-    }
-    @media (max-width:600px) {
-      .invest-section{padding:0 2px;}
-      .invest-title{font-size:1.01rem;}
-      .invest-details{font-size:0.98rem;}
-      .share-benefits{font-size:0.97rem;}
-      .invest-form-section {padding:8px 1vw;}
-      .invest-form-title {font-size:0.95rem;}
-      .social-modal{min-width:95vw;font-size:1rem;}
-    }
-    .footer-link {
-      color: #ffe059;
-      text-decoration: underline;
-      font-weight:700;
-      cursor:pointer;
-      transition:color .13s;
-    }
-    .footer-link:hover { color: #fff4a1;}
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      color: #b0bad6;
-      font-size: 1rem;
-      padding: 24px 8px 18px 8px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest in Dynamic Studios</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="navbar">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="buy.html">Buy</a></li>
-      <li><a href="invest.html" class="active">Invest</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
-  <header>
-    <img src="logo-white-slogan.png" alt="Dynamic Studios logo with slogan">
-  </header>
-  <section class="invest-section">
-    <div class="invest-title">Invest in Dynamic Studios</div>
-    <div class="invest-details">
-      Own a piece of our journey! You can buy shares in Dynamic Studios for <b>£10 per share</b>. Support our growth and be part of something exciting.
-    </div>
-    <div class="share-benefits">
-      <div>Buy <b>3 shares</b> and you'll get:</div>
-      <ul style="margin:10px 0 0 0; padding: 0; list-style-position: inside;">
-        <li> <b>Power Play</b> for free when it launches</li>
-        <li> Get instant updates</li>
-      </ul>
-    </div>
-    <div class="invest-note">
-      Investing digitally will soon be available — stay tuned for updates!
-    </div>
-  </section>
-  <section class="invest-form-section">
-    <div class="invest-form-title">Interested in Investing?</div>
-    <div class="invest-form-desc">
-      Fill out the form below to request to invest in Dynamic Studios. We’ll get in touch to confirm details and next steps!
-    </div>
-    <form class="invest-form" action="https://formspree.io/f/mldvkenr" method="POST">
-    <input type="text" name="Name" required placeholder="Your Name">
-    <input type="email" name="Email" required placeholder="Your Email">
-    <input type="number" name="Shares" min="1" required placeholder="Number of Shares (e.g. 3)">
-    <textarea name="Message" rows="3" placeholder="Anything else you want to add?"></textarea>
-    <button type="submit">Submit Investment Request</button>
-    </form>
-  </section>
-  <div class="back-row">
-    <a class="back-btn" href="index.html">&larr; Back to Home</a>
-  </div>
-  <footer>
-    &copy; 2025 Dynamic Studios &mdash;
-    Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
-    | <span class="footer-link" id="socialFooter">Our Social</span>
-  </footer>
-  <div class="modal-bg" id="socialModal">
-    <div class="social-modal">
-      <span class="social-modal-close" id="closeSocialModal">&times;</span>
-      <div class="social-modal-title">Connect with us</div>
-      <div class="social-modal-list">
-        <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
-        <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
-        <a href="https://youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-      </div>
-    </div>
-  </div>
-  <script>
-    document.getElementById("socialFooter").onclick = function(){
-      document.getElementById("socialModal").classList.add("show");
-    };
-    document.getElementById("closeSocialModal").onclick = function(){
-      document.getElementById("socialModal").classList.remove("show");
-    };
-    window.onclick = function(e){
-      if(e.target === document.getElementById("socialModal")) {
-        document.getElementById("socialModal").classList.remove("show");
-      }
-    };
-  </script>
+    <header>
+        <div class="header-content">
+            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Studios Logo"></a>
+            <nav id="nav">
+                <a href="index.html">Home</a>
+                <a href="buy.html">Buy</a>
+                <a href="invest.html">Invest</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="invest-container">
+            <div class="invest-hero">
+                <h1>Invest in Dynamic Studios</h1>
+                <p>Own a piece of our journey! Support our growth and be part of something exciting.</p>
+            </div>
+
+            <div class="price-card">
+                <p class="price-label">Share Price</p>
+                <div class="price">£1</div>
+                <p class="price-note">per share</p>
+            </div>
+
+            <div class="benefits-section">
+                <h2>Investor Benefits</h2>
+                <ul class="benefits-list">
+                    <li>Exclusive discount on Power Play when it launches</li>
+                    <li>Get instant updates on company developments</li>
+                    <li>Be part of our growing community</li>
+                    <li>Support young entrepreneurs and innovation</li>
+                    <li>Early access to future product announcements</li>
+                </ul>
+            </div>
+
+            <div class="invest-form">
+                <h3>Interested in Investing?</h3>
+                <p style="color: #c5c9d8; margin-bottom: 28px; line-height: 1.7;">
+                    Fill out the form below to request to invest in Dynamic Studios. We'll get in touch to confirm details and next steps!
+                </p>
+                <p style="color: #a8abb8; margin-bottom: 28px; font-style: italic;">
+                    💡 Investing digitally will soon be available — stay tuned for updates!
+                </p>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shares">Number of Shares Interested In</label>
+                        <input type="number" id="shares" name="shares" min="1" placeholder="e.g. 10">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Additional Information (Optional)</label>
+                        <textarea id="message" name="message" placeholder="Tell us why you're interested in investing..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Submit Investment Request</button>
+                </form>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-link">← Back to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <img src="logo-white-slogan.png" alt="Dynamic Studios Logo" class="footer-logo">
+        <div class="social-links">
+            <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
+            <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
+            <a href="https://www.youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+        <p class="footer-text">
+            &copy; 2025 Dynamic Studios &mdash; 
+            Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
