@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buy Power Play | Dynamic Studios</title>
+    <title>Power Play - Dynamic Game Studios</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Studios Logo"></a>
+            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Game Studios Logo"></a>
             <nav id="nav">
                 <a href="index.html">Home</a>
                 <a href="buy.html">Buy</a>
@@ -28,28 +28,162 @@
 
     <main>
         <div class="buy-container">
-            <div class="coming-soon-icon">🎮</div>
-            <h1>Buy Power Play</h1>
-            <p>Thank you for your interest in Power Play! The game will be available for purchase soon. Please check back for updates and details.</p>
-            <a href="index.html" class="back-link">← Back to Home</a>
+            <div class="product-hero">
+                <h1>Power Play</h1>
+                <p>The strategic card game where every move counts. Launching Spring 2026.</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-track" id="carouselTrack">
+                            <div class="carousel-slide">
+                                <img src="card-steal.png" alt="Power Play Event Card">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="card-c-front.png" alt="Power Play Character Card">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="card-events.png" alt="Power Play Card Back">
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev" onclick="changeSlide(-1)">‹</button>
+                        <button class="carousel-btn next" onclick="changeSlide(1)">›</button>
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators"></div>
+                </div>
+
+                <div class="product-details">
+                    <h2>About Power Play</h2>
+
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Players</span>
+                            <span class="spec-value">2-4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Age</span>
+                            <span class="spec-value">8+</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Playing Time</span>
+                            <span class="spec-value">15-30 minutes</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Complexity</span>
+                            <span class="spec-value">Easy to learn, hard to master</span>
+                        </div>
+                    </div>
+
+                    <div class="product-description">
+                        <p>Power Play combines simple rules with deep strategic gameplay. Build your deck, outmanoeuvre your opponents, and claim victory through clever card combinations.</p>
+                        <p>Perfect for families, friends, and competitive players alike. Every game tells a different story.</p>
+                    </div>
+
+                    <div class="price-section">
+                        <div class="price">Coming Soon</div>
+                        <p class="price-note">Pre-orders opening Spring 2026. Join our newsletter for early access.</p>
+                    </div>
+
+                    <button class="btn btn-primary full-width" onclick="openNewsletter()">Get Launch Alert</button>
+                    <a href="index.html" class="btn btn-secondary full-width" style="margin-top: 16px; display: block; text-align: center;">← Back to Home</a>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <h2>Why You'll Love Power Play</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast-Paced</h3>
+                        <p>Quick rounds keep everyone engaged. No downtime, just pure strategy.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Easy to Learn</h3>
+                        <p>Master the basics in 5 minutes. Perfect for newcomers and veterans.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Highly Replayable</h3>
+                        <p>Unique card combinations and strategies make every game different.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Social & Competitive</h3>
+                        <p>Perfect for game nights, tournaments, or casual play with friends.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Premium Quality</h3>
+                        <p>High-quality cards with stunning artwork and durable materials.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📦</div>
+                        <h3>Compact & Portable</h3>
+                        <p>Take Power Play anywhere. Perfect for travel and on-the-go gaming.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
     <footer>
-        <img src="logo-white-slogan.png" alt="Dynamic Studios Logo" class="footer-logo">
+        <img src="logo-white-slogan.png" alt="Dynamic Game Studios Logo" class="footer-logo">
         <div class="social-links">
-            <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
-            <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
+            <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter / X</a>
+            <a href="https://www.reddit.com/user/DynamicStudiosUK" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
             <a href="https://www.youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
             <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-            <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.instagram.com/dynamicstudiosuk" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
         </div>
-        <p class="footer-text">
-            &copy; 2025 Dynamic Studios &mdash; 
-            Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
-        </p>
+        <p class="footer-text">&copy; 2026 Dynamic Game Studios &mdash; Contact <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a></p>
     </footer>
 
+    <!-- FIXED NEWSLETTER POPUP -->
+    <div class="newsletter-popup" id="newsletterPopup">
+        <div class="newsletter-popup-content">
+            <span class="popup-close" onclick="closeNewsletter()">&times;</span>
+            <h3>Join Our Newsletter</h3>
+            <p>Be the first to know when Power Play launches. Get exclusive updates and early access.</p>
+            <iframe width="100%" height="305" src="https://b800a5c1.sibforms.com/serve/MUIFACO3p5sN94AJkzED3p-9vbenmdJnQHZOer10S6HfaJa-GXQdTiY193gQExmmrFgweBL1OvpILLVivAzofDCVq2f9n4z2KsEintk4YcmECQ24Dr_j-UzQcxV9sBUk_RUbe6ZcJ0hyQbDgfpeR6H9rnktN0eASKkaQ4hs4Z_dXGVRqTIJB8xT-Jyfwk_KKvaiNFu-dNJ4NYDFocg==" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin:0 auto;border-radius:12px;border:none;"></iframe>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const track = document.getElementById('carouselTrack');
+        const indicatorsContainer = document.getElementById('carouselIndicators');
+
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator' + (index === 0 ? ' active' : '');
+            indicator.onclick = () => goToSlide(index);
+            indicatorsContainer.appendChild(indicator);
+        });
+
+        function updateCarousel() {
+            track.style.transform = \`translateX(-\${currentSlide * 100}%)\`;
+            document.querySelectorAll('.indicator').forEach((ind, index) => {
+                ind.className = 'indicator' + (index === currentSlide ? ' active' : '');
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        setInterval(() => changeSlide(1), 5000);
+    </script>
 </body>
 </html>

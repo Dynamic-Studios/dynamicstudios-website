@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Studios</title>
+    <title>Dynamic Game Studios - Power Play Card Game</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-content">
-            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Studios Logo"></a>
+            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Game Studios Logo"></a>
             <nav id="nav">
                 <a href="index.html">Home</a>
                 <a href="buy.html">Buy</a>
@@ -27,7 +26,6 @@
         </div>
     </header>
 
-    <!-- Newsletter Banner (Below navbar) -->
     <div class="newsletter-banner">
         <div class="newsletter-banner-content">
             <div class="newsletter-banner-text">
@@ -38,82 +36,263 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <!-- About Dynamic Studios -->
             <div class="about-intro">
-                <img src="logo-white.png" alt="Dynamic Studios Logo" class="logo-intro">
-                <h2>Welcome to Dynamic Studios!</h2>
-                <p>
-                    We're a Young Enterprise team based in High Wycombe, UK, passionate about creating engaging and innovative tabletop games. We believe in the power of play—bringing people together, sparking creativity, and building strategy skills for everyone. Join us on our journey to make games that everyone can enjoy!
+                <img src="logo-black.png" alt="Dynamic Game Studios Logo" class="logo-intro">
+                <h1>Dynamic Game Studios</h1>
+                <p>Creating strategic tabletop games that blend modern design with classic gameplay. Based in High Wycombe, UK.</p>
+            </div>
+
+            <div class="game-divider">
+                <h2>Introducing Power Play</h2>
+            </div>
+
+            <div class="hero-main">
+                <h3 class="hero-headline">Master strategy. Outplay your rivals. Build unstoppable combos.</h3>
+                <p class="hero-desc">
+                    Power Play is a fast-paced tactical card game where every decision counts. Perfect for 2-4 players, 
+                    ages 8+. Learn in 5 minutes, master over a lifetime.
+                </p>
+                <p class="hero-features">
+                    <span class="feature-badge">🎯 Quick Setup</span>
+                    <span class="feature-badge">⚡ Fast-Paced</span>
                 </p>
             </div>
 
-            <!-- Game Divider -->
-            <div class="game-divider">
-                <h2>Our First Game</h2>
-            </div>
-
-            <!-- Power Play Section -->
-            <h1>Power Play</h1>
-            <p class="hero-desc">
-                Power Play is the strategic tabletop card game by Dynamic Studios. Outsmart rivals, execute clever combos, and claim victory in thrilling rounds designed for players of all ages and abilities. Easy to learn, deeply tactical, and perfect for friends, family, or competitive tournaments—can you master the Power Play?
-            </p>
-            <p class="hero-tagline">Challenge. Strategise. Dominate!</p>
             <div class="cta-group">
-                <a href="buy.html" class="btn btn-primary">Get Power Play</a>
-                <a href="about.html" class="btn btn-secondary">Meet the Team</a>
+                <a href="buy.html" class="btn btn-primary">Discover Power Play</a>
+                <a href="about.html" class="btn btn-secondary">Meet the Studio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Navigation for Homepage -->
+    <section class="page-nav-section">
+        <div class="page-nav-container">
+            <h2 class="page-nav-title">Explore</h2>
+            <div class="page-nav-buttons">
+                <button class="page-nav-btn" onclick="scrollToSection('game-mechanics')">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Game Mechanics</span>
+                </button>
+                <button class="page-nav-btn" onclick="scrollToSection('social-videos')">
+                    <i class="fas fa-video"></i>
+                    <span>Our Videos</span>
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Cards Section -->
-    <section class="cards-section">
+    <section class="cards-section" id="game-mechanics">
         <div class="section-header">
-            <h2>Discover the Cards</h2>
-            <p>Click on any card below to see a description about it.</p>
+            <h2>Game Mechanics</h2>
+            <p>Two powerful card types drive every match</p>
         </div>
+
         <div class="cards-container">
-            <!-- Events Card -->
             <div class="card" data-card="event" onclick="openModal('event')">
                 <div class="card-images">
                     <img class="card-img-front" src="card-steal.png" alt="Steal Card Front">
                     <img class="card-img-back" src="card-events.png" alt="Event Card Back">
                 </div>
-                <h3>Events Card</h3>
+                <h3>Event Cards</h3>
+                <p class="card-description">Disrupt opponents, steal resources, and change the game state instantly.</p>
                 <p class="card-hint">Click to learn more →</p>
             </div>
 
-            <!-- Character Card -->
             <div class="card" data-card="character" onclick="openModal('character')">
                 <div class="card-images">
                     <img class="card-img-front" src="card-c-front.png" alt="Character Card Front">
                     <img class="card-img-back" src="card-characters.png" alt="Character Card Back">
                 </div>
-                <h3>Character Card</h3>
+                <h3>Character Cards</h3>
+                <p class="card-description">Build your team with unique abilities and strategic synergies.</p>
                 <p class="card-hint">Click to learn more →</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Social Media Video Carousel with Thumbnails -->
+    <section class="social-videos-section" id="social-videos">
+        <div class="section-header">
+            <h2>Watch Us in Action</h2>
+            <p>Check out our latest YouTube Shorts! Also available on TikTok and Instagram.</p>
+        </div>
+
+        <div class="social-carousel-container">
+            <div class="social-carousel shorts-carousel">
+                <div class="social-carousel-track" id="socialCarouselTrack">
+                    <!-- YouTube Short 1 -->
+                    <div class="social-carousel-slide">
+                        <a href="https://youtube.com/shorts/29OO2582jVw" target="_blank" class="video-thumbnail-link">
+                            <img src="https://i.ytimg.com/vi/29OO2582jVw/maxresdefault.jpg" 
+                                 alt="We made him wear fake nails for the day!" 
+                                 class="video-thumbnail"
+                                 onerror="this.src='https://i.ytimg.com/vi/29OO2582jVw/hqdefault.jpg'">
+                            <div class="play-button-overlay">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div class="video-info">
+                            <h4 class="video-title">We made him wear fake nails for the day!</h4>
+                            <p class="video-summary-label"><i class="fas fa-sparkles"></i> AI Summary</p>
+                            <p class="video-summary">Our most viral video - building an audience for Power Play's launch.</p>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Short 2 -->
+                    <div class="social-carousel-slide">
+                        <a href="https://youtube.com/shorts/OjRfW3yyGeI" target="_blank" class="video-thumbnail-link">
+                            <img src="https://i.ytimg.com/vi/OjRfW3yyGeI/maxresdefault.jpg" 
+                                 alt="[opening a can] We made him wear fake nails (PART 2)" 
+                                 class="video-thumbnail"
+                                 onerror="this.src='https://i.ytimg.com/vi/OjRfW3yyGeI/hqdefault.jpg'">
+                            <div class="play-button-overlay">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div class="video-info">
+                            <h4 class="video-title">[opening a can] We made him wear fake nails (PART 2)</h4>
+                            <p class="video-summary-label"><i class="fas fa-sparkles"></i> AI Summary</p>
+                            <p class="video-summary">Part 2 of our viral series - watch him struggle with everyday tasks.</p>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Short 3 -->
+                    <div class="social-carousel-slide">
+                        <a href="https://youtube.com/shorts/dEPqITzhp-c" target="_blank" class="video-thumbnail-link">
+                            <img src="https://i.ytimg.com/vi/dEPqITzhp-c/maxresdefault.jpg" 
+                                 alt="Guy wears fake nails!!" 
+                                 class="video-thumbnail"
+                                 onerror="this.src='https://i.ytimg.com/vi/dEPqITzhp-c/hqdefault.jpg'">
+                            <div class="play-button-overlay">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div class="video-info">
+                            <h4 class="video-title">Guy wears fake nails!!</h4>
+                            <p class="video-summary-label"><i class="fas fa-sparkles"></i> AI Summary</p>
+                            <p class="video-summary">Hilarious challenge content bringing attention to our growing channel.</p>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Short 4 -->
+                    <div class="social-carousel-slide">
+                        <a href="https://youtube.com/shorts/o5DVegNFI2I" target="_blank" class="video-thumbnail-link">
+                            <img src="https://i.ytimg.com/vi/o5DVegNFI2I/maxresdefault.jpg" 
+                                 alt="[ordering food] We made him wear fake nails!! (Part 3)" 
+                                 class="video-thumbnail"
+                                 onerror="this.src='https://i.ytimg.com/vi/o5DVegNFI2I/hqdefault.jpg'">
+                            <div class="play-button-overlay">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div class="video-info">
+                            <h4 class="video-title">[ordering food] We made him wear fake nails!! (Part 3)</h4>
+                            <p class="video-summary-label"><i class="fas fa-sparkles"></i> AI Summary</p>
+                            <p class="video-summary">Part 3 - ordering food gets awkward with long fake nails.</p>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Short 5 -->
+                    <div class="social-carousel-slide">
+                        <a href="https://youtube.com/shorts/HvHX-mM2lkM" target="_blank" class="video-thumbnail-link">
+                            <img src="https://i.ytimg.com/vi/HvHX-mM2lkM/maxresdefault.jpg" 
+                                 alt="[paying at counter] He wore fake nails!! (Part 4)" 
+                                 class="video-thumbnail"
+                                 onerror="this.src='https://i.ytimg.com/vi/HvHX-mM2lkM/hqdefault.jpg'">
+                            <div class="play-button-overlay">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div class="video-info">
+                            <h4 class="video-title">[paying at counter] He wore fake nails!! (Part 4)</h4>
+                            <p class="video-summary-label"><i class="fas fa-sparkles"></i> AI Summary</p>
+                            <p class="video-summary">The finale of our fake nails challenge - watch the awkward moments.</p>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Short 6 -->
+                    <div class="social-carousel-slide">
+                        <a href="https://youtube.com/shorts/EbYcf-s8l-Y" target="_blank" class="video-thumbnail-link">
+                            <img src="https://i.ytimg.com/vi/EbYcf-s8l-Y/maxresdefault.jpg" 
+                                 alt="Putting fake nails on a guy!!" 
+                                 class="video-thumbnail"
+                                 onerror="this.src='https://i.ytimg.com/vi/EbYcf-s8l-Y/hqdefault.jpg'">
+                            <div class="play-button-overlay">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div class="video-info">
+                            <h4 class="video-title">Putting fake nails on a guy!!</h4>
+                            <p class="video-summary-label"><i class="fas fa-sparkles"></i> AI Summary</p>
+                            <p class="video-summary">Behind the scenes - applying the fake nails for our viral challenge.</p>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Short 7 -->
+                    <div class="social-carousel-slide">
+                        <a href="https://youtube.com/shorts/2KWVFl4OHD0" target="_blank" class="video-thumbnail-link">
+                            <img src="https://i.ytimg.com/vi/2KWVFl4OHD0/maxresdefault.jpg" 
+                                 alt="[compilation] He wore fake nails for the day!! (Part 1 - 4)" 
+                                 class="video-thumbnail"
+                                 onerror="this.src='https://i.ytimg.com/vi/2KWVFl4OHD0/hqdefault.jpg'">
+                            <div class="play-button-overlay">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                        </a>
+                        <div class="video-info">
+                            <h4 class="video-title">[compilation] He wore fake nails for the day!! (Part 1 - 4)</h4>
+                            <p class="video-summary-label"><i class="fas fa-sparkles"></i> AI Summary</p>
+                            <p class="video-summary">Full compilation of our viral fake nails challenge series.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="carousel-btn prev" onclick="changeSocialSlide(-1)">‹</button>
+                <button class="carousel-btn next" onclick="changeSocialSlide(1)">›</button>
+            </div>
+            <div class="social-carousel-indicators" id="socialCarouselIndicators">
+                <div class="social-indicator active" onclick="goToSocialSlide(0)"></div>
+                <div class="social-indicator" onclick="goToSocialSlide(1)"></div>
+                <div class="social-indicator" onclick="goToSocialSlide(2)"></div>
+                <div class="social-indicator" onclick="goToSocialSlide(3)"></div>
+                <div class="social-indicator" onclick="goToSocialSlide(4)"></div>
+                <div class="social-indicator" onclick="goToSocialSlide(5)"></div>
+                <div class="social-indicator" onclick="goToSocialSlide(6)"></div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="color: var(--text-medium); margin-bottom: 20px;">Follow us for more content!</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.youtube.com/@DynamicStudiosUK" target="_blank" class="btn btn-secondary" style="padding: 12px 24px;">
+                    <i class="fab fa-youtube"></i> Subscribe on YouTube
+                </a>
+                <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank" class="btn btn-secondary" style="padding: 12px 24px;">
+                    <i class="fab fa-tiktok"></i> Follow on TikTok
+                </a>
+                <a href="https://www.instagram.com/dynamicstudiosuk" target="_blank" class="btn btn-secondary" style="padding: 12px 24px;">
+                    <i class="fab fa-instagram"></i> Follow on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <img src="logo-white-slogan.png" alt="Dynamic Studios Logo" class="footer-logo">
+        <img src="logo-white-slogan.png" alt="Dynamic Game Studios Logo" class="footer-logo">
         <div class="social-links">
-            <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
-            <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
+            <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter / X</a>
+            <a href="https://www.reddit.com/user/DynamicStudiosUK" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
             <a href="https://www.youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
             <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-            <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.instagram.com/dynamicstudiosuk" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
         </div>
-        <p class="footer-text">
-            &copy; 2025 Dynamic Studios &mdash; 
-            Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
-        </p>
+        <p class="footer-text">&copy; 2026 Dynamic Game Studios &mdash; Contact <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a></p>
     </footer>
 
-    <!-- Card Modal -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -122,12 +301,12 @@
         </div>
     </div>
 
-    <!-- Newsletter Popup -->
+    <!-- FIXED NEWSLETTER POPUP with correct underscores -->
     <div class="newsletter-popup" id="newsletterPopup">
         <div class="newsletter-popup-content">
             <span class="popup-close" onclick="closeNewsletter()">&times;</span>
             <h3>Join Our Newsletter</h3>
-            <p>Get updates about Dynamic Studios, new games, releases, and more—straight to your inbox.</p>
+            <p>Get updates about Dynamic Game Studios, new games, releases, and more—straight to your inbox.</p>
             <iframe width="100%" height="305" src="https://b800a5c1.sibforms.com/serve/MUIFACO3p5sN94AJkzED3p-9vbenmdJnQHZOer10S6HfaJa-GXQdTiY193gQExmmrFgweBL1OvpILLVivAzofDCVq2f9n4z2KsEintk4YcmECQ24Dr_j-UzQcxV9sBUk_RUbe6ZcJ0hyQbDgfpeR6H9rnktN0eASKkaQ4hs4Z_dXGVRqTIJB8xT-Jyfwk_KKvaiNFu-dNJ4NYDFocg==" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin:0 auto;border-radius:12px;border:none;"></iframe>
         </div>
     </div>

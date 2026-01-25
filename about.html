@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Dynamic Studios</title>
+    <title>About Us - Dynamic Game Studios</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Studios Logo"></a>
+            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Game Studios Logo"></a>
             <nav id="nav">
                 <a href="index.html">Home</a>
                 <a href="buy.html">Buy</a>
@@ -27,101 +27,122 @@
     </header>
 
     <main class="about-page">
-        <!-- Page Hero -->
         <section class="page-hero">
-            <h1>About Dynamic Studios</h1>
-            <p>We're a Young Enterprise team based in High Wycombe, UK, passionate about creating engaging and innovative tabletop games. We believe in the power of play—bringing people together, sparking creativity, and building strategy skills for everyone.</p>
+            <h1>About Dynamic Game Studios</h1>
+            <p>A student-led venture bringing fresh ideas to tabletop gaming through Young Enterprise.</p>
+
             <div class="company-info">
                 <div class="company-number">
                     <i class="fas fa-certificate"></i>
-                    <span>YE Company Number: <strong>38762357</strong></span>
+                    <span>YE Company Number <strong>38762357</strong></span>
                 </div>
                 <div class="company-details">
                     <span><i class="fas fa-school"></i> The Highcrest Academy</span>
-                    <span><i class="fas fa-map-marker-alt"></i> High Wycombe</span>
+                    <span><i class="fas fa-map-marker-alt"></i> High Wycombe, UK</span>
                 </div>
             </div>
         </section>
 
-        <!-- Values Section -->
-        <section class="values-section">
-            <h2 class="section-title">Our Values</h2>
+        <!-- Enhanced Section Navigation with borders -->
+        <section class="page-nav-section">
+            <div class="page-nav-container">
+                <h2 class="page-nav-title">Jump to Section</h2>
+                <div class="page-nav-buttons">
+                    <button class="page-nav-btn" onclick="scrollToSection('values')">
+                        <i class="fas fa-heart"></i>
+                        <span>Our Values</span>
+                    </button>
+                    <button class="page-nav-btn" onclick="scrollToSection('story')">
+                        <i class="fas fa-book"></i>
+                        <span>Our Story</span>
+                    </button>
+                    <button class="page-nav-btn" onclick="scrollToSection('team')">
+                        <i class="fas fa-users"></i>
+                        <span>The Team</span>
+                    </button>
+                    <button class="page-nav-btn" onclick="scrollToSection('join')">
+                        <i class="fas fa-handshake"></i>
+                        <span>Get Involved</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section" id="values">
+            <h2 class="section-title">What Drives Us</h2>
             <div class="values-grid">
                 <div class="value-card">
                     <div class="value-icon">🎨</div>
-                    <h3>Creativity</h3>
-                    <p>Innovation drives everything we create</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">🤝</div>
-                    <h3>Inclusivity</h3>
-                    <p>Games for everyone, everywhere</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">⚖️</div>
-                    <h3>Fair Play</h3>
-                    <p>Balanced and rewarding gameplay</p>
+                    <h3>Creative Play</h3>
+                    <p>Designing games that spark imagination and strategic thinking</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon">🌍</div>
-                    <h3>Community</h3>
-                    <p>Building connections through play</p>
+                    <h3>Accessible</h3>
+                    <p>Games everyone can learn, enjoy, and master</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">💡</div>
+                    <div class="value-icon">⚖️</div>
+                    <h3>Balanced</h3>
+                    <p>Fair mechanics that reward skill and clever play</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Community First</h3>
+                    <p>Building connections through shared experiences</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
                     <h3>Innovation</h3>
-                    <p>Pushing boundaries in game design</p>
+                    <p>Fresh takes on classic tabletop traditions</p>
                 </div>
             </div>
         </section>
 
-        <!-- Story Timeline -->
-        <section class="story-section">
-            <h2 class="section-title">Our Story</h2>
+        <section class="story-section" id="story">
+            <h2 class="section-title">Our Journey So Far</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-year">2025</div>
+                    <div class="timeline-year">Oct<br>2025</div>
                     <div class="timeline-content">
-                        <h3>The Beginning</h3>
-                        <p>Dynamic Studios is founded by students at The Highcrest Academy through Young Enterprise, with a vision to make games for everyone.</p>
+                        <h3>Founded</h3>
+                        <p>Five students at The Highcrest Academy launch Dynamic Game Studios through Young Enterprise, determined to create something people love.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-year">2025</div>
+                    <div class="timeline-year">Oct<br>2025</div>
                     <div class="timeline-content">
-                        <h3>Power Play Concept Created</h3>
-                        <p>We develop the concept for our first project: <strong>Power Play</strong>, a strategic tabletop card game designed to bring people together through fun and tactical gameplay.</p>
+                        <h3>Power Play Created</h3>
+                        <p>After weeks of brainstorming and prototyping, Power Play takes shape—a strategic card game designed for quick, intense matches.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-year">2025</div>
+                    <div class="timeline-year">Oct<br>2025</div>
                     <div class="timeline-content">
-                        <h3>Dragons Success! 🏆</h3>
-                        <p>We pitched to Young Enterprise Dragons at Pipers Corner School and secured <strong>£50 in investment</strong>—a major milestone and validation of our vision!</p>
+                        <h3>Dragons Pitch Success 🏆</h3>
+                        <p>We pitched to Young Enterprise Dragons at Pipers Corner School and secured £50 in investment—validation that our vision works.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-year">2025</div>
+                    <div class="timeline-year">Dec<br>2025</div>
                     <div class="timeline-content">
-                        <h3>Social Media Launched</h3>
-                        <p>We have launched our social media accounts to bring more awareness to our game, <strong>Power Play</strong>!</p>
+                        <h3>Going Public</h3>
+                        <p>Launched social media channels and this website to build community and gather feedback from potential players.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-year">Now</div>
+                    <div class="timeline-year">2026</div>
                     <div class="timeline-content">
-                        <h3>Preparing for Launch</h3>
-                        <p>We're working hard to bring Power Play to life! Join us on our journey—invest, play, and grow with us as we prepare for launch.</p>
+                        <h3>Launch Ahead</h3>
+                        <p>Finalising production, preparing marketing, and getting ready to put Power Play in your hands. Pre-orders coming soon.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Team Section -->
-        <section class="team-section">
-            <h2 class="section-title">Meet the Team</h2>
+        <section class="team-section" id="team">
+            <h2 class="section-title">The Team</h2>
             <div class="team-grid">
-                <!-- Armaan Tahir -->
                 <div class="team-card">
                     <div class="team-avatar">
                         <i class="fas fa-user-tie"></i>
@@ -130,25 +151,22 @@
                     <div class="team-roles-multi">
                         <span class="role-badge">Managing Director</span>
                     </div>
-                    <p class="team-desc">Leading our vision and driving strategic direction for Dynamic Studios</p>
+                    <p class="team-desc">Leading strategy, vision, and growth for Dynamic Game Studios.</p>
                 </div>
 
-                <!-- Hashim Mistry -->
                 <div class="team-card">
                     <div class="team-avatar">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Hashim Mistry</h3>
                     <div class="team-roles-multi">
+                        <span class="role-badge">Managing Director (Deputy)</span>
                         <span class="role-badge">Finance Director</span>
-                        <span class="role-badge">Finance Team Member</span>
                         <span class="role-badge">Operations Director</span>
-                        <span class="role-badge">Operations Team Member</span>
                     </div>
-                    <p class="team-desc">Managing finances, operations, and ensuring smooth business growth</p>
+                    <p class="team-desc">Overseeing finances, operations, and day-to-day execution.</p>
                 </div>
 
-                <!-- Qasim Mistry -->
                 <div class="team-card">
                     <div class="team-avatar">
                         <i class="fas fa-palette"></i>
@@ -157,23 +175,20 @@
                     <div class="team-roles-multi">
                         <span class="role-badge">Product Designer</span>
                     </div>
-                    <p class="team-desc">Crafting the Power Play experience and bringing creative visions to life</p>
+                    <p class="team-desc">Designing cards, gameplay mechanics, and the Power Play experience.</p>
                 </div>
 
-                <!-- Muhammad Asghar -->
                 <div class="team-card">
                     <div class="team-avatar">
                         <i class="fas fa-briefcase"></i>
                     </div>
                     <h3>Muhammad Asghar</h3>
                     <div class="team-roles-multi">
-                        <span class="role-badge">Company Secretary (Director)</span>
-                        <span class="role-badge">Company Secretary Team Member</span>
+                        <span class="role-badge">Company Secretary Director</span>
                     </div>
-                    <p class="team-desc">Managing company affairs and ensuring compliance as Company Secretary</p>
+                    <p class="team-desc">Managing compliance, documentation, and company affairs.</p>
                 </div>
 
-                <!-- Callum Hand -->
                 <div class="team-card">
                     <div class="team-avatar">
                         <i class="fas fa-bullhorn"></i>
@@ -181,37 +196,32 @@
                     <h3>Callum Hand</h3>
                     <div class="team-roles-multi">
                         <span class="role-badge">Marketing Director</span>
-                        <span class="role-badge">Marketing Team Member</span>
                     </div>
-                    <p class="team-desc">Building our brand and connecting with our growing community</p>
+                    <p class="team-desc">Building our brand, community, and online presence.</p>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section class="about-cta">
-            <h2>Join Our Journey</h2>
-            <p>Be part of the Dynamic Studios story. Invest in our vision or get ready for when Power Play launches!</p>
+        <section class="about-cta" id="join">
+            <h2>Join the Journey</h2>
+            <p>Back our vision with a £1 share or stay updated for when Power Play launches.</p>
             <div class="cta-group">
-                <a href="invest.html" class="btn btn-primary">Invest in Us</a>
-                <a href="buy.html" class="btn btn-secondary">Learn About Power Play</a>
+                <a href="invest.html" class="btn btn-primary">Invest £1/Share</a>
+                <a href="buy.html" class="btn btn-secondary">Discover Power Play</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <img src="logo-white-slogan.png" alt="Dynamic Studios Logo" class="footer-logo">
+        <img src="logo-white-slogan.png" alt="Dynamic Game Studios Logo" class="footer-logo">
         <div class="social-links">
-            <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter (X)</a>
-            <a href="https://www.reddit.com/user/DynamicStudiosUK/" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
+            <a href="https://x.com/DynamicStudiosX" target="_blank"><i class="fab fa-twitter"></i> Twitter / X</a>
+            <a href="https://www.reddit.com/user/DynamicStudiosUK" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
             <a href="https://www.youtube.com/@DynamicStudiosUK" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
             <a href="https://www.tiktok.com/@dynamicstudiosuk?lang=en" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-            <a href="https://www.instagram.com/dynamicstudiosuk/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.instagram.com/dynamicstudiosuk" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
         </div>
-        <p class="footer-text">
-            &copy; 2025 Dynamic Studios &mdash; 
-            Contact: <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a>
-        </p>
+        <p class="footer-text">&copy; 2026 Dynamic Game Studios &mdash; Contact <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a></p>
     </footer>
 
     <script src="script.js"></script>
