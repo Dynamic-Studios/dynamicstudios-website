@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Game Studios - Power Play Card Game</title>
+    <title>Dynamic Game Studios - Homepage</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html"><img src="logo-white-slogan.png" alt="Dynamic Game Studios Logo"></a>
+            <a href="index.html"><img src="logo-white.png" alt="Dynamic Game Studios Logo"></a>
             <nav id="nav">
                 <a href="index.html">Home</a>
                 <a href="buy.html">Buy</a>
@@ -44,14 +44,40 @@
                 <p>Creating strategic tabletop games that blend modern design with classic gameplay. Based in High Wycombe, UK.</p>
             </div>
 
+            <!-- NEW GAME REVEAL COUNTDOWN -->
+            <div class="reveal-countdown">
+                <h2 style="margin-bottom: 16px; font-size: 1.8rem;">🎉 New Card Game Reveal</h2>
+                <div id="countdown-timer" class="countdown-timer">
+                    <div class="countdown-item">
+                        <span id="cd-days" class="countdown-number">3</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="cd-hours" class="countdown-number">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="cd-mins" class="countdown-number">00</span>
+                        <span class="countdown-label">Mins</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="cd-secs" class="countdown-number">00</span>
+                        <span class="countdown-label">Secs</span>
+                    </div>
+                </div>
+                <p class="countdown-note">
+                    🔒 Name, rules, and full details are locked until the countdown ends!
+                </p>
+            </div>
+
             <div class="game-divider">
-                <h2>Introducing Power Play</h2>
+                <h2>Introducing <span class="blurred-word-glitch" data-text="Crowns">Crowns</span></h2>
             </div>
 
             <div class="hero-main">
                 <h3 class="hero-headline">Master strategy. Outplay your rivals. Build unstoppable combos.</h3>
-                <p class="hero-desc">
-                    Power Play is a fast-paced tactical card game where every decision counts. Perfect for 2-4 players, 
+                <p class="hero-desc blurred-reveal-text-glitch">
+                    <span class="blurred-word-glitch" data-text="Crowns">Crowns</span> is a fast-paced tactical card game where every decision counts. Perfect for 2-4 players, 
                     ages 8+. Learn in 5 minutes, master over a lifetime.
                 </p>
                 <p class="hero-features">
@@ -61,7 +87,7 @@
             </div>
 
             <div class="cta-group">
-                <a href="buy.html" class="btn btn-primary">Discover Power Play</a>
+                <a href="buy.html" class="btn btn-primary">Discover <span class="blurred-word-glitch" data-text="Crowns">Crowns</span></a>
                 <a href="about.html" class="btn btn-secondary">Meet the Studio</a>
             </div>
         </div>
@@ -84,22 +110,22 @@
         </div>
     </section>
 
-    <!-- Cards Section -->
-    <section class="cards-section" id="game-mechanics">
+    <!-- Cards Section with BLURRED content -->
+    <section class="cards-section blurred-section" id="game-mechanics">
         <div class="section-header">
-            <h2>Game Mechanics</h2>
+            <h2>Game Mechanics 🔒</h2>
             <p>Two powerful card types drive every match</p>
         </div>
 
         <div class="cards-container">
             <div class="card" data-card="event" onclick="openModal('event')">
                 <div class="card-images">
-                    <img class="card-img-front" src="card-steal.png" alt="Steal Card Front">
+                    <img class="card-img-front" src="card-steal.png" alt="Event Card Front">
                     <img class="card-img-back" src="card-events.png" alt="Event Card Back">
                 </div>
                 <h3>Event Cards</h3>
-                <p class="card-description">Disrupt opponents, steal resources, and change the game state instantly.</p>
-                <p class="card-hint">Click to learn more →</p>
+                <p class="card-description blurred-reveal-text-glitch">Disrupt opponents, steal resources, and change the game state instantly.</p>
+                <p class="card-hint">🔒 Locked until reveal</p>
             </div>
 
             <div class="card" data-card="character" onclick="openModal('character')">
@@ -107,14 +133,19 @@
                     <img class="card-img-front" src="card-c-front.png" alt="Character Card Front">
                     <img class="card-img-back" src="card-characters.png" alt="Character Card Back">
                 </div>
-                <h3>Character Cards</h3>
-                <p class="card-description">Build your team with unique abilities and strategic synergies.</p>
-                <p class="card-hint">Click to learn more →</p>
+                <h3>Playing Cards</h3>
+                <p class="card-description blurred-reveal-text-glitch">Build your deck with unique abilities and strategic synergies.</p>
+                <p class="card-hint">🔒 Locked until reveal</p>
             </div>
+        </div>
+
+        <div class="locked-overlay">
+            <i class="fas fa-lock"></i>
+            <p>Full rules and mechanics will be revealed after the countdown!</p>
         </div>
     </section>
 
-    <!-- Social Media Video Carousel with Thumbnails -->
+    <!-- Social Media Video Carousel -->
     <section class="social-videos-section" id="social-videos">
         <div class="section-header">
             <h2>Watch Us in Action</h2>
@@ -138,7 +169,7 @@
                         <div class="video-info">
                             <h4 class="video-title">We made him wear fake nails for the day!</h4>
                             <p class="video-summary-label"><i class="fas fa-sparkles"></i> AI Summary</p>
-                            <p class="video-summary">Our most viral video - building an audience for Power Play's launch.</p>
+                            <p class="video-summary">Our most viral video - building an audience for our game launch.</p>
                         </div>
                     </div>
 
@@ -297,11 +328,11 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
             <h3 id="modal-title">Card Title</h3>
-            <p id="modal-desc">Card description</p>
+            <p id="modal-desc" class="blurred-reveal-text-glitch">Card description locked until reveal</p>
         </div>
     </div>
 
-    <!-- FIXED NEWSLETTER POPUP with correct underscores -->
+    <!-- FIXED NEWSLETTER POPUP -->
     <div class="newsletter-popup" id="newsletterPopup">
         <div class="newsletter-popup-content">
             <span class="popup-close" onclick="closeNewsletter()">&times;</span>

@@ -2001,3 +2001,517 @@ footer {
     }
 }
 
+/* ==========================================
+   COUNTDOWN TIMER STYLES
+   ========================================== */
+.reveal-countdown {
+  margin: 40px auto;
+  padding: 32px 40px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 184, 71, 0.15));
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+}
+
+.countdown-timer {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.countdown-number {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: var(--primary-yellow);
+  text-shadow: 0 0 20px rgba(255, 184, 71, 0.4);
+  min-width: 60px;
+}
+
+.countdown-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.countdown-note {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+}
+
+.mini-countdown-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 12px 20px;
+  background: rgba(255, 107, 53, 0.15);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: var(--primary-yellow);
+}
+
+.mini-countdown-notice i {
+  font-size: 1rem;
+}
+
+
+/* ==========================================
+   BLURRED CONTENT STYLES
+   ========================================== */
+.blurred-word,
+.blurred-reveal-text {
+  filter: blur(8px);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+  transition: filter 0.5s ease;
+}
+
+/* Prevent text selection even more aggressively */
+.blurred-word::selection,
+.blurred-reveal-text::selection {
+  background: transparent;
+  color: transparent;
+}
+
+.blurred-word::-moz-selection,
+.blurred-reveal-text::-moz-selection {
+  background: transparent;
+  color: transparent;
+}
+
+
+/* ==========================================
+   BLURRED SECTION WITH OVERLAY
+   ========================================== */
+.blurred-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.blurred-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+.locked-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(13, 13, 18, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 24px 32px;
+  border-radius: 16px;
+  border: 2px solid var(--primary-orange);
+  box-shadow: 0 10px 40px rgba(255, 107, 53, 0.3);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.locked-overlay i {
+  font-size: 2rem;
+  color: var(--primary-yellow);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.locked-overlay p {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+
+/* ==========================================
+   COUNTDOWN TIMER STYLES
+   ========================================== */
+.reveal-countdown {
+  margin: 40px auto;
+  padding: 32px 40px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 184, 71, 0.15));
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+}
+
+.countdown-timer {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.countdown-number {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: var(--primary-yellow);
+  text-shadow: 0 0 20px rgba(255, 184, 71, 0.4);
+  min-width: 60px;
+}
+
+.countdown-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.countdown-note {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+}
+
+.mini-countdown-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 12px 20px;
+  background: rgba(255, 107, 53, 0.15);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: var(--primary-yellow);
+}
+
+.mini-countdown-notice i {
+  font-size: 1rem;
+}
+
+
+/* ==========================================
+   BLURRED CONTENT STYLES
+   ========================================== */
+.blurred-word,
+.blurred-reveal-text {
+  filter: blur(8px);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+  transition: filter 0.5s ease;
+}
+
+/* Prevent text selection even more aggressively */
+.blurred-word::selection,
+.blurred-reveal-text::selection {
+  background: transparent;
+  color: transparent;
+}
+
+.blurred-word::-moz-selection,
+.blurred-reveal-text::-moz-selection {
+  background: transparent;
+  color: transparent;
+}
+
+
+/* ==========================================
+   BLURRED SECTION WITH OVERLAY
+   ========================================== */
+.blurred-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.blurred-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+.locked-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(13, 13, 18, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 24px 32px;
+  border-radius: 16px;
+  border: 2px solid var(--primary-orange);
+  box-shadow: 0 10px 40px rgba(255, 107, 53, 0.3);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.locked-overlay i {
+  font-size: 2rem;
+  color: var(--primary-yellow);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.locked-overlay p {
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+
+/* ==========================================
+   CAROUSEL 4:3 ASPECT RATIO
+   ========================================== */
+.carousel-container .carousel {
+  aspect-ratio: 4/3;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.carousel-slide {
+  aspect-ratio: 4/3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+
+/* ==========================================
+   RESPONSIVE COUNTDOWN
+   ========================================== */
+@media (max-width: 768px) {
+  .reveal-countdown {
+    padding: 24px 20px;
+    width: 90%;
+  }
+
+  .countdown-timer {
+    gap: 16px;
+  }
+
+  .countdown-number {
+    font-size: 2rem;
+    min-width: 50px;
+  }
+
+  .countdown-label {
+    font-size: 0.75rem;
+  }
+
+  .countdown-note {
+    font-size: 0.85rem;
+  }
+
+  .mini-countdown-notice {
+    font-size: 0.8rem;
+    padding: 10px 16px;
+  }
+
+  .locked-overlay {
+    padding: 20px 24px;
+    width: 85%;
+  }
+
+  .locked-overlay i {
+    font-size: 1.5rem;
+  }
+
+  .locked-overlay p {
+    font-size: 0.85rem;
+    color: #FFFFFF;
+  }
+}
+
+
+/* ==========================================
+   FIX FOR CARD IMAGES IN BLURRED SECTIONS
+   ========================================== */
+.blurred-section .card-img-front,
+.blurred-section .card-img-back {
+  filter: none !important;
+  /* Keep card images visible, only blur text */
+}
+
+
+/* ==========================================
+   ENSURE ICONS IN BLURRED SECTIONS STAY VISIBLE
+   ========================================== */
+.blurred-section .feature-icon {
+  filter: none !important;
+  user-select: none;
+}
+
+/* OPTION 2: Pixelated + Blur Effect (Choose this for animated pixelated look) */
+.blurred-word-pixelated,
+.blurred-reveal-text-pixelated {
+  filter: blur(12px) contrast(200%) brightness(0.8);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+  transition: filter 0.5s ease;
+  animation: pixelate 0.5s steps(8) infinite alternate;
+  text-shadow: 
+    2px 2px 0 rgba(255, 0, 0, 0.3),
+    -2px -2px 0 rgba(0, 255, 0, 0.3),
+    2px -2px 0 rgba(0, 0, 255, 0.3);
+}
+
+@keyframes pixelate {
+  0% {
+    filter: blur(12px) contrast(200%) brightness(0.8);
+    letter-spacing: 0px;
+  }
+  50% {
+    filter: blur(14px) contrast(250%) brightness(0.7);
+    letter-spacing: 2px;
+  }
+  100% {
+    filter: blur(12px) contrast(200%) brightness(0.8);
+    letter-spacing: 0px;
+  }
+}
+
+
+
+
+
+/* OPTION 4: Glitch Censored Effect (Most Dramatic) */
+.blurred-word-glitch,
+.blurred-reveal-text-glitch {
+  filter: blur(20px) contrast(300%);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+  position: relative;
+  animation: glitch 0.8s steps(10) infinite;
+}
+
+.blurred-word-glitch::before,
+.blurred-word-glitch::after,
+.blurred-reveal-text-glitch::before,
+.blurred-reveal-text-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  filter: blur(18px);
+}
+
+.blurred-word-glitch::before,
+.blurred-reveal-text-glitch::before {
+  animation: glitch-top 0.5s steps(5) infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  transform: translate(-2px, -2px);
+  color: rgba(255, 107, 53, 0.8);
+}
+
+.blurred-word-glitch::after,
+.blurred-reveal-text-glitch::after {
+  animation: glitch-bottom 0.6s steps(5) infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  transform: translate(2px, 2px);
+  color: rgba(255, 184, 71, 0.8);
+}
+
+@keyframes glitch {
+  0%, 100% { filter: blur(16px) contrast(300%); }
+  20% { filter: blur(20px) contrast(350%); transform: translateX(-2px); }
+  40% { filter: blur(18px) contrast(280%); transform: translateX(2px); }
+  60% { filter: blur(22px) contrast(320%); transform: translateX(-1px); }
+  80% { filter: blur(17px) contrast(290%); transform: translateX(1px); }
+}
+
+@keyframes glitch-top {
+  0%, 100% { transform: translate(-2px, -2px); }
+  50% { transform: translate(2px, -3px); }
+}
+
+@keyframes glitch-bottom {
+  0%, 100% { transform: translate(2px, 2px); }
+  50% { transform: translate(-2px, 3px); }
+}
+
+
+/* Prevent text selection even more aggressively */
+.blurred-word::selection,
+.blurred-reveal-text::selection,
+.blurred-word-pixelated::selection,
+.blurred-reveal-text-pixelated::selection,
+.blurred-word-mosaic::selection,
+.blurred-reveal-text-mosaic::selection,
+.blurred-word-glitch::selection,
+.blurred-reveal-text-glitch::selection {
+  background: transparent;
+  color: transparent;
+}
+
+.blurred-word::-moz-selection,
+.blurred-reveal-text::-moz-selection,
+.blurred-word-pixelated::-moz-selection,
+.blurred-reveal-text-pixelated::-moz-selection,
+.blurred-word-mosaic::-moz-selection,
+.blurred-reveal-text-mosaic::-moz-selection,
+.blurred-word-glitch::-moz-selection,
+.blurred-reveal-text-glitch::-moz-selection {
+  background: transparent;
+  color: transparent;
+}
