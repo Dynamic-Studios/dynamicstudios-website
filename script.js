@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 // ==========================================
-// BUY PAGE CAROUSEL (runs after DOM loads)
+// BUY PAGE CAROUSEL WITH MOBILE TOUCH SUPPORT
 // ==========================================
 window.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll('.carousel-slide');
@@ -95,6 +95,8 @@ window.addEventListener('DOMContentLoaded', () => {
   if (!track || slides.length === 0 || !indicatorsContainer) return;
 
   let currentSlide = 0;
+  let touchStartX = 0;
+  let touchEndX = 0;
 
   // Create indicators
   slides.forEach((_, index) => {
@@ -122,6 +124,27 @@ window.addEventListener('DOMContentLoaded', () => {
     currentSlide = index;
     updateCarousel();
   };
+
+  // Touch/swipe support for mobile
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    if (touchEndX < touchStartX - 50) {
+      // Swipe left - next slide
+      window.changeSlide(1);
+    }
+    if (touchEndX > touchStartX + 50) {
+      // Swipe right - previous slide
+      window.changeSlide(-1);
+    }
+  }
 
   // Auto-advance every 5 seconds
   setInterval(() => window.changeSlide(1), 5000);
@@ -266,3 +289,4 @@ function scrollToSection(id) {
     behavior: 'smooth'
   });
 }
+
