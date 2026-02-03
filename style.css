@@ -2517,40 +2517,46 @@ footer {
 }
 
 /* ==========================================
-   MOBILE CAROUSEL FIXES
+   SIMPLE MOBILE CAROUSEL FIX - FORCE SMALL SIZE
    ========================================== */
 
-/* Make carousel smaller and properly sized on mobile */
+/* Force smaller carousel on mobile - no scaling issues */
 @media (max-width: 768px) {
   .carousel-container {
-    padding: 20px;
+    padding: 16px;
+    max-width: 100%;
   }
 
   .carousel-container .carousel {
-    aspect-ratio: 4/3;
     width: 100%;
-    max-height: 60vh; /* Limit height on mobile so it doesn't overflow */
+    height: 300px !important; /* Fixed height - no weird scaling */
+    max-height: 300px !important;
+    aspect-ratio: auto !important; /* Override aspect ratio on mobile */
     border-radius: 12px;
   }
 
+  .carousel-track {
+    height: 300px !important;
+  }
+
   .carousel-slide {
-    aspect-ratio: 4/3;
     width: 100%;
-    height: 100%;
+    height: 300px !important;
+    aspect-ratio: auto !important;
   }
 
   .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Changed from cover to contain for mobile */
-    aspect-ratio: 4/3;
+    object-fit: contain !important; /* Show full image, don't crop */
+    aspect-ratio: auto !important;
   }
 
-  /* Make carousel buttons smaller on mobile */
+  /* Smaller buttons */
   .carousel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
   }
 
   .carousel-btn.prev {
@@ -2561,10 +2567,10 @@ footer {
     right: 8px;
   }
 
-  /* Make indicators smaller */
+  /* Smaller indicators */
   .carousel-indicators {
-    margin-top: 16px;
-    gap: 8px;
+    margin-top: 12px;
+    gap: 6px;
   }
 
   .indicator {
@@ -2573,43 +2579,47 @@ footer {
   }
 
   .indicator.active {
-    width: 24px;
+    width: 20px;
   }
 
-  /* Fix product grid stacking on mobile */
+  /* Fix product grid */
   .product-grid {
     grid-template-columns: 1fr;
     gap: 30px;
   }
 
-  /* Reduce padding on product details */
   .product-details {
-    padding: 32px 24px;
+    padding: 28px 20px;
   }
 }
 
-/* Extra small screens (phones in portrait) */
+/* Extra small phones - even smaller */
 @media (max-width: 480px) {
-  .carousel-container {
-    padding: 16px;
+  .carousel-container .carousel {
+    height: 250px !important;
+    max-height: 250px !important;
   }
 
-  .carousel-container .carousel {
-    max-height: 50vh; /* Even smaller on very small screens */
-    border-radius: 8px;
+  .carousel-track {
+    height: 250px !important;
+  }
+
+  .carousel-slide {
+    height: 250px !important;
   }
 
   .carousel-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 0.9rem;
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
   }
+}
 
-  .carousel-btn.prev {
-    left: 4px;
-  }
-
-  .carousel-btn.next {
-    right: 4px;
+/* Prevent any aspect-ratio interference on mobile */
+@media (max-width: 768px) {
+  .carousel,
+  .carousel-slide,
+  .carousel-slide img {
+    aspect-ratio: auto !important;
   }
 }
