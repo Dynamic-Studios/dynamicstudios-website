@@ -7,6 +7,208 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Homepage-only additions ── */
+
+        .hero-headline {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+            font-weight: 900;
+            color: var(--bronze);
+            margin-bottom: 14px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-desc {
+            color: var(--text-medium);
+            font-size: 1.02rem;
+            max-width: 720px;
+            margin: 0 auto 18px;
+            line-height: 1.7;
+        }
+
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+
+        .feature-badge {
+            background: var(--bg-white);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 999px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .game-divider {
+            margin: 32px 0 20px;
+        }
+
+        .game-divider h2 {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 900;
+            color: var(--gold);
+            letter-spacing: -0.02em;
+        }
+
+        /* Crowns intro card */
+        .crowns-intro-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 36px 40px;
+            max-width: 1050px;
+            margin: 0 auto 28px;
+            box-shadow: 0 18px 40px var(--shadow);
+            text-align: left;
+            transition: transform var(--transition-med), box-shadow var(--transition-med);
+        }
+
+        .crowns-intro-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 60px rgba(0,0,0,0.18);
+        }
+
+        .crowns-intro-card h2 {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--bronze);
+            margin-bottom: 14px;
+        }
+
+        .crowns-intro-card p {
+            color: var(--text-medium);
+            font-size: 0.98rem;
+            line-height: 1.75;
+            margin-bottom: 14px;
+        }
+
+        .crowns-intro-card p:last-of-type {
+            margin-bottom: 22px;
+        }
+
+        .crowns-launch-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gold);
+            color: #111;
+            font-weight: 900;
+            font-size: 0.88rem;
+            padding: 8px 18px;
+            border-radius: 999px;
+            margin-bottom: 22px;
+            box-shadow: 0 6px 16px rgba(211,141,10,0.30);
+        }
+
+        /* Event cards list */
+        .event-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 18px;
+        }
+
+        .event-tag {
+            background: var(--bg-white);
+            border: 1.5px solid var(--bronze);
+            border-radius: 8px;
+            padding: 4px 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--bronze);
+        }
+
+        /* Cards section - unlocked */
+        .cards-section {
+            padding: 60px 6%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .section-header h2 {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--bronze);
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: var(--text-medium);
+            font-size: 1rem;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            box-shadow: 0 10px 28px var(--shadow);
+            cursor: pointer;
+            transition: transform var(--transition-med), box-shadow var(--transition-med);
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 44px rgba(0,0,0,0.16);
+        }
+
+        .card-images {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .card-images img {
+            height: 100px;
+            border-radius: 10px;
+            box-shadow: 0 6px 16px var(--shadow);
+            object-fit: cover;
+        }
+
+        .card h3 {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--bronze);
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: var(--text-medium);
+            font-size: 0.93rem;
+            line-height: 1.6;
+        }
+
+        /* Section header for social videos */
+        .social-videos-section .section-header h2 {
+            color: var(--bronze);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,6 +219,7 @@
                 <a href="buy.html">Buy</a>
                 <a href="invest.html">Invest</a>
                 <a href="about.html">About</a>
+                <a href="crowns/index.html" class="nav-crowns">♛ Crowns</a>
             </nav>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
@@ -30,7 +233,7 @@
         <div class="newsletter-banner-content">
             <div class="newsletter-banner-text">
                 <span>📬</span>
-                <span>Get exclusive updates, news & launch announcements!</span>
+                <span>Get exclusive updates, news &amp; launch announcements!</span>
             </div>
             <button class="btn-newsletter" onclick="openNewsletter()">Sign Up for Newsletter</button>
         </div>
@@ -38,62 +241,79 @@
 
     <section class="hero">
         <div class="hero-content">
+
+            <!-- Studio intro -->
             <div class="about-intro">
                 <img src="logo-black.png" alt="Dynamic Game Studios Logo" class="logo-intro">
                 <h1>Dynamic Game Studios</h1>
                 <p>Creating strategic tabletop games that blend modern design with classic gameplay. Based in High Wycombe, UK.</p>
             </div>
 
-            <!-- NEW GAME REVEAL COUNTDOWN -->
-            <div class="reveal-countdown">
-                <h2 style="margin-bottom: 16px; font-size: 1.8rem;">🎉 New Card Game Reveal</h2>
-                <div id="countdown-timer" class="countdown-timer">
-                    <div class="countdown-item">
-                        <span id="cd-days" class="countdown-number">3</span>
-                        <span class="countdown-label">Days</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="cd-hours" class="countdown-number">00</span>
-                        <span class="countdown-label">Hours</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="cd-mins" class="countdown-number">00</span>
-                        <span class="countdown-label">Mins</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="cd-secs" class="countdown-number">00</span>
-                        <span class="countdown-label">Secs</span>
-                    </div>
-                </div>
-                <p class="countdown-note">
-                    🔒 Name, rules, and full details are locked until the countdown ends!
-                </p>
-            </div>
-
+            <!-- Game divider -->
             <div class="game-divider">
-                <h2>Introducing <span class="blurred-word-glitch" data-text="Crowns">Crowns</span></h2>
+                <h2>Introducing Crowns</h2>
             </div>
 
+            <!-- Hero description -->
             <div class="hero-main">
-                <h3 class="hero-headline">Master strategy. Outplay your rivals. Build unstoppable combos.</h3>
-                <p class="hero-desc blurred-reveal-text-glitch">
-                    <span class="blurred-word-glitch" data-text="Crowns">Crowns</span> is a fast-paced tactical card game where every decision counts. Perfect for 2-4 players, 
-                    ages 8+. Learn in 5 minutes, master over a lifetime.
+                <h3 class="hero-headline">Empty your hand. Roll a 6. Shout CROWN.</h3>
+                <p class="hero-desc">
+                    Crowns is a premium small-box card game for 2–4 players. Use Bronze, Silver and Gold numbered cards to outplay your opponents — each player must match or beat the last card played. Empty your hand, roll the die each turn, roll a 6 and shout <strong>CROWN</strong> to win. Six powerful event cards can flip the entire game at any moment.
                 </p>
                 <p class="hero-features">
-                    <span class="feature-badge">🎯 Quick Setup</span>
-                    <span class="feature-badge">⚡ Fast-Paced</span>
+                    <span class="feature-badge">🎯 Ages 6+</span>
+                    <span class="feature-badge">👥 2–4 Players</span>
+                    <span class="feature-badge">⚡ 15–30 Min</span>
+                    <span class="feature-badge">🃏 54 Cards</span>
+                    <span class="feature-badge">🎲 Custom Die</span>
                 </p>
             </div>
 
             <div class="cta-group">
-                <a href="buy.html" class="btn btn-primary">Discover <span class="blurred-word-glitch" data-text="Crowns">Crowns</span></a>
+                <a href="crowns/index.html" class="btn btn-primary">♛ Explore Crowns</a>
+                <a href="crowns/demo.html" class="btn btn-secondary">🎮 Try Free Demo</a>
                 <a href="about.html" class="btn btn-secondary">Meet the Studio</a>
             </div>
         </div>
     </section>
 
-    <!-- Section Navigation for Homepage -->
+    <!-- What is Crowns -->
+    <section class="about-cta">
+        <h2>What is Crowns?</h2>
+
+        <div class="crowns-intro-card">
+            <span class="crowns-launch-badge">🚀 Launching Spring 2026 &mdash; £14.99</span>
+
+            <p>
+                Crowns is a fast-paced, strategic card game where players race to empty their hand using three tiers of numbered cards — <strong>Bronze (1–3)</strong>, <strong>Silver (4–6)</strong> and <strong>Gold (7–9)</strong>. Each card played must equal or beat the last number on the table. When the number reaches 9, one full round must pass before it resets. Simple to learn, tense to play.
+            </p>
+            <p>
+                If you can't play a card, either draw from the pile or gamble by rolling the die — roll a <strong>1</strong> and the number resets so you can play anything; roll a <strong>6</strong> and you miss your next turn; roll <strong>2–5</strong> and you draw two cards. Six event cards shake up every game:
+            </p>
+
+            <div class="event-tags">
+                <span class="event-tags">⚡ Trade</span>
+                <span class="event-tags">🔍 Scout</span>
+                <span class="event-tags">🛡️ Shield</span>
+                <span class="event-tags">🥷 Thief</span>
+                <span class="event-tags">🪞 Mirror</span>
+                <span class="event-tags">🔀 Twist</span>
+                <span class="event-tags">🎲 Fate</span>
+                <span class="event-tags">👑 Crownfall</span>
+            </div>
+            <p>
+                Once your hand is empty you enter endgame — roll the die each turn and roll a <strong>6</strong> to shout <strong>CROWN</strong> and win. Roll a 1 and you're back in the game. Designed in-house and printed in the UK by PrintFromYourSofa on linen-textured cards. Every deck includes a custom die in a premium silk bag.
+            </p>
+
+            <div class="cta-group" style="justify-content:flex-start;margin-top:0;">
+                <a href="crowns/index.html" class="btn btn-primary">♛ Learn More</a>
+                <a href="crowns/demo.html" class="btn btn-secondary">🎮 Play the Demo Free</a>
+                <a href="buy.html" class="btn btn-secondary">🛒 Buy — £14.99</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Navigation -->
     <section class="page-nav-section">
         <div class="page-nav-container">
             <h2 class="page-nav-title">Explore</h2>
@@ -110,38 +330,33 @@
         </div>
     </section>
 
-    <!-- Cards Section with BLURRED content -->
-    <section class="cards-section blurred-section" id="game-mechanics">
-        <div class="section-header">
-            <h2>Game Mechanics 🔒</h2>
-            <p>Two powerful card types drive every match</p>
-        </div>
-
-        <div class="cards-container">
-            <div class="card" data-card="event" onclick="openModal('event')">
-                <div class="card-images">
-                    <img class="card-img-front" src="card-steal.png" alt="Event Card Front">
-                    <img class="card-img-back" src="card-events.png" alt="Event Card Back">
-                </div>
-                <h3>Event Cards</h3>
-                <p class="card-description blurred-reveal-text-glitch">Disrupt opponents, steal resources, and change the game state instantly.</p>
-                <p class="card-hint">🔒 Locked until reveal</p>
+    <!-- Cards Section -->
+    <section id="game-mechanics">
+        <div class="cards-section">
+            <div class="section-header">
+                <h2>Game Mechanics</h2>
+                <p>Two card types drive every match</p>
             </div>
 
-            <div class="card" data-card="character" onclick="openModal('character')">
-                <div class="card-images">
-                    <img class="card-img-front" src="card-c-front.png" alt="Character Card Front">
-                    <img class="card-img-back" src="card-characters.png" alt="Character Card Back">
+            <div class="cards-container">
+                <div class="card" data-card="event" onclick="openModal('event')">
+                    <div class="card-images">
+                        <img class="card-img-front" src="card-steal.png" alt="Event Card Front">
+                        <img class="card-img-back" src="card-events.png" alt="Event Card Back">
+                    </div>
+                    <h3>Event Cards</h3>
+                    <p class="card-description">Trade, Scout, Shield, Theif, Mirror Twist, Fate and Crownfall — six cards that can reverse fortunes in an instant. Play one on any turn after the first card is down.</p>
                 </div>
-                <h3>Playing Cards</h3>
-                <p class="card-description blurred-reveal-text-glitch">Build your deck with unique abilities and strategic synergies.</p>
-                <p class="card-hint">🔒 Locked until reveal</p>
-            </div>
-        </div>
 
-        <div class="locked-overlay">
-            <i class="fas fa-lock"></i>
-            <p>Full rules and mechanics will be revealed after the countdown!</p>
+                <div class="card" data-card="character" onclick="openModal('character')">
+                    <div class="card-images">
+                        <img class="card-img-front" src="card-c-front.png" alt="Playing Card Front">
+                        <img class="card-img-back" src="card-characters.png" alt="Playing Card Back">
+                    </div>
+                    <h3>Playing Cards</h3>
+                    <p class="card-description">Bronze (1–3), Silver (4–6) and Gold (7–9) — 54 premium linen-finish cards. Each card played must match or beat the last number on the table.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -155,16 +370,13 @@
         <div class="social-carousel-container">
             <div class="social-carousel shorts-carousel">
                 <div class="social-carousel-track" id="socialCarouselTrack">
-                    <!-- YouTube Short 1 -->
                     <div class="social-carousel-slide">
                         <a href="https://youtube.com/shorts/29OO2582jVw" target="_blank" class="video-thumbnail-link">
-                            <img src="https://i.ytimg.com/vi/29OO2582jVw/maxresdefault.jpg" 
-                                 alt="We made him wear fake nails for the day!" 
+                            <img src="https://i.ytimg.com/vi/29OO2582jVw/maxresdefault.jpg"
+                                 alt="We made him wear fake nails for the day!"
                                  class="video-thumbnail"
                                  onerror="this.src='https://i.ytimg.com/vi/29OO2582jVw/hqdefault.jpg'">
-                            <div class="play-button-overlay">
-                                <i class="fab fa-youtube"></i>
-                            </div>
+                            <div class="play-button-overlay"><i class="fab fa-youtube"></i></div>
                         </a>
                         <div class="video-info">
                             <h4 class="video-title">We made him wear fake nails for the day!</h4>
@@ -172,17 +384,13 @@
                             <p class="video-summary">Our most viral video - building an audience for our game launch.</p>
                         </div>
                     </div>
-
-                    <!-- YouTube Short 2 -->
                     <div class="social-carousel-slide">
                         <a href="https://youtube.com/shorts/OjRfW3yyGeI" target="_blank" class="video-thumbnail-link">
-                            <img src="https://i.ytimg.com/vi/OjRfW3yyGeI/maxresdefault.jpg" 
-                                 alt="[opening a can] We made him wear fake nails (PART 2)" 
+                            <img src="https://i.ytimg.com/vi/OjRfW3yyGeI/maxresdefault.jpg"
+                                 alt="[opening a can] We made him wear fake nails (PART 2)"
                                  class="video-thumbnail"
                                  onerror="this.src='https://i.ytimg.com/vi/OjRfW3yyGeI/hqdefault.jpg'">
-                            <div class="play-button-overlay">
-                                <i class="fab fa-youtube"></i>
-                            </div>
+                            <div class="play-button-overlay"><i class="fab fa-youtube"></i></div>
                         </a>
                         <div class="video-info">
                             <h4 class="video-title">[opening a can] We made him wear fake nails (PART 2)</h4>
@@ -190,17 +398,13 @@
                             <p class="video-summary">Part 2 of our viral series - watch him struggle with everyday tasks.</p>
                         </div>
                     </div>
-
-                    <!-- YouTube Short 3 -->
                     <div class="social-carousel-slide">
                         <a href="https://youtube.com/shorts/dEPqITzhp-c" target="_blank" class="video-thumbnail-link">
-                            <img src="https://i.ytimg.com/vi/dEPqITzhp-c/maxresdefault.jpg" 
-                                 alt="Guy wears fake nails!!" 
+                            <img src="https://i.ytimg.com/vi/dEPqITzhp-c/maxresdefault.jpg"
+                                 alt="Guy wears fake nails!!"
                                  class="video-thumbnail"
                                  onerror="this.src='https://i.ytimg.com/vi/dEPqITzhp-c/hqdefault.jpg'">
-                            <div class="play-button-overlay">
-                                <i class="fab fa-youtube"></i>
-                            </div>
+                            <div class="play-button-overlay"><i class="fab fa-youtube"></i></div>
                         </a>
                         <div class="video-info">
                             <h4 class="video-title">Guy wears fake nails!!</h4>
@@ -208,17 +412,13 @@
                             <p class="video-summary">Hilarious challenge content bringing attention to our growing channel.</p>
                         </div>
                     </div>
-
-                    <!-- YouTube Short 4 -->
                     <div class="social-carousel-slide">
                         <a href="https://youtube.com/shorts/o5DVegNFI2I" target="_blank" class="video-thumbnail-link">
-                            <img src="https://i.ytimg.com/vi/o5DVegNFI2I/maxresdefault.jpg" 
-                                 alt="[ordering food] We made him wear fake nails!! (Part 3)" 
+                            <img src="https://i.ytimg.com/vi/o5DVegNFI2I/maxresdefault.jpg"
+                                 alt="[ordering food] We made him wear fake nails!! (Part 3)"
                                  class="video-thumbnail"
                                  onerror="this.src='https://i.ytimg.com/vi/o5DVegNFI2I/hqdefault.jpg'">
-                            <div class="play-button-overlay">
-                                <i class="fab fa-youtube"></i>
-                            </div>
+                            <div class="play-button-overlay"><i class="fab fa-youtube"></i></div>
                         </a>
                         <div class="video-info">
                             <h4 class="video-title">[ordering food] We made him wear fake nails!! (Part 3)</h4>
@@ -226,17 +426,13 @@
                             <p class="video-summary">Part 3 - ordering food gets awkward with long fake nails.</p>
                         </div>
                     </div>
-
-                    <!-- YouTube Short 5 -->
                     <div class="social-carousel-slide">
                         <a href="https://youtube.com/shorts/HvHX-mM2lkM" target="_blank" class="video-thumbnail-link">
-                            <img src="https://i.ytimg.com/vi/HvHX-mM2lkM/maxresdefault.jpg" 
-                                 alt="[paying at counter] He wore fake nails!! (Part 4)" 
+                            <img src="https://i.ytimg.com/vi/HvHX-mM2lkM/maxresdefault.jpg"
+                                 alt="[paying at counter] He wore fake nails!! (Part 4)"
                                  class="video-thumbnail"
                                  onerror="this.src='https://i.ytimg.com/vi/HvHX-mM2lkM/hqdefault.jpg'">
-                            <div class="play-button-overlay">
-                                <i class="fab fa-youtube"></i>
-                            </div>
+                            <div class="play-button-overlay"><i class="fab fa-youtube"></i></div>
                         </a>
                         <div class="video-info">
                             <h4 class="video-title">[paying at counter] He wore fake nails!! (Part 4)</h4>
@@ -244,17 +440,13 @@
                             <p class="video-summary">The finale of our fake nails challenge - watch the awkward moments.</p>
                         </div>
                     </div>
-
-                    <!-- YouTube Short 6 -->
                     <div class="social-carousel-slide">
                         <a href="https://youtube.com/shorts/EbYcf-s8l-Y" target="_blank" class="video-thumbnail-link">
-                            <img src="https://i.ytimg.com/vi/EbYcf-s8l-Y/maxresdefault.jpg" 
-                                 alt="Putting fake nails on a guy!!" 
+                            <img src="https://i.ytimg.com/vi/EbYcf-s8l-Y/maxresdefault.jpg"
+                                 alt="Putting fake nails on a guy!!"
                                  class="video-thumbnail"
                                  onerror="this.src='https://i.ytimg.com/vi/EbYcf-s8l-Y/hqdefault.jpg'">
-                            <div class="play-button-overlay">
-                                <i class="fab fa-youtube"></i>
-                            </div>
+                            <div class="play-button-overlay"><i class="fab fa-youtube"></i></div>
                         </a>
                         <div class="video-info">
                             <h4 class="video-title">Putting fake nails on a guy!!</h4>
@@ -262,17 +454,13 @@
                             <p class="video-summary">Behind the scenes - applying the fake nails for our viral challenge.</p>
                         </div>
                     </div>
-
-                    <!-- YouTube Short 7 -->
                     <div class="social-carousel-slide">
                         <a href="https://youtube.com/shorts/2KWVFl4OHD0" target="_blank" class="video-thumbnail-link">
-                            <img src="https://i.ytimg.com/vi/2KWVFl4OHD0/maxresdefault.jpg" 
-                                 alt="[compilation] He wore fake nails for the day!! (Part 1 - 4)" 
+                            <img src="https://i.ytimg.com/vi/2KWVFl4OHD0/maxresdefault.jpg"
+                                 alt="[compilation] He wore fake nails for the day!! (Part 1 - 4)"
                                  class="video-thumbnail"
                                  onerror="this.src='https://i.ytimg.com/vi/2KWVFl4OHD0/hqdefault.jpg'">
-                            <div class="play-button-overlay">
-                                <i class="fab fa-youtube"></i>
-                            </div>
+                            <div class="play-button-overlay"><i class="fab fa-youtube"></i></div>
                         </a>
                         <div class="video-info">
                             <h4 class="video-title">[compilation] He wore fake nails for the day!! (Part 1 - 4)</h4>
@@ -280,7 +468,6 @@
                             <p class="video-summary">Full compilation of our viral fake nails challenge series.</p>
                         </div>
                     </div>
-
                 </div>
                 <button class="carousel-btn prev" onclick="changeSocialSlide(-1)">‹</button>
                 <button class="carousel-btn next" onclick="changeSocialSlide(1)">›</button>
@@ -328,11 +515,10 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
             <h3 id="modal-title">Card Title</h3>
-            <p id="modal-desc" class="blurred-reveal-text-glitch">Card description locked until reveal</p>
+            <p id="modal-desc">Card description</p>
         </div>
     </div>
 
-    <!-- FIXED NEWSLETTER POPUP -->
     <div class="newsletter-popup" id="newsletterPopup">
         <div class="newsletter-popup-content">
             <span class="popup-close" onclick="closeNewsletter()">&times;</span>

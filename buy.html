@@ -3,10 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crowns - Dynamic Game Studios</title>
+    <title>Buy Crowns - Dynamic Game Studios</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Buy page additions ── */
+
+        .launch-notice {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: #111;
+            font-weight: 800;
+            font-size: 0.92rem;
+            padding: 10px 22px;
+            border-radius: 999px;
+            margin-top: 18px;
+            box-shadow: 0 6px 18px rgba(211,141,10,0.30);
+        }
+
+        /* Product details panel */
+        .product-details {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 32px 30px;
+            box-shadow: 0 18px 44px var(--shadow);
+        }
+
+        .product-details h2 {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--bronze);
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid rgba(0,0,0,0.06);
+        }
+
+        .product-description p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+
+        /* Event cards inline tags */
+        .event-tags-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 4px 0 14px;
+        }
+
+        .event-tag-inline {
+            background: var(--bg-white);
+            border: 1.5px solid var(--bronze);
+            border-radius: 8px;
+            padding: 4px 11px;
+            font-size: 0.80rem;
+            font-weight: 700;
+            color: var(--bronze);
+        }
+
+        /* Specs grid */
+        .product-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 22px 0;
+        }
+
+        .spec-item {
+            background: var(--bg-white);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .spec-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+        }
+
+        .spec-label {
+            font-size: 0.73rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-light);
+        }
+
+        .spec-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Price section */
+        .price-section {
+            background: linear-gradient(135deg, rgba(211,141,10,0.08), rgba(211,141,10,0.03));
+            border: 1.5px solid rgba(211,141,10,0.30);
+            border-radius: var(--radius-lg);
+            padding: 22px 20px;
+            margin: 22px 0;
+            text-align: center;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .price-main {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .price-was {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .price-save {
+            background: #e6f7ed;
+            color: #1a7a3a;
+            border: 1px solid #a8dfbc;
+            font-size: 0.80rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 999px;
+        }
+
+        .price-note {
+            font-size: 0.88rem;
+            color: var(--text-medium);
+            line-height: 1.55;
+            margin-top: 6px;
+        }
+
+        .btn.full-width {
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+
+        .btn + .btn {
+            margin-top: 10px;
+        }
+
+        /* Features section */
+        .features-section {
+            margin-top: 60px;
+            padding-top: 48px;
+            border-top: 2px solid var(--glass-border);
+        }
+
+        .features-section h2 {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 900;
+            color: var(--bronze);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 26px 22px;
+            box-shadow: 0 10px 28px var(--shadow);
+            transition: transform var(--transition-med), box-shadow var(--transition-med);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 44px rgba(0,0,0,0.14);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-family: 'SF Pro Display', 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: var(--bronze);
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--text-medium);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        /* Section divider label */
+        .rules-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 24px 0 14px;
+            color: var(--text-light);
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.10em;
+        }
+
+        .rules-divider::before,
+        .rules-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        @media (max-width: 600px) {
+            .product-specs { grid-template-columns: 1fr; }
+            .price-main { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,6 +259,7 @@
                 <a href="buy.html">Buy</a>
                 <a href="invest.html">Invest</a>
                 <a href="about.html">About</a>
+                <a href="crowns/index.html" class="nav-crowns">♛ Crowns</a>
             </nav>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
@@ -26,44 +269,34 @@
         </div>
     </header>
 
-
     <main>
         <div class="buy-container">
+
+            <!-- Hero -->
             <div class="product-hero">
-                <h1 class="blurred-word-glitch" data-text="Crowns">Crowns</h1>
-                <p class="blurred-reveal-text-glitch">The strategic card game where every move counts. Full details reveal soon.</p>
-
-
-                <!-- COUNTDOWN REMINDER -->
-                <div class="mini-countdown-notice">
-                    <i class="fas fa-lock"></i> Name and details locked until countdown ends on homepage
+                <h1>Crowns Card Game</h1>
+                    <p>
+                        Eight event cards shake up every game. <strong>Trade</strong> — swap one of your cards with a random one from an opponent. <strong>Scout</strong> — peek at the top two deck cards and secretly keep one. <strong>Shield</strong> — protect yourself by skipping a turn safely. <strong>Thief</strong> — look at an opponent's hand and steal a card with a value of 6 or lower. <strong>Mirror</strong> — match the previous card exactly, carrying the same number onto the next player. <strong>Twist</strong> — choose any two players (including yourself) to swap entire hands. <strong>Fate</strong> — all players roll; highest returns 1 card to the pile, lowest draws 2. <strong>Crownfall</strong> — target the previous player's move and halve the current number (rounded up).
+                    </p>
+                <div class="launch-notice">
+                    <i class="fas fa-clock"></i>
+                    Launching <strong>Spring 2026</strong> &mdash; available at Young Enterprise Trading Station &amp; local events
                 </div>
             </div>
 
-
+            <!-- Product grid: carousel + details -->
             <div class="product-grid">
+
+                <!-- Carousel -->
                 <div class="carousel-container">
                     <div class="carousel">
                         <div class="carousel-track" id="carouselTrack">
-                            <!-- 6 Promotional Images in 4:3 aspect ratio -->
-                            <div class="carousel-slide">
-                                <img src="promotionalmedia_1.PNG" alt="Crowns Game Promotional Image 1">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="promotionalmedia_2.PNG" alt="Crowns Game Promotional Image 2">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="promotionalmedia_3.PNG" alt="Crowns Game Promotional Image 3">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="promotionalmedia_4.PNG" alt="Crowns Game Promotional Image 4">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="promotionalmedia_5.PNG" alt="Crowns Game Promotional Image 5">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="promotionalmedia_6.PNG" alt="Crowns Game Promotional Image 6">
-                            </div>
+                            <div class="carousel-slide"><img src="promotionalmedia_1.png" alt="Crowns Promotional Image 1"></div>
+                            <div class="carousel-slide"><img src="promotionalmedia_2.png" alt="Crowns Promotional Image 2"></div>
+                            <div class="carousel-slide"><img src="promotionalmedia_3.png" alt="Crowns Promotional Image 3"></div>
+                            <div class="carousel-slide"><img src="promotionalmedia_4.png" alt="Crowns Promotional Image 4"></div>
+                            <div class="carousel-slide"><img src="promotionalmedia_5.png" alt="Crowns Promotional Image 5"></div>
+                            <div class="carousel-slide"><img src="promotionalmedia_6.png" alt="Crowns Promotional Image 6"></div>
                         </div>
                         <button class="carousel-btn prev" onclick="changeSlide(-1)">‹</button>
                         <button class="carousel-btn next" onclick="changeSlide(1)">›</button>
@@ -71,111 +304,127 @@
                     <div class="carousel-indicators" id="carouselIndicators"></div>
                 </div>
 
-
+                <!-- Details panel -->
                 <div class="product-details">
-                    <h2>About <span class="blurred-word-glitch" data-text="Crowns">Crowns</span></h2>
+                    <h2>About Crowns</h2>
 
+                    <div class="product-description">
+                        <p>
+                            Each player is dealt a hand of cards. On your turn, play a numbered card equal to or higher than the last card played. <strong>Bronze</strong> runs 1–3, <strong>Silver</strong> 4–6, <strong>Gold</strong> 7–9. Reach 9 and one full round passes before the number resets.
+                        </p>
+                        <p>
+                            Can't play? Draw from the pile or <strong>gamble</strong> — roll a 1 and the number resets; roll a 6 and miss your next turn; roll 2–5 and draw two cards.
+                        </p>
 
-                    <div class="product-specs blurred-section">
+                        <div class="rules-divider">Event Cards</div>
+                        <div class="event-tags-inline">
+                            <span class="event-tag-inline">⚡ Trade</span>
+                            <span class="event-tag-inline">🔍 Scout</span>
+                            <span class="event-tag-inline">🛡️ Shield</span>
+                            <span class="event-tag-inline">🥷 Thief</span>
+                            <span class="event-tag-inline">🪞 Mirror</span>
+                            <span class="event-tag-inline">🔀 Twist</span>
+                            <span class="event-tag-inline">🎲 Fate</span>
+                            <span class="event-tag-inline">👑 Crownfall</span>
+                        </div>
+                        <p>
+                            Once your hand is empty, roll each turn — roll a <strong>6</strong> and shout <strong>CROWN</strong> to win. Roll a 1 and you're back in. Designed in-house and printed in the UK by PrintFromYourSofa on linen-textured cards with a custom die in a premium silk bag.
+                        </p>
+                    </div>
+
+                    <!-- Specs -->
+                    <div class="rules-divider">What's in the Box</div>
+                    <div class="product-specs">
                         <div class="spec-item">
-                            <span class="spec-label">Players</span>
-                            <span class="spec-value blurred-reveal-text-glitch">2-4</span>
+                            <span class="spec-label">👥 Players</span>
+                            <span class="spec-value">2–4</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">Age</span>
-                            <span class="spec-value blurred-reveal-text-glitch">8+</span>
+                            <span class="spec-label">🎂 Age</span>
+                            <span class="spec-value">6+</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">Playing Time</span>
-                            <span class="spec-value blurred-reveal-text-glitch">15-30 minutes</span>
+                            <span class="spec-label">⏱️ Play Time</span>
+                            <span class="spec-value">15–30 minutes</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">Complexity</span>
-                            <span class="spec-value blurred-reveal-text-glitch">Easy to learn, hard to master</span>
+                            <span class="spec-label">🃏 Cards</span>
+                            <span class="spec-value">54 (linen finish)</span>
                         </div>
-
-
-                        <div class="locked-overlay">
-                            <i class="fas fa-lock"></i>
-                            <p>Specifications locked until reveal</p>
+                        <div class="spec-item">
+                            <span class="spec-label">🎲 Includes</span>
+                            <span class="spec-value">Custom die + silk bag</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">🧠 Complexity</span>
+                            <span class="spec-value">Easy to learn, hard to master</span>
                         </div>
                     </div>
 
-
-                    <!-- BLURRED DESCRIPTION SECTION -->
-                    <div class="product-description blurred-section">
-                        <p class="blurred-reveal-text-glitch">
-                            <span class="blurred-word-glitch" data-text="Crowns">Crowns</span> combines simple rules with deep strategic gameplay. Build your deck, outmanoeuvre your opponents, and claim victory through clever card combinations.
-                        </p>
-                        <p class="blurred-reveal-text-glitch">
-                            Perfect for families, friends, and competitive players alike. Every game tells a different story.
-                        </p>
-
-
-                        <div class="locked-overlay">
-                            <i class="fas fa-lock"></i>
-                            <p>Full description locked until countdown ends</p>
-                        </div>
-                    </div>
-
-
+                    <!-- Price -->
                     <div class="price-section">
-                        <div class="price">Coming Soon</div>
-                        <p class="price-note">Pre-orders opening Spring 2026. Join our newsletter for early access.</p>
+                        <div class="price-row">
+                            <span class="price-main">£14.99</span>
+                            <span class="price-was">£22.49</span>
+                            <span class="price-save">Save 33%</span>
+                        </div>
+                        <p class="price-note">
+                            <strong>Coming Soon — Spring 2026.</strong> Pre-orders available through Young Enterprise's Trading Station and at local events. Sign up to our newsletter for early access and launch day updates.
+                        </p>
                     </div>
 
-
-                    <button class="btn btn-primary full-width" onclick="openNewsletter()">Get Launch Alert</button>
-                    <a href="index.html" class="btn btn-secondary full-width" style="margin-top: 16px; display: block; text-align: center;">← Back to Home</a>
+                    <!-- Action buttons -->
+                    <button class="btn btn-primary full-width" onclick="openNewsletter()">
+                        📬 Get Launch Alert — Be First in Line
+                    </button>
+                    <a href="crowns/demo.html" class="btn btn-secondary full-width">
+                        🎮 Try the Free Online Demo →
+                    </a>
+                    <a href="index.html" class="btn btn-secondary full-width">
+                        ← Back to Home
+                    </a>
                 </div>
             </div>
 
-
-            <!-- BLURRED FEATURES SECTION -->
-            <div class="features-section blurred-section">
-                <h2>Why You'll Love <span class="blurred-word-glitch" data-text="Crowns">Crowns</span> 🔒</h2>
+            <!-- Features -->
+            <div class="features-section">
+                <h2>Why You'll Love Crowns</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3 class="blurred-reveal-text-glitch">Fast-Paced</h3>
-                        <p class="blurred-reveal-text-glitch">Quick rounds keep everyone engaged. No downtime, just pure strategy.</p>
+                        <span class="feature-icon">⚡</span>
+                        <h3>Fast-Paced</h3>
+                        <p>Games last 15–30 minutes with a decision every single turn. No downtime, no waiting around.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3 class="blurred-reveal-text-glitch">Easy to Learn</h3>
-                        <p class="blurred-reveal-text-glitch">Master the basics in 5 minutes. Perfect for newcomers and veterans.</p>
+                        <span class="feature-icon">🎯</span>
+                        <h3>Easy to Learn</h3>
+                        <p>Explain the rules in under two minutes. Play any card equal to or higher than the last — that's it.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🏆</div>
-                        <h3 class="blurred-reveal-text-glitch">Highly Replayable</h3>
-                        <p class="blurred-reveal-text-glitch">Unique card combinations and strategies make every game different.</p>
+                        <span class="feature-icon">🏆</span>
+                        <h3>Highly Replayable</h3>
+                        <p>Six event cards, the gamble mechanic, and the CROWN finish line make every game feel completely different.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">👥</div>
-                        <h3 class="blurred-reveal-text-glitch">Social & Competitive</h3>
-                        <p class="blurred-reveal-text-glitch">Perfect for game nights, tournaments, or casual play with friends.</p>
+                        <span class="feature-icon">👥</span>
+                        <h3>Social &amp; Competitive</h3>
+                        <p>Perfect for family game nights, competitive friend groups, school events, and trade fairs.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🎨</div>
-                        <h3 class="blurred-reveal-text-glitch">Premium Quality</h3>
-                        <p class="blurred-reveal-text-glitch">High-quality cards with stunning artwork and durable materials.</p>
+                        <span class="feature-icon">🎨</span>
+                        <h3>Premium Quality</h3>
+                        <p>Linen-textured cards printed in the UK. Custom die in a premium silk bag. Designed to last.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">📦</div>
-                        <h3 class="blurred-reveal-text-glitch">Compact & Portable</h3>
-                        <p class="blurred-reveal-text-glitch">Take <span class="blurred-word-glitch" data-text="Crowns">Crowns</span> anywhere. Perfect for travel and on-the-go gaming.</p>
+                        <span class="feature-icon">📦</span>
+                        <h3>Compact &amp; Portable</h3>
+                        <p>Small-box format — fits in a pocket or bag. Take Crowns anywhere.</p>
                     </div>
-                </div>
-
-
-                <div class="locked-overlay">
-                    <i class="fas fa-lock"></i>
-                    <p>Features will be revealed after the countdown!</p>
                 </div>
             </div>
+
         </div>
     </main>
-
 
     <footer>
         <img src="logo-white-slogan.png" alt="Dynamic Game Studios Logo" class="footer-logo">
@@ -189,19 +438,15 @@
         <p class="footer-text">&copy; 2026 Dynamic Game Studios &mdash; Contact <a href="mailto:contact@dynamicstudios.co.uk" class="footer-link">contact@dynamicstudios.co.uk</a></p>
     </footer>
 
-
-    <!-- FIXED NEWSLETTER POPUP -->
     <div class="newsletter-popup" id="newsletterPopup">
         <div class="newsletter-popup-content">
             <span class="popup-close" onclick="closeNewsletter()">&times;</span>
             <h3>Join Our Newsletter</h3>
-            <p>Be the first to know when <span class="blurred-word-glitch" data-text="Crowns">Crowns</span> launches. Get exclusive updates and early access.</p>
+            <p>Be the first to know when Crowns launches. Get exclusive updates and early access.</p>
             <iframe width="100%" height="305" src="https://b800a5c1.sibforms.com/serve/MUIFACO3p5sN94AJkzED3p-9vbenmdJnQHZOer10S6HfaJa-GXQdTiY193gQExmmrFgweBL1OvpILLVivAzofDCVq2f9n4z2KsEintk4YcmECQ24Dr_j-UzQcxV9sBUk_RUbe6ZcJ0hyQbDgfpeR6H9rnktN0eASKkaQ4hs4Z_dXGVRqTIJB8xT-Jyfwk_KKvaiNFu-dNJ4NYDFocg==" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin:0 auto;border-radius:12px;border:none;"></iframe>
         </div>
     </div>
 
-
-    <!-- NO INLINE SCRIPT - All moved to script.js -->
     <script src="script.js"></script>
 </body>
 </html>

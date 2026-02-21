@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Crowns — Card Game</title>
+  <link rel="icon" type="image/png" href="../favicon.png"/>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+    /* ── HOME-ONLY STYLES ── */
+
+    .dgs-back-btn {
+      display: flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: background .15s, transform .15s;
+      text-decoration: none;
+    }
+    .dgs-back-btn:hover {
+      background: rgba(255,255,255,0.22);
+      transform: translateX(-2px);
+    }
+    .dgs-back-btn img {
+      height: 28px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 48px 20px 36px;
+      position: relative;
+    }
+    .hero-crown {
+      font-size: clamp(52px, 10vw, 90px);
+      line-height: 1;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 28px rgba(212,167,44,.65));
+      animation: crownFloat 3.5s ease-in-out infinite;
+    }
+    @keyframes crownFloat {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    .hero-title {
+      font-size: clamp(38px, 8vw, 78px);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      line-height: 1;
+      margin: 0 0 16px;
+      color: #fff;
+      text-shadow: 0 4px 24px rgba(0,0,0,.4);
+    }
+    .hero-tagline {
+      font-size: clamp(15px,2.2vw,20px);
+      font-weight: 600;
+      color: rgba(255,255,255,.80);
+      letter-spacing: .03em;
+      margin: 0 auto 28px;
+      max-width: 520px;
+      line-height: 1.55;
+    }
+    .hero-badges {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .hero-badge {
+      padding: 8px 18px; border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.28);
+      font-size: 13px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .05em;
+      color: rgba(255,255,255,.9);
+      backdrop-filter: blur(8px);
+    }
+    .hero-badge.gold { background: rgba(212,167,44,.28); border-color: rgba(255,215,80,.55); color: #ffd77a; }
+
+    .hero-btns {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 32px; border-radius: 999px;
+      font-weight: 900; font-size: 16px; letter-spacing: .04em;
+      text-transform: uppercase; cursor: pointer; text-decoration: none;
+      transition: transform .14s, box-shadow .14s;
+      border: none;
+    }
+    .cta-btn:hover { transform: translateY(-3px); }
+    .cta-btn.primary {
+      background: linear-gradient(135deg, #d4a72c, #f0c94a);
+      color: #111;
+      box-shadow: 0 8px 28px rgba(212,167,44,.55), 0 2px 0 rgba(0,0,0,.15);
+    }
+    .cta-btn.primary:hover { box-shadow: 0 14px 38px rgba(212,167,44,.70); }
+    .cta-btn.secondary {
+      background: rgba(255,255,255,.16);
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,.40);
+      box-shadow: 0 6px 20px rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+    }
+    .cta-btn.secondary:hover { background: rgba(255,255,255,.26); box-shadow: 0 10px 28px rgba(0,0,0,.30); }
+
+    .section-divider {
+      display: flex; align-items: center; gap: 16px;
+      margin: 40px 0 28px; color: rgba(255,255,255,.35);
+      font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.15);
+    }
+
+    .features-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .feature-pill {
+      background: rgba(0,0,0,.25);
+      border: 1.5px solid rgba(255,255,255,.14);
+      border-radius: 16px; padding: 18px 14px;
+      text-align: center; backdrop-filter: blur(12px);
+      transition: border-color .18s, background .18s, transform .18s;
+    }
+    .feature-pill:hover { border-color: rgba(255,215,80,.45); background: rgba(212,167,44,.12); transform: translateY(-3px); }
+    .feature-pill .fp-icon  { font-size: 28px; margin-bottom: 8px; }
+    .feature-pill .fp-title { font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: #fff; }
+    .feature-pill .fp-desc  { font-size: 12px; color: rgba(255,255,255,.58); margin-top: 4px; line-height: 1.4; }
+
+    /* Cards showcase */
+    .cards-showcase {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+      margin: 18px 0 6px;
+    }
+    .showcase-card {
+      width: 72px; aspect-ratio: 2/3; border-radius: 12px;
+      display: grid; place-items: center; font-size: 22px; font-weight: 950;
+      box-shadow: 0 8px 20px rgba(0,0,0,.35);
+      border: 1.5px solid rgba(255,255,255,.18);
+      position: relative; overflow: hidden;
+      transition: transform .18s;
+    }
+    .showcase-card:hover { transform: translateY(-6px) rotate(-2deg); }
+    .showcase-card.bronze { background: linear-gradient(160deg,#b86b2a,#8b4d1d); }
+    .showcase-card.silver { background: linear-gradient(160deg,#7d8590,#4d535c); }
+    .showcase-card.gold   { background: linear-gradient(160deg,#d4a72c,#9b6e08); }
+    .showcase-card.event  {
+      background: linear-gradient(160deg,#1b6cff,#0f2f77);
+      font-size: 14px; letter-spacing: -.01em;
+      cursor: pointer;
+    }
+    /* Subtle pulsing ring on event cards to hint they're interactive */
+    .showcase-card.event::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 13px;
+      border: 2px solid rgba(100,170,255,0);
+      transition: border-color .18s;
+    }
+    .showcase-card.event:hover::after {
+      border-color: rgba(100,170,255,.65);
+    }
+    .showcase-card.event.active-tip {
+      box-shadow: 0 0 0 3px rgba(100,170,255,.75), 0 8px 20px rgba(0,0,0,.35);
+      transform: translateY(-6px) rotate(-2deg);
+    }
+
+    .showcase-card img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 11px;
+    }
+    .showcase-card img + span { display: none; }
+    .showcase-card .sc-rarity {
+      position: absolute; bottom: 5px; left: 0; right: 0;
+      text-align: center; font-size: 9px; text-transform: uppercase;
+      letter-spacing: .08em; opacity: .75; z-index: 1;
+    }
+
+    /* Event card tooltip */
+    .event-tooltip {
+      position: fixed;
+      z-index: 9999;
+      background: rgba(8, 16, 48, 0.97);
+      border: 1.5px solid rgba(100,150,255,.50);
+      border-radius: 16px;
+      padding: 16px 18px;
+      max-width: 230px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.65), 0 0 0 1px rgba(100,150,255,.15);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(8px) scale(0.97);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .event-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .et-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .et-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+    .et-name {
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #ffd77a;
+    }
+    .et-desc {
+      font-size: 12.5px;
+      color: rgba(255,255,255,.82);
+      line-height: 1.55;
+    }
+    .et-footer {
+      margin-top: 9px;
+      font-size: 10.5px;
+      color: rgba(255,255,255,.32);
+      letter-spacing: .04em;
+    }
+
+    /* Tap hint label */
+    .event-tap-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(27,108,255,.18);
+      border: 1px solid rgba(100,150,255,.30);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: rgba(150,190,255,.85);
+      letter-spacing: .03em;
+    }
+
+    /* About grid */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .about-block {
+      background: rgba(0,0,0,.22);
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: 16px; padding: 20px 18px;
+    }
+    .about-block .ab-icon  { font-size: 26px; margin-bottom: 8px; }
+    .about-block .ab-title { font-weight: 900; text-transform: uppercase; letter-spacing: .06em; font-size: 13px; color: #ffd77a; margin-bottom: 6px; }
+    .about-block .ab-text  { font-size: 13.5px; color: rgba(255,255,255,.72); line-height: 1.6; margin: 0; }
+
+    .home-footer {
+      text-align: center;
+      padding: 36px 0 12px;
+      color: rgba(255,255,255,.30);
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+    .home-footer a { color: rgba(255,255,255,.45); text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 32px 16px 24px; }
+      .cta-btn { padding: 14px 22px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <a href="../index.html" class="dgs-back-btn" title="Back to Dynamic Game Studios">
+      <img src="../logo-black.png" alt="Dynamic Game Studios" onerror="this.style.display='none'">
+    </a>
+    <div class="brand">
+      <div class="brand-badge">
+        <img src="assets/img/logo.png" alt="Crowns" class="brand-logo"
+             onerror="this.style.display='none';document.getElementById('brandFallback').style.display='flex'">
+        <span class="brand-title" id="brandFallback" style="display:none">CROWNS</span>
+      </div>
+    </div>
+    <button class="icon-btn" id="rulesBtn" title="How to Play">📖</button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-crown">♛</div>
+    <h1 class="hero-title">CROWNS</h1>
+    <p class="hero-tagline">
+      The fast-paced card game where only one player can claim the Crown.
+      Outwit your opponents, play your cards right, and shout <strong>CROWN</strong> to win.
+    </p>
+    <div class="hero-badges">
+      <span class="hero-badge gold">♛ Premium Card Game</span>
+      <span class="hero-badge">2–4 Players</span>
+      <span class="hero-badge">Ages 6+</span>
+      <span class="hero-badge">15–30 Min</span>
+    </div>
+    <div class="hero-btns">
+      <a class="cta-btn primary" href="https://www.dynamicstudios.co.uk/buy">♛ Buy Now — £15.99</a>
+      <a class="cta-btn secondary" href="demo.html">🎮 Try Free Demo →</a>
+    </div>
+  </section>
+
+  <!-- FEATURE PILLS -->
+  <div class="section-divider">Why Crowns?</div>
+  <div class="features-row">
+    <div class="feature-pill">
+      <div class="fp-icon">⚡</div>
+      <div class="fp-title">Fast &amp; Tense</div>
+      <div class="fp-desc">Games last 15–30 mins with non-stop decisions every round</div>
+    </div>
+    <div class="feature-pill">
+      <div class="fp-icon">🎴</div>
+      <div class="fp-title">54 Cards</div>
+      <div class="fp-desc">Bronze, Silver, Gold and Event cards — every deck is unique</div>
+    </div>
+    <div class="feature-pill">
+      <div class="fp-icon">👨‍👩‍👧‍👦</div>
+      <div class="fp-title">For Everyone</div>
+      <div class="fp-desc">Simple enough for ages 6+, deep enough for competitive play</div>
+    </div>
+    <div class="feature-pill">
+      <div class="fp-icon">🎲</div>
+      <div class="fp-title">Dice &amp; Events</div>
+      <div class="fp-desc">8 event cards shake up every game in unpredictable ways</div>
+    </div>
+    <div class="feature-pill">
+      <div class="fp-icon">🏆</div>
+      <div class="fp-title">Shout Crown</div>
+      <div class="fp-desc">The iconic win condition — empty your hand, roll a 6, shout it</div>
+    </div>
+  </div>
+
+  <!-- CARD SHOWCASE -->
+  <div class="section-divider">The Cards</div>
+  <div class="panel" style="text-align:center;">
+    <p class="subtext" style="margin-bottom:10px;">
+      Three rarity tiers of numbered cards keep every hand different. Play higher than the last card — or use an <strong>Event</strong> to flip the table.
+    </p>
+    <div class="event-tap-hint">
+      👆 Tap any blue Event card to see what it does
+    </div>
+    <div class="cards-showcase">
+      <!-- Numbered cards -->
+      <div class="showcase-card bronze"><img src="assets/img/bronze-1.png" alt="1" onerror="this.style.display='none'"><span>1</span><span class="sc-rarity">Bronze</span></div>
+      <div class="showcase-card bronze"><img src="assets/img/bronze-2.png" alt="2" onerror="this.style.display='none'"><span>2</span><span class="sc-rarity">Bronze</span></div>
+      <div class="showcase-card bronze"><img src="assets/img/bronze-3.png" alt="3" onerror="this.style.display='none'"><span>3</span><span class="sc-rarity">Bronze</span></div>
+      <div class="showcase-card silver"><img src="assets/img/silver-4.png" alt="4" onerror="this.style.display='none'"><span>4</span><span class="sc-rarity">Silver</span></div>
+      <div class="showcase-card silver"><img src="assets/img/silver-5.png" alt="5" onerror="this.style.display='none'"><span>5</span><span class="sc-rarity">Silver</span></div>
+      <div class="showcase-card silver"><img src="assets/img/silver-6.png" alt="6" onerror="this.style.display='none'"><span>6</span><span class="sc-rarity">Silver</span></div>
+      <div class="showcase-card gold"><img src="assets/img/gold-7.png" alt="7" onerror="this.style.display='none'"><span>7</span><span class="sc-rarity">Gold</span></div>
+      <div class="showcase-card gold"><img src="assets/img/gold-8.png" alt="8" onerror="this.style.display='none'"><span>8</span><span class="sc-rarity">Gold</span></div>
+      <div class="showcase-card gold"><img src="assets/img/gold-9.png" alt="9" onerror="this.style.display='none'"><span>9</span><span class="sc-rarity">Gold</span></div>
+      <!-- All 8 event cards — data-name drives the tooltip -->
+      <div class="showcase-card event" data-name="Trade">    <img src="assets/img/event-trade.png"     alt="Trade"     onerror="this.style.display='none'"><span>Trade</span>    <span class="sc-rarity">Event</span></div>
+      <div class="showcase-card event" data-name="Scout">    <img src="assets/img/event-scout.png"     alt="Scout"     onerror="this.style.display='none'"><span>Scout</span>    <span class="sc-rarity">Event</span></div>
+      <div class="showcase-card event" data-name="Shield">   <img src="assets/img/event-shield.png"    alt="Shield"    onerror="this.style.display='none'"><span>Shield</span>   <span class="sc-rarity">Event</span></div>
+      <div class="showcase-card event" data-name="Thief">    <img src="assets/img/event-thief.png"     alt="Thief"     onerror="this.style.display='none'"><span>Thief</span>    <span class="sc-rarity">Event</span></div>
+      <div class="showcase-card event" data-name="Mirror">   <img src="assets/img/event-mirror.png"    alt="Mirror"    onerror="this.style.display='none'"><span>Mirror</span>   <span class="sc-rarity">Event</span></div>
+      <div class="showcase-card event" data-name="Twist">    <img src="assets/img/event-twist.png"     alt="Twist"     onerror="this.style.display='none'"><span>Twist</span>    <span class="sc-rarity">Event</span></div>
+      <div class="showcase-card event" data-name="Fate">     <img src="assets/img/event-fate.png"      alt="Fate"      onerror="this.style.display='none'"><span>Fate</span>     <span class="sc-rarity">Event</span></div>
+      <div class="showcase-card event" data-name="Crownfall"><img src="assets/img/event-crownfall.png" alt="Crownfall" onerror="this.style.display='none'"><span>Crownfall</span><span class="sc-rarity">Event</span></div>
+    </div>
+  </div>
+
+  <!-- DEMO + BUY OPTIONS -->
+  <div class="section-divider">Play or Buy</div>
+  <section class="grid-2">
+
+    <!-- Buy -->
+    <article class="panel option-card" id="buy">
+      <div class="option-img-placeholder">♛</div>
+      <div class="option-head">
+        <span class="badge classic">Crowns Classic</span>
+        <span class="badge">2–4 Players · Ages 6+</span>
+      </div>
+      <p class="subtext">The full tabletop experience — 54 cards across Bronze, Silver and Gold, all 8 event cards, premium linen finish. Perfect for family game night or as a gift.</p>
+      <hr class="sep"/>
+      <div style="margin-bottom:10px">
+        <span style="font-size:26px;font-weight:950;color:#ffd77a;">£14.99</span>
+        <span style="font-size:14px;color:rgba(255,255,255,.4);text-decoration:line-through;margin-left:8px;">£22.49</span>
+        <span style="font-size:12px;font-weight:800;color:#7dffaa;margin-left:8px;background:rgba(30,160,60,.22);border:1px solid rgba(80,220,100,.35);padding:3px 10px;border-radius:999px;">Save 33%</span>
+      </div>
+      <a class="big-btn action" href="https://www.dynamicstudios.co.uk/buy">🛒 Buy Now</a>
+    </article>
+
+    <!-- Demo -->
+    <article class="panel option-card">
+      <div class="option-img-placeholder" style="background:rgba(27,108,255,.18);border-color:rgba(27,108,255,.35);">🎮</div>
+      <div class="option-head">
+        <span class="badge demo">Crowns Demo</span>
+        <span class="badge">1 Player · vs 2 Bots · Free</span>
+      </div>
+      <p class="subtext">Try the full game loop online before you buy. Play against two bots — 6 event cards, the dice mechanic, and the CROWN win condition — no login required.</p>
+      <hr class="sep"/>
+      <div style="margin-bottom:10px">
+        <span style="font-size:26px;font-weight:950;color:#7eb8ff;">Free</span>
+        <span style="font-size:13px;color:rgba(255,255,255,.5);margin-left:10px;">No account needed</span>
+      </div>
+      <a class="big-btn" href="demo.html" style="border-color:rgba(126,184,255,.55);background:rgba(27,108,255,.22);">🎮 Play Online Demo →</a>
+    </article>
+
+  </section>
+
+  <!-- ABOUT CROWNS -->
+  <div class="section-divider">About the Game</div>
+  <div class="panel">
+    <p class="subtext" style="text-align:center;max-width:640px;margin:0 auto 20px;">
+      Crowns is a <strong>small-box card game</strong> designed for 2–4 players. Each round you race to empty your hand by playing cards in ascending order — but 8 Event cards, the gamble dice, and the CROWN finish line make every game unpredictable and replayable.
+    </p>
+    <div class="about-grid">
+      <div class="about-block">
+        <div class="ab-icon">🎴</div>
+        <div class="ab-title">How it works</div>
+        <p class="ab-text">Play cards equal to or higher than the last. Bronze (1–3), Silver (4–6), Gold (7–9). Reach 9 and the table must survive one full round before the number resets.</p>
+      </div>
+      <div class="about-block">
+        <div class="ab-icon">⚡</div>
+        <div class="ab-title">Event Cards</div>
+        <p class="ab-text">Eight event cards — Trade, Scout, Shield, Thief, Mirror, Twist, Fate, and Crownfall — can reverse fortunes instantly. Play them on any turn once the first card is down.</p>
+      </div>
+      <div class="about-block">
+        <div class="ab-icon">🎲</div>
+        <div class="ab-title">The Gamble</div>
+        <p class="ab-text">Can't play a card? Draw one from the pile, or roll the dice and gamble. A 1 resets the number; a 6 costs you your next turn; 2–5 means drawing two cards.</p>
+      </div>
+      <div class="about-block">
+        <div class="ab-icon">👑</div>
+        <div class="ab-title">Claiming the Crown</div>
+        <p class="ab-text">Empty your hand and enter endgame. On each of your turns, roll the dice — roll a 6 and shout <strong style="color:#ffd77a">CROWN</strong> before anyone else does. That's your win.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="home-footer">
+    <p>© 2026 Dynamic Game Studios · All rights reserved</p>
+    <p style="margin-top:6px">
+      <a href="#" id="rulesFooterBtn">📖 Read the Rules</a>
+      &nbsp;·&nbsp;
+      <a href="demo.html">🎮 Play Demo</a>
+      &nbsp;·&nbsp;
+      <a href="../index.html">← Dynamic Game Studios</a>
+    </p>
+  </footer>
+
+</div><!-- /container -->
+
+<!-- RULES MODAL -->
+<div class="modal-overlay hidden" id="rulesModal">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" id="rulesClose">✕</button>
+    <h2>♛ Game Rules</h2>
+    <p class="modal-sub">Crowns Classic — 2 to 4 players</p>
+
+    <h3>🎯 Goal</h3>
+    <p>Be the first to play all your cards, then roll a <strong style="color:#ffd77a">6</strong> and shout <strong style="color:#ffd77a">CROWN</strong> to win!</p>
+
+    <h3>🃏 Setup</h3>
+    <ul>
+      <li>Shuffle all cards. Deal <strong>5 cards</strong> face-down to each player.</li>
+      <li>Remaining cards go face-down in the centre as the draw pile.</li>
+      <li>Each player rolls the die — highest roll goes first.</li>
+    </ul>
+
+    <h3>🔄 On Your Turn</h3>
+    <ul>
+      <li>Play any numbered card to start. After that, each player must play a card <strong>equal to or higher</strong> than the last number played.</li>
+      <li>Play goes clockwise.</li>
+      <li>If the number reaches <strong>9</strong>, one full round passes before it resets to 0.</li>
+      <li>Play an <strong>Event card</strong> on any turn (not as the very first card of the game).</li>
+    </ul>
+
+    <h3>⚠️ If You Can't Play</h3>
+    <ul>
+      <li><strong>Pick Up</strong> — draw 1 card from the pile and pass, or</li>
+      <li><strong>Gamble</strong> — roll the die: <strong>1</strong> = number resets, play any card · <strong>6</strong> = miss your next turn · <strong>2–5</strong> = draw 2 cards</li>
+    </ul>
+
+    <h3>👑 Endgame</h3>
+    <p>Once your hand is empty, roll the die each turn. Roll a <strong style="color:#ffd77a">6</strong> and shout <strong style="color:#ffd77a">CROWN</strong> to win! Roll a 1 and you must pick up a card and re-enter the game.</p>
+
+    <h3>🎴 Card Rarities</h3>
+    <ul>
+      <li>🟫 <strong>Bronze</strong> — values 1, 2, 3</li>
+      <li>⬜ <strong>Silver</strong> — values 4, 5, 6</li>
+      <li>🟡 <strong>Gold</strong> — values 7, 8, 9</li>
+      <li>🔵 <strong>Events</strong> — 8 cards (one of each)</li>
+    </ul>
+
+    <h3>⚡ Event Cards</h3>
+    <div class="event-grid">
+      <div class="event-item"><div class="event-name">Trade</div>      <div class="event-desc">Choose a player and swap one of your cards with a random one of theirs.</div></div>
+      <div class="event-item"><div class="event-name">Scout</div>      <div class="event-desc">Look at the top 2 deck cards and secretly choose one to keep.</div></div>
+      <div class="event-item"><div class="event-name">Shield</div>     <div class="event-desc">Protect yourself by skipping your next turn safely — no penalty.</div></div>
+      <div class="event-item"><div class="event-name">Thief</div>      <div class="event-desc">Look at an opponent's hand and take one of their cards with a value of 6 or lower.</div></div>
+      <div class="event-item"><div class="event-name">Mirror</div>     <div class="event-desc">Match the previous card exactly — the same number carries onto the next player.</div></div>
+      <div class="event-item"><div class="event-name">Twist</div>      <div class="event-desc">Choose any two players (including yourself) to swap entire hands.</div></div>
+      <div class="event-item"><div class="event-name">Fate</div>       <div class="event-desc">All players roll — highest returns 1 card to the pile; lowest draws 2.</div></div>
+      <div class="event-item"><div class="event-name">Crownfall</div>  <div class="event-desc">Target the previous player's move and halve the current number (rounded up).</div></div>
+    </div>
+
+    <div class="modal-btns">
+      <button class="big-btn action" id="rulesCloseBtn">Got it! ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating event card tooltip -->
+<div class="event-tooltip" id="eventTooltip">
+  <div class="et-header">
+    <span class="et-icon" id="tooltipIcon"></span>
+    <span class="et-name"  id="tooltipName"></span>
+  </div>
+  <div class="et-desc" id="tooltipDesc"></div>
+  <div class="et-footer">Tap anywhere to dismiss</div>
+</div>
+
+<script>
+  /* ── Rules modal ── */
+  const rulesModal = document.getElementById('rulesModal');
+  function openRules()  { rulesModal.classList.remove('hidden'); }
+  function closeRules() { rulesModal.classList.add('hidden'); }
+  document.getElementById('rulesBtn').addEventListener('click', openRules);
+  document.getElementById('rulesClose').addEventListener('click', closeRules);
+  document.getElementById('rulesCloseBtn').addEventListener('click', closeRules);
+  document.getElementById('rulesFooterBtn').addEventListener('click', e => { e.preventDefault(); openRules(); });
+  rulesModal.addEventListener('click', e => { if (e.target === rulesModal) closeRules(); });
+
+  /* ── Event card tooltips ── */
+  const EVENT_DATA = {
+    'Trade':     { icon: '⚡', desc: 'Choose a player and swap one of your cards with a random one of theirs.' },
+    'Scout':     { icon: '🔍', desc: 'Look at the top 2 deck cards and secretly choose one to keep.' },
+    'Shield':    { icon: '🛡️', desc: 'Protect yourself by skipping your next turn safely — no penalty.' },
+    'Thief':     { icon: '🥷', desc: 'Look at an opponent\'s hand and take one of their cards with a value of 6 or lower.' },
+    'Mirror':    { icon: '🪞', desc: 'Match the previous card exactly — the same number carries onto the next player.' },
+    'Twist':     { icon: '🔀', desc: 'Choose any two players (including yourself) to swap entire hands.' },
+    'Fate':      { icon: '🎲', desc: 'All players roll — highest returns 1 card to the pile; lowest draws 2.' },
+    'Crownfall': { icon: '👑', desc: 'Target the previous player\'s move and halve the current number (rounded up).' }
+  };
+
+  const tooltip    = document.getElementById('eventTooltip');
+  const tipIcon    = document.getElementById('tooltipIcon');
+  const tipName    = document.getElementById('tooltipName');
+  const tipDesc    = document.getElementById('tooltipDesc');
+  let   hideTimer  = null;
+  let   activeCard = null;
+
+  function showTooltip(card) {
+    const name = card.dataset.name;
+    const data = EVENT_DATA[name];
+    if (!data) return;
+
+    clearTimeout(hideTimer);
+
+    if (activeCard && activeCard !== card) activeCard.classList.remove('active-tip');
+    activeCard = card;
+    card.classList.add('active-tip');
+
+    tipIcon.textContent = data.icon;
+    tipName.textContent = name;
+    tipDesc.textContent = data.desc;
+
+    tooltip.classList.add('visible');
+
+    // Position using fixed coords — NO scrollY offset needed
+    const rect   = card.getBoundingClientRect();
+    const tipW   = 230;
+    const tipH   = 115;
+
+    let left = rect.left + rect.width / 2 - tipW / 2;
+    let top  = rect.top - tipH - 12;
+
+    // Not enough room above? Place below instead
+    if (top < 8) top = rect.bottom + 10;
+
+    // Clamp to viewport
+    left = Math.max(10, Math.min(left, window.innerWidth - tipW - 10));
+    top  = Math.max(8,  Math.min(top,  window.innerHeight - tipH - 8));
+
+    tooltip.style.left = left + 'px';
+    tooltip.style.top  = top  + 'px';
+
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hideTooltip, 4000);
+  }
+
+  function hideTooltip() {
+    tooltip.classList.remove('visible');
+    if (activeCard) { activeCard.classList.remove('active-tip'); activeCard = null; }
+  }
+
+  document.querySelectorAll('.showcase-card.event').forEach(card => {
+    card.addEventListener('click', e => {
+      e.stopPropagation();
+      if (activeCard === card && tooltip.classList.contains('visible')) {
+        hideTooltip();
+      } else {
+        showTooltip(card);
+      }
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.showcase-card.event')) hideTooltip();
+  });
+</script>
+</body>
+</html>

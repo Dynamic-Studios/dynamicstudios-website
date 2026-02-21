@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crowns — Demo</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" type="image/png" href="../favicon.png"/>
+</head>
+<body>
+<div class="container">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <a href="index.html" class="icon-btn" title="Back">←</a>
+    <div class="brand">
+      <div class="brand-badge">
+        <img src="assets/img/logo.png" alt="Crowns" class="brand-logo"
+             onerror="this.style.display='none';document.getElementById('brandFallback').style.display='flex'">
+        <span class="brand-title" id="brandFallback" style="display:none">CR<span class="o"></span>WNS</span>
+      </div>
+    </div>
+    <button class="icon-btn" id="rulesInlineBtn" title="Rules">📖</button>
+  </div>
+
+  <!-- TURN BANNER -->
+  <div class="turn-banner your-turn" id="turnBanner">
+    <div class="turn-dot"></div>
+    <span id="turnBannerText">Choose a difficulty to start</span>
+  </div>
+
+  <!-- ACTION HINT -->
+  <div class="action-hint highlight" id="actionHint">Pick a difficulty below to begin</div>
+
+  <!-- GAME LAYOUT -->
+  <div class="game-layout">
+
+    <!-- LEFT: dice + log -->
+    <div class="panel">
+      <p class="box-title">🎲 Dice</p>
+
+      <!-- CSS 3D Dice Cube -->
+      <div class="dice-scene">
+        <div class="dice-cube" id="diceCube">
+
+          <!-- Face 1 (front): single centre pip -->
+          <div class="die-face f1">
+            <div class="dp x"></div><div class="dp x"></div><div class="dp x"></div>
+            <div class="dp x"></div><div class="dp"></div>  <div class="dp x"></div>
+            <div class="dp x"></div><div class="dp x"></div><div class="dp x"></div>
+          </div>
+
+          <!-- Face 6 (back): two columns of 3 -->
+          <div class="die-face f6">
+            <div class="dp"></div>  <div class="dp x"></div><div class="dp"></div>
+            <div class="dp"></div>  <div class="dp x"></div><div class="dp"></div>
+            <div class="dp"></div>  <div class="dp x"></div><div class="dp"></div>
+          </div>
+
+          <!-- Face 3 (right): top-right, centre, bottom-left -->
+          <div class="die-face f3">
+            <div class="dp x"></div><div class="dp x"></div><div class="dp"></div>
+            <div class="dp x"></div><div class="dp"></div>  <div class="dp x"></div>
+            <div class="dp"></div>  <div class="dp x"></div><div class="dp x"></div>
+          </div>
+
+          <!-- Face 4 (left): four corners -->
+          <div class="die-face f4">
+            <div class="dp"></div>  <div class="dp x"></div><div class="dp"></div>
+            <div class="dp x"></div><div class="dp x"></div><div class="dp x"></div>
+            <div class="dp"></div>  <div class="dp x"></div><div class="dp"></div>
+          </div>
+
+          <!-- Face 2 (top): top-right + bottom-left -->
+          <div class="die-face f2">
+            <div class="dp x"></div><div class="dp x"></div><div class="dp"></div>
+            <div class="dp x"></div><div class="dp x"></div><div class="dp x"></div>
+            <div class="dp"></div>  <div class="dp x"></div><div class="dp x"></div>
+          </div>
+
+          <!-- Face 5 (bottom): four corners + centre -->
+          <div class="die-face f5">
+            <div class="dp"></div>  <div class="dp x"></div><div class="dp"></div>
+            <div class="dp x"></div><div class="dp"></div>  <div class="dp x"></div>
+            <div class="dp"></div>  <div class="dp x"></div><div class="dp"></div>
+          </div>
+
+        </div>
+      </div>
+      <!-- /dice -->
+
+      <button class="big-btn" id="rollBtn" disabled>🎲 Roll Dice</button>
+      <div class="toast" id="logBox" style="margin-top:14px">Choose a difficulty to begin!</div>
+    </div>
+
+    <!-- CENTRE column -->
+    <div class="centre-col">
+
+      <!-- Bots -->
+      <div class="panel">
+        <div class="bots-area">
+          <div class="bot-block" id="botABlock">
+            <div class="bot-block-label">🤖 Bot A &nbsp;·&nbsp; <span id="botACount">—</span> cards</div>
+            <div class="bot-row" id="botARow"></div>
+          </div>
+          <div class="bot-block" id="botBBlock">
+            <div class="bot-block-label">🤖 Bot B &nbsp;·&nbsp; <span id="botBCount">—</span> cards</div>
+            <div class="bot-row" id="botBRow"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Centre card -->
+      <div class="panel" style="text-align:center">
+        <div class="center-stack">
+          <div class="center-card-display" id="centerCard">
+            <span class="no-card-msg">No card<br>played yet</span>
+          </div>
+          <div class="number-display">
+            Must beat: <span class="number-val" id="lastNumber">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action buttons (no Next Turn — auto-flow) -->
+      <div class="footer-row">
+        <button class="big-btn" id="newGameBtn">↺ New Game</button>
+        <button class="big-btn hidden action" id="pickupBtn">🃏 Pick Up Card &amp; Pass</button>
+        <button class="big-btn hidden" id="gambleBtn">🎲 Gamble Roll</button>
+        <button class="big-btn hidden" id="drawCardBtn">🃏 Draw Card</button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: deck + status -->
+    <div class="panel">
+      <p class="box-title">🂠 Deck</p>
+      <div class="pile-wrap">
+        <div class="pile">
+          <img src="assets/img/card-back.png" alt="Deck" onerror="this.remove()">
+          <span id="deckCountBadge">—</span>
+        </div>
+      </div>
+      <div class="status-grid">
+        <div class="status-row"><span>Turn</span>  <span class="status-val" id="turnLabel">—</span></div>
+        <div class="status-row"><span>Deck</span>  <span class="status-val" id="deckCount">—</span></div>
+        <div class="status-row"><span>Mode</span>  <span class="status-val" id="diffLabel">—</span></div>
+      </div>
+    </div>
+
+  </div><!-- /game-layout -->
+
+  <!-- HAND -->
+  <div class="h2">Your Hand</div>
+  <div class="hand" id="hand"></div>
+
+</div><!-- /container -->
+
+
+<!-- ══ DIFFICULTY MODAL ══ -->
+<div class="modal-overlay" id="diffModal">
+  <div class="modal">
+    <h2>Choose Difficulty</h2>
+    <p class="modal-sub">How tough do you want the bots?</p>
+    <div class="diff-grid">
+      <div class="diff-card easy"   onclick="startGame('easy')">
+        <div class="diff-icon">😊</div>
+        <div class="diff-name">Easy</div>
+        <div class="diff-desc">5 cards · Bots play randomly</div>
+      </div>
+      <div class="diff-card medium" onclick="startGame('medium')">
+        <div class="diff-icon">😐</div>
+        <div class="diff-name">Medium</div>
+        <div class="diff-desc">4 cards · Bots play smart</div>
+      </div>
+      <div class="diff-card hard"   onclick="startGame('hard')">
+        <div class="diff-icon">😈</div>
+        <div class="diff-name">Hard</div>
+        <div class="diff-desc">3 cards · Bots use events</div>
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="big-btn" id="showRulesFromDiff">📖 Read Rules First</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RULES MODAL ══ -->
+<div class="modal-overlay hidden" id="rulesModal">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" id="rulesClose">✕</button>
+    <h2>How to Play</h2>
+    <p class="modal-sub">1 Player vs 2 Bots · Demo</p>
+    <h3>🎯 Goal</h3>
+    <p>Be first to empty your hand, then roll a 6 and shout <strong>CROWN!</strong></p>
+    <h3>🃏 On Your Turn</h3>
+    <ul>
+      <li>Play <strong>one card</strong> equal to or higher than the current number.</li>
+      <li>The turn automatically advances after you play.</li>
+      <li>If you can't play anything, the <strong>Pick Up Card</strong> and <strong>Gamble Roll</strong> buttons appear.</li>
+    </ul>
+    <h3>🎲 Forfeit Options (auto-shown)</h3>
+    <ul>
+      <li><strong>Pick Up 1 Card</strong> — draw a card and pass your turn.</li>
+      <li><strong>Gamble Roll</strong> — roll the die:<br>
+        🎯 <strong>1</strong> resets the number · 😐 <strong>2–5</strong> draw 2 cards · 😬 <strong>6</strong> miss next turn</li>
+    </ul>
+    <h3>⚡ Event Cards (this demo)</h3>
+    <div class="event-grid">
+      <div class="event-item"><div class="event-name">Trade</div>     <div class="event-desc">Choose a player and swap one of your cards with a random one of theirs</div></div>
+      <div class="event-item"><div class="event-name">Scout</div>     <div class="event-desc">Look at the top 2 deck cards and secretly choose one to keep</div></div>
+      <div class="event-item"><div class="event-name">Shield</div>    <div class="event-desc">Skip your next turn safely — no penalty</div></div>
+      <div class="event-item"><div class="event-name">Twist</div>     <div class="event-desc">Choose any two players (including yourself) and swap their entire hands</div></div>
+      <div class="event-item"><div class="event-name">Fate</div>      <div class="event-desc">All players roll — highest returns 1 card to the pile, lowest draws 2</div></div>
+      <div class="event-item"><div class="event-name">Crownfall</div> <div class="event-desc">Halve the current number (rounds up if odd)</div></div>
+    </div>
+
+
+    <h3>👑 Winning</h3>
+    <ul>
+      <li>Hand empty? Roll each turn — roll a 6 and shout <strong>CROWN</strong> to win.</li>
+      <li>Roll a 1 in endgame → pick up 1 card, re-enter the game.</li>
+      <li>Roll 2–5 in endgame → keep rolling next turn.</li>
+    </ul>
+    <div class="modal-btns">
+      <button class="big-btn" id="rulesBackBtn">← Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GAME OVER MODAL ══ -->
+<div class="modal-overlay hidden" id="gameOverModal">
+  <div class="modal" style="text-align:center">
+    <div id="gameOverIcon"  class="gameover-icon">👑</div>
+    <div id="gameOverTitle" class="gameover-title win">You Win!</div>
+    <div id="gameOverSub"   class="gameover-sub"></div>
+    <div class="modal-btns" style="flex-direction:column;gap:10px;">
+  <button class="big-btn action" onclick="diffModal.classList.remove('hidden');gameOverModal.classList.add('hidden')">🎮 Play Again</button>
+  <a class="big-btn" href="https://www.dynamicstudios.co.uk/buy" style="text-align:center;background:linear-gradient(135deg,#d4a72c,#f0c94a);color:#111;border:none;font-weight:900;">♛ Buy the Real Game — £15.99</a>
+  </div>
+
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

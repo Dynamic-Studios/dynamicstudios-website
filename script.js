@@ -1,292 +1,212 @@
-// ==========================================
-// COUNTDOWN TIMER FOR CROWNS REVEAL
-// ==========================================
+// script.js - Dynamic Game Studios
+// Carousels, mobile menu, modals
+
 window.addEventListener('DOMContentLoaded', () => {
-  const daysEl = document.getElementById('cd-days');
-  const hoursEl = document.getElementById('cd-hours');
-  const minsEl = document.getElementById('cd-mins');
-  const secsEl = document.getElementById('cd-secs');
-
-  if (daysEl && hoursEl && minsEl && secsEl) {
-    // Set reveal time: 3 days from now
-    const now = new Date();
-    const revealTime = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
-
-    // Store in localStorage so it persists across page reloads
-    if (!localStorage.getItem('crownsRevealTime')) {
-      localStorage.setItem('crownsRevealTime', revealTime.getTime());
-    }
-
-    const storedRevealTime = new Date(parseInt(localStorage.getItem('crownsRevealTime')));
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = storedRevealTime - now;
-
-      if (diff <= 0) {
-        // Countdown finished - reveal everything
-        daysEl.textContent = '0';
-        hoursEl.textContent = '00';
-        minsEl.textContent = '00';
-        secsEl.textContent = '00';
-
-        // Remove blur from ALL blur effect types
-        const blurSelectors = [
-          '.blurred-word',
-          '.blurred-reveal-text',
-          '.blurred-word-pixelated',
-          '.blurred-reveal-text-pixelated',
-          '.blurred-word-mosaic',
-          '.blurred-reveal-text-mosaic',
-          '.blurred-word-glitch',
-          '.blurred-reveal-text-glitch'
-        ];
-
-        blurSelectors.forEach(selector => {
-          document.querySelectorAll(selector).forEach(el => {
-            el.style.filter = 'none';
-            el.style.userSelect = 'text';
-            el.style.pointerEvents = 'auto';
-            el.style.webkitUserSelect = 'text';
-            el.style.animation = 'none';
-            el.style.textShadow = 'none';
-            el.style.background = 'none';
-          });
-        });
-
-        // Remove locked overlays
-        document.querySelectorAll('.locked-overlay').forEach(el => {
-          el.style.display = 'none';
-        });
-
-        // Remove blurred-section stripe effects
-        document.querySelectorAll('.blurred-section').forEach(el => {
-          el.style.position = 'relative';
-        });
-
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-
-      daysEl.textContent = String(days);
-      hoursEl.textContent = String(hours).padStart(2, '0');
-      minsEl.textContent = String(mins).padStart(2, '0');
-      secsEl.textContent = String(secs).padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('nav');
+  
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
   }
-});
 
+  // Buy page carousel (#carouselTrack on buy.html)
+  const buySlides = document.querySelectorAll('.carousel-slide');
+  const buyTrack = document.getElementById('carouselTrack');
+  const buyIndicators = document.getElementById('carouselIndicators');
 
-// ==========================================
-// BUY PAGE CAROUSEL WITH MOBILE TOUCH SUPPORT
-// ==========================================
-window.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.carousel-slide');
-  const track = document.getElementById('carouselTrack');
-  const indicatorsContainer = document.getElementById('carouselIndicators');
+  if (buyTrack && buySlides.length > 0 && buyIndicators) {
+    let buyIndex = 0;
+    let startX = 0;
+    let endX = 0;
 
-  if (!track || slides.length === 0 || !indicatorsContainer) return;
+    function clampBuy() {
+      if (buyIndex < 0) buyIndex = buySlides.length - 1;
+      if (buyIndex >= buySlides.length) buyIndex = 0;
+    }
 
-  let currentSlide = 0;
-  let touchStartX = 0;
-  let touchEndX = 0;
+    function updateBuy() {
+      buyTrack.style.transform = `translateX(-${buyIndex * 100}%)`;
+      buyIndicators.querySelectorAll('.indicator').forEach((d, i) => {
+        d.classList.toggle('active', i === buyIndex);
+      });
+    }
 
-  // Create indicators
-  slides.forEach((_, index) => {
-    const indicator = document.createElement('div');
-    indicator.className = 'indicator' + (index === 0 ? ' active' : '');
-    indicator.onclick = () => goToSlide(index);
-    indicatorsContainer.appendChild(indicator);
-  });
+    function goToBuySlide(i) {
+      buyIndex = i;
+      clampBuy();
+      updateBuy();
+    }
 
-  function updateCarousel() {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    document.querySelectorAll('.indicator').forEach((ind, index) => {
-      ind.className = 'indicator' + (index === currentSlide ? ' active' : '');
+    // Create indicators if missing
+    if (buyIndicators.querySelectorAll('.indicator').length === 0) {
+      buySlides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'indicator' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToBuySlide(i));
+        buyIndicators.appendChild(dot);
+      });
+    }
+
+    // Expose for inline onclick in HTML
+    window.changeSlide = function (direction) {
+      buyIndex += direction;
+      clampBuy();
+      updateBuy();
+    };
+
+    window.goToSlide = function (i) {
+      goToBuySlide(i);
+    };
+
+    // Touch swipe support
+    buyTrack.addEventListener('touchstart', (e) => {
+      startX = e.changedTouches[0].screenX;
     });
+
+    buyTrack.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].screenX;
+      if (endX < startX - 50) window.changeSlide(1);
+      if (endX > startX + 50) window.changeSlide(-1);
+    });
+
+    // Auto-advance every 5 seconds
+    setInterval(() => window.changeSlide(1), 5000);
   }
 
-  window.changeSlide = function(direction) {
-    currentSlide += direction;
-    if (currentSlide < 0) currentSlide = slides.length - 1;
-    if (currentSlide >= slides.length) currentSlide = 0;
-    updateCarousel();
-  };
-
-  window.goToSlide = function(index) {
-    currentSlide = index;
-    updateCarousel();
-  };
-
-  // Touch/swipe support for mobile
-  track.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-
-  track.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  });
-
-  function handleSwipe() {
-    if (touchEndX < touchStartX - 50) {
-      // Swipe left - next slide
-      window.changeSlide(1);
-    }
-    if (touchEndX > touchStartX + 50) {
-      // Swipe right - previous slide
-      window.changeSlide(-1);
-    }
-  }
-
-  // Auto-advance every 5 seconds
-  setInterval(() => window.changeSlide(1), 5000);
-});
-
-
-// ==========================================
-// SOCIAL VIDEO CAROUSEL (YouTube Shorts)
-// ==========================================
-window.addEventListener('DOMContentLoaded', () => {
+  // Social video carousel (#socialCarouselTrack on index.html)
   const socialSlides = document.querySelectorAll('.social-carousel-slide');
   const socialTrack = document.getElementById('socialCarouselTrack');
   const socialIndicators = document.getElementById('socialCarouselIndicators');
 
-  if (!socialTrack || socialSlides.length === 0) return;
+  if (socialTrack && socialSlides.length > 0 && socialIndicators) {
+    let socialIndex = 0;
+    let startX = 0;
+    let endX = 0;
 
-  let currentSocialSlide = 0;
+    function clampSocial() {
+      if (socialIndex < 0) socialIndex = socialSlides.length - 1;
+      if (socialIndex >= socialSlides.length) socialIndex = 0;
+    }
 
-  function updateSocialCarousel() {
-    socialTrack.style.transform = `translateX(-${currentSocialSlide * 100}%)`;
-    if (socialIndicators) {
-      document.querySelectorAll('.social-indicator').forEach((ind, index) => {
-        ind.className = 'social-indicator' + (index === currentSocialSlide ? ' active' : '');
+    function updateSocial() {
+      socialTrack.style.transform = `translateX(-${socialIndex * 100}%)`;
+      socialIndicators.querySelectorAll('.social-indicator').forEach((d, i) => {
+        d.classList.toggle('active', i === socialIndex);
       });
     }
+
+    function goToSocial(i) {
+      socialIndex = i;
+      clampSocial();
+      updateSocial();
+    }
+
+    // Create indicators if missing
+    if (socialIndicators.querySelectorAll('.social-indicator').length === 0) {
+      socialSlides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'social-indicator' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToSocial(i));
+        socialIndicators.appendChild(dot);
+      });
+    }
+
+    // Expose for inline onclick in HTML
+    window.changeSocialSlide = function (direction) {
+      socialIndex += direction;
+      clampSocial();
+      updateSocial();
+    };
+
+    window.goToSocialSlide = function (i) {
+      goToSocial(i);
+    };
+
+    // Touch swipe support
+    socialTrack.addEventListener('touchstart', (e) => {
+      startX = e.changedTouches[0].screenX;
+    });
+
+    socialTrack.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].screenX;
+      if (endX < startX - 50) window.changeSocialSlide(1);
+      if (endX > startX + 50) window.changeSocialSlide(-1);
+    });
+
+    // Auto-advance every 7 seconds
+    setInterval(() => window.changeSocialSlide(1), 7000);
   }
 
-  window.changeSocialSlide = function(direction) {
-    currentSocialSlide += direction;
-    if (currentSocialSlide < 0) currentSocialSlide = socialSlides.length - 1;
-    if (currentSocialSlide >= socialSlides.length) currentSocialSlide = 0;
-    updateSocialCarousel();
-  };
+  // Close modals on outside click
+  const modal = document.getElementById('modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
 
-  window.goToSocialSlide = function(index) {
-    currentSocialSlide = index;
-    updateSocialCarousel();
-  };
-
-  // Auto-advance every 7 seconds
-  setInterval(() => window.changeSocialSlide(1), 7000);
+  const popup = document.getElementById('newsletterPopup');
+  if (popup) {
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) closeNewsletter();
+    });
+  }
 });
 
-
-// ==========================================
-// MOBILE MENU
-// ==========================================
-const menuToggle = document.getElementById('menuToggle');
-const nav = document.getElementById('nav');
-
-if (menuToggle) {
-  menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('active');
-  });
-}
-
-
-// ==========================================
-// CARD MODAL FUNCTIONS (index page)
-// ==========================================
+// Modal functions (called by inline onclick in HTML)
 function openModal(cardType) {
   const modal = document.getElementById('modal');
   if (!modal) return;
 
-  let title = '';
-  let desc = '';
+  let title = 'Card';
+  let desc = 'Details coming soon.';
 
   if (cardType === 'event') {
     title = 'Event Cards';
-    desc = '🔒 Full details about Event Cards will be revealed after the countdown ends!';
-  } else if (cardType === 'character') {
-    title = 'Character Cards';
-    desc = '🔒 Full details about Character Cards will be revealed after the countdown ends!';
+    desc = 'Special effects that change the game state.';
+  } else if (cardType === 'character' || cardType === 'playing') {
+    title = 'Playing Cards';
+    desc = 'Build your deck with abilities and synergies.';
+  } else if (cardType === 'bronze') {
+    title = 'Bronze Cards';
+    desc = 'Foundation cards with lower values.';
+  } else if (cardType === 'silver') {
+    title = 'Silver Cards';
+    desc = 'Mid-power cards for tempo and flexibility.';
+  } else if (cardType === 'gold') {
+    title = 'Gold Cards';
+    desc = 'High-impact cards used to close out games.';
   }
 
-  document.getElementById('modal-title').textContent = title;
-  document.getElementById('modal-desc').textContent = desc;
+  const t = document.getElementById('modal-title');
+  const d = document.getElementById('modal-desc');
+  if (t) t.textContent = title;
+  if (d) d.textContent = desc;
+
   modal.classList.add('show');
 }
 
 function closeModal() {
   const modal = document.getElementById('modal');
-  if (modal) {
-    modal.classList.remove('show');
-  }
+  if (modal) modal.classList.remove('show');
 }
 
-
-// ==========================================
-// NEWSLETTER POPUP FUNCTIONS
-// ==========================================
 function openNewsletter() {
   const popup = document.getElementById('newsletterPopup');
-  if (popup) {
-    popup.classList.add('show');
-  }
+  if (popup) popup.classList.add('show');
 }
 
 function closeNewsletter() {
   const popup = document.getElementById('newsletterPopup');
-  if (popup) {
-    popup.classList.remove('show');
-  }
+  if (popup) popup.classList.remove('show');
 }
 
-
-// ==========================================
-// CLOSE MODALS ON OUTSIDE CLICK
-// ==========================================
-const modal = document.getElementById('modal');
-if (modal) {
-  modal.addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeModal();
-    }
-  });
-}
-
-const newsletterPopup = document.getElementById('newsletterPopup');
-if (newsletterPopup) {
-  newsletterPopup.addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeNewsletter();
-    }
-  });
-}
-
-
-// ==========================================
-// SMOOTH SCROLL TO SECTION (About page nav)
-// ==========================================
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
 
-  const headerOffset = 100;
-  const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-  const offsetPosition = elementPosition - headerOffset;
-
-  window.scrollTo({
-    top: offsetPosition,
-    behavior: 'smooth'
-  });
+  const headerOffset = 110;
+  const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+  window.scrollTo({ top: y, behavior: 'smooth' });
 }
-
