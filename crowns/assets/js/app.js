@@ -173,9 +173,21 @@ document.addEventListener('DOMContentLoaded', () => {
     return h;
   }
   function drawCard(hand) {
-    if (!deck.length) return null;
-    const c=deck.shift(); hand.push(c); playDrawSnd(); return c;
+    // Build a fresh virtual deck if needed
+    if (!deck || !deck.length) {
+      deck = buildDeck();
+    }
+
+    // Pick a random card from the template deck (no shrinking)
+    const idx = Math.floor(Math.random() * deck.length);
+    const c = { ...deck[idx] }; // copy so hands don't share references
+
+    hand.push(c);
+    playDrawSnd();
+    return c;
   }
+
+
 
   // ═══════════════════════════════════════════
   // GENERIC MODAL HELPER
@@ -383,7 +395,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderHand(); renderBots();
     lastNumEl.textContent=lastNumber===0?'—':lastNumber;
     turnLbl.textContent=turn===0?'You':'Bot '+(turn===1?'A':'B');
-    deckCnt.textContent=deck.length; deckBadge.textContent=deck.length;
+    deckCnt.textContent = '∞';
+    deckBadge.textContent = '∞';
     updateBanner();
     const myTurn=turn===0&&!gameOver;
     rollBtn.disabled=!myTurn||(playerCardPlayed&&!playerInEndgame);
@@ -502,34 +515,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     // ── SCOUT ──────────────────────────────────
-    } else if(e==='Scout'){
-      const picks=deck.splice(0,2);
-      if(!picks.length){ log('Scout: deck is empty!'); toast('🔍 SCOUT — empty deck'); return; }
+    } else if (e === 'Scout') {
+      const picks = [drawCard(myH), drawCard(myH)]; // temporarily into hand
 
-      if(who==='player'){
-        if(picks.length===1){
-          myH.push(picks[0]);
-          log('🔍 Scout: only one card available — you kept it.'); toast('🔍 SCOUT');
-        } else {
-          const choice = await showModal(
-            '🔍 Scout',
-            'Secretly look at the top 2 cards — choose one to keep',
-            `<div style="display:flex;gap:12px;justify-content:center;margin:14px 0">
-              ${picks.map(c=>`<div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 18px;font-weight:900;font-size:15px;">${c.type==='event'?c.label:`${c.r.toUpperCase()} ${c.n}`}</div>`).join('')}
-            </div>`,
-            picks.map((c,i)=>({label:`${i===0?'⬅️':'➡️'} Keep: ${c.type==='event'?c.label:`${c.r} ${c.n}`}`}))
-          );
-          myH.push(picks[choice]);
-          deck.unshift(picks[1-choice]);
-          log(`🔍 Scout: kept ${picks[choice].type==='event'?picks[choice].label:picks[choice].r+' '+picks[choice].n} and returned the other.`);
-          toast('🔍 SCOUT');
-        }
+      // Remove them back out of hand so we can choose
+      myH.splice(myH.length - 2, 2);
+
+      if (who === 'player') {
+        const choice = await showModal(
+          '🔍 Scout',
+          'Secretly look at the top 2 cards — choose one to keep',
+          `<div style="display:flex;gap:12px;justify-content:center;margin:14px 0">
+            ${picks.map(c => `
+              <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 18px;font-weight:900;font-size:15px;">
+                ${c.type === 'event' ? c.label : `${c.r.toUpperCase()} ${c.n}`}
+              </div>`).join('')}
+          </div>`,
+          picks.map((c, i) => ({
+            label: `${i === 0 ? '⬅️' : '➡️'} Keep: ${c.type === 'event' ? c.label : `${c.r} ${c.n}`}`
+          }))
+        );
+        myH.push(picks[choice]);          // keep 1
+        log('🔍 Scout: you kept a card.');
+        toast('🔍 SCOUT');
+        // the “returned” one is just discarded conceptually
       } else {
-        picks.sort((a,b)=>(b.n||0)-(a.n||0));
+        picks.sort((a, b) => (b.n || 0) - (a.n || 0));
         myH.push(picks[0]);
-        if(picks[1]) deck.unshift(picks[1]);
-        log(`${nm} Scout — took the better card.`); toast('🔍 SCOUT');
+        log(`${nm} Scout — took the better card.`);
+        toast('🔍 SCOUT');
       }
+
+
 
     // ── SHIELD ──────────────────────────────────
     } else if(e==='Shield'){

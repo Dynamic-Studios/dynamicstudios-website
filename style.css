@@ -1266,3 +1266,15 @@ footer {
     color: #111 !important;
 }
 
+.nav-crowns {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-crown-icon {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+
