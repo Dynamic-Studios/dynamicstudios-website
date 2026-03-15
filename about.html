@@ -43,6 +43,52 @@
     l.parentNode.insertBefore(s, l);
     })({})
     </script>
+    <script>
+    // Ad blocker detection
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            var adBlockEnabled = false;
+            var testAd = document.createElement('div');
+            testAd.innerHTML = '&nbsp;';
+            testAd.className = 'adsbox';
+            testAd.style.position = 'absolute';
+            testAd.style.left = '-10000px';
+            testAd.style.top = '-1000px';
+            document.body.appendChild(testAd);
+            window.setTimeout(function() {
+                if (testAd.offsetHeight === 0 || testAd.offsetWidth === 0) {
+                    adBlockEnabled = true;
+                }
+                testAd.remove();
+                if (adBlockEnabled) {
+                    showAdBlockPopup();
+                }
+            }, 100);
+        }, 2000); // Delay to allow ads to load
+    });
+
+    function showAdBlockPopup() {
+        var modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
+        modal.style.zIndex = '10000';
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        modal.innerHTML = `
+            <div style="background: white; padding: 20px; border-radius: 10px; max-width: 400px; text-align: center;">
+                <h2>Please Disable Your Ad Blocker</h2>
+                <p>Ads help us run our website, online demo, and develop our card game. Please consider disabling your ad blocker to support us!</p>
+                <button onclick="this.parentElement.parentElement.remove()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">OK</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+    </script>
 </head>
 <body>
     <header>
@@ -291,5 +337,17 @@
 
 
     <script src="script.js"></script>
+    <script>
+    (function(cxym){
+    var d = document,
+        s = d.createElement('script'),
+        l = d.scripts[d.scripts.length - 1];
+    s.settings = cxym || {};
+    s.src = "\/\/simplisticpride.com\/b\/XtVEs.dRGulD0rYVWBcX\/aeDmE9\/uoZMUTlGkdPRT_YO4YNVzwIyycM\/D\/k\/t\/NMjqgQ3\/MqjXIrx\/M\/wk";
+    s.async = true;
+    s.referrerPolicy = 'no-referrer-when-downgrade';
+    l.parentNode.insertBefore(s, l);
+    })({}
+    </script>
 </body>
 </html>
