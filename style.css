@@ -1279,25 +1279,5 @@ footer {
 }
 
 /* ========= ADSENSE VERTICAL BANNER ========= */
-.adsense-vertical {
-  position: fixed;
-  top: calc(var(--header-h) + 24px);
-  right: 12px;
-  width: 130px;
-  max-width: 160px;
-  z-index: 995;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.adsense-vertical > ins {
-  pointer-events: auto;
-}
-
-@media (max-width: 980px) {
-  .adsense-vertical {
-    display: none;
-  }
-}
+/* Removed - no longer using AdSense */
 
