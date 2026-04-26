@@ -36,14 +36,21 @@
         }
 
         .feature-badge {
-            background: var(--bg-white);
+            background: linear-gradient(135deg, var(--bg-white) 0%, rgba(245, 242, 235, 0.95) 100%);
             border: 1.5px solid var(--glass-border);
             border-radius: 999px;
-            padding: 6px 16px;
+            padding: 8px 18px;
             font-size: 0.85rem;
             font-weight: 800;
             color: var(--text-dark);
-            box-shadow: 0 4px 12px var(--shadow);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+        }
+
+        .feature-badge:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border-color: var(--gold);
         }
 
         .game-divider {
@@ -53,27 +60,54 @@
         .game-divider h2 {
             font-family: 'SF Pro Display', 'Inter', sans-serif;
             font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-            font-weight: 900;
-            color: var(--gold);
+            font-weight: 950;
+            background: linear-gradient(135deg, var(--gold) 0%, #f0c94a 50%, var(--gold) 100%);
+            background-size: 200% 200%;
+            animation: titleGradient 4s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             letter-spacing: -0.02em;
+            text-shadow: none;
+        }
+
+        @keyframes titleGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Crowns intro card */
         .crowns-intro-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
+            background: linear-gradient(135deg, var(--glass) 0%, rgba(245, 242, 235, 0.95) 100%);
+            border: 1.5px solid var(--glass-border);
             border-radius: var(--radius-xl);
             padding: 36px 40px;
             max-width: 1050px;
             margin: 0 auto 28px;
-            box-shadow: 0 18px 40px var(--shadow);
+            box-shadow: 0 20px 50px rgba(211, 141, 10, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
             text-align: left;
-            transition: transform var(--transition-med), box-shadow var(--transition-med);
+            transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crowns-intro-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 167, 44, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .crowns-intro-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 22px 60px rgba(0,0,0,0.18);
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 28px 60px rgba(211, 141, 10, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border-color: var(--gold);
         }
 
         .crowns-intro-card h2 {
@@ -99,14 +133,20 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--gold) 0%, #f0c94a 100%);
             color: #111;
             font-weight: 900;
             font-size: 0.88rem;
-            padding: 8px 18px;
+            padding: 10px 22px;
             border-radius: 999px;
             margin-bottom: 22px;
-            box-shadow: 0 6px 16px rgba(211,141,10,0.30);
+            box-shadow: 0 8px 24px rgba(211,141,10,0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            animation: badge-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badge-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 24px rgba(211,141,10,0.35); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 32px rgba(211,141,10,0.45); }
         }
 
         /* Event cards list */
@@ -242,6 +282,21 @@
         </div>
     </div>
 
+    <!-- FLASHY TABLETOP REPUBLIC BANNER -->
+    <div class="store-availability-banner">
+        <div class="store-banner-glow"></div>
+        <div class="store-banner-content">
+            <div class="store-badge">🎉 EXCLUSIVE AVAILABILITY</div>
+            <h2>Crowns is Now at <a href="https://www.tabletoprepublic.com/" target="_blank" rel="noopener" style="color: #111; text-decoration: none; border-bottom: 3px solid #111; padding-bottom: 2px; transition: all 0.2s;">Tabletop Republic</a>!</h2>
+            <p>Get your copy today at our official retail partner. Only 10 left!</p>
+            <div class="store-banner-actions">
+                <a href="https://www.tabletoprepublic.com/" target="_blank" rel="noopener" class="store-banner-btn primary">🎮 Visit Tabletop Republic</a>
+                <a href="buy.html" class="store-banner-btn secondary">🛍️ See Full Availability</a>
+            </div>
+        </div>
+        <div class="store-banner-shine"></div>
+    </div>
+
     <section class="hero">
         <div class="hero-content">
 
@@ -310,7 +365,7 @@
         <h2>What is Crowns?</h2>
 
         <div class="crowns-intro-card">
-            <span class="crowns-launch-badge">🚀 Launching Spring 2026 &mdash; £12.49</span>
+            <span class="crowns-launch-badge">🚀 Now in Stock &mdash; £16.75</span>
 
             <p>
                 Crowns is a fast-paced, strategic card game where players race to empty their hand using three tiers of numbered cards — <strong>Bronze (1–3)</strong>, <strong>Silver (4–6)</strong> and <strong>Gold (7–9)</strong>. Each card played must equal or beat the last number on the table. When the number reaches 9, one full round must pass before it resets. Simple to learn, tense to play.
@@ -336,7 +391,7 @@
             <div class="cta-group" style="justify-content:flex-start;margin-top:0;">
                 <a href="crowns/index.html" class="btn btn-primary">♛ Learn More</a>
                 <a href="crowns/demo.html" class="btn btn-secondary">🎮 Play the Demo Free</a>
-                <a href="https://www.ye-tradingstation.org.uk/product/crowns-card-game" class="btn btn-secondary" target="_blank" rel="noopener">🛒 Buy — £12.49</a>
+                <a href="https://www.ye-tradingstation.org.uk/product/crowns-card-game" class="btn btn-secondary" target="_blank" rel="noopener">🛒 Buy — £16.75</a>
             </div>
         </div>
     </section>

@@ -468,22 +468,20 @@
                     <!-- Price -->
                     <div class="price-section">
                         <div class="price-row">
-                            <span class="price-main">£12.49</span>
-                            <span class="price-was">£16.99</span>
-                            <span class="price-save">Save 26%</span>
+                            <span class="price-main">£16.75</span>
                         </div>
                         <p class="price-note">
-                            <strong>First edition run.</strong> Available via <a href="https://www.ye-tradingstation.org.uk/product/crowns-card-game" target="_blank" rel="noopener">Young Enterprise Trading Station</a> and at selected local events in Spring 2026. Stock is limited — secure your copy early.
+                            <strong>Now in stock!</strong> Available at <strong>Tabletop High Wycombe</strong>, online via <a href="https://www.ye-tradingstation.org.uk/product/crowns-card-game" target="_blank" rel="noopener">Young Enterprise Trading Station</a>, and at selected local events. Limited first edition print run.
                         </p>
                     </div>
 
                     <!-- Action buttons -->
-                    <button class="btn btn-primary full-width" onclick="openNewsletter()">
-                        🛒 Get Launch Alert &amp; Order Link
-                    </button>
-                    <a href="https://www.ye-tradingstation.org.uk/product/crowns-card-game" class="btn btn-secondary full-width" target="_blank" rel="noopener">
-                        🛒 Order on Trading Station
+                    <a href="https://www.ye-tradingstation.org.uk/product/crowns-card-game" class="btn btn-primary full-width" target="_blank" rel="noopener">
+                        🛒 Order Online Now
                     </a>
+                    <button class="btn btn-secondary full-width" onclick="document.getElementById('storeLocation').scrollIntoView({behavior: 'smooth'})">
+                        🏪 Visit Tabletop High Wycombe
+                    </button>
                     <a href="crowns/demo.html" class="btn btn-secondary full-width">
                         🎮 Play the Free Online Demo →
                     </a>
@@ -492,6 +490,39 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Store Location -->
+            <section id="storeLocation" style="margin-top: 60px; padding-top: 48px; border-top: 2px solid var(--glass-border);">
+                <h2 style="font-family: 'SF Pro Display', 'Inter', sans-serif; font-size: 1.9rem; font-weight: 900; color: var(--bronze); text-align: center; margin-bottom: 32px;">Find Us in Store</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 1000px; margin: 0 auto; align-items: center;">
+                    <!-- Store Info -->
+                    <div>
+                        <div style="background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 28px; box-shadow: 0 10px 28px var(--shadow);">
+                            <h3 style="font-family: 'SF Pro Display', 'Inter', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--bronze); margin-bottom: 16px;">📍 Tabletop High Wycombe</h3>
+                            <p style="color: var(--text-medium); font-size: 0.98rem; line-height: 1.75; margin-bottom: 14px;">
+                                <strong>Address:</strong><br>
+                                37 High St<br>
+                                High Wycombe<br>
+                                HP11 2AG<br>
+                                United Kingdom
+                            </p>
+                            <p style="color: var(--text-medium); font-size: 0.98rem; line-height: 1.75; margin-bottom: 14px;">
+                                <strong>Crowns is now in stock!</strong> Visit us to see the game in person, ask our experts about gameplay, and secure your copy of this limited first edition run.
+                            </p>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=37+High+Street+High+Wycombe+HP11+2AG" target="_blank" rel="noopener" class="btn btn-primary" style="display: inline-block; margin-top: 12px;">
+                                🗺️ Get Directions
+                            </a>
+                            <a href="https://www.tabletoprepublic.com/" target="_blank" rel="noopener" class="btn btn-primary" style="display: inline-block; margin-top: 12px; margin-left: 12px;">
+                                🎮 Visit Tabletop Republic
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Map -->
+                    <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 10px 28px var(--shadow); height: 350px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2463.504!2d-0.7363!3d51.6321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48768fa26c0e3725%3A0x0!2s37%20High%20Street%2C%20High%20Wycombe%20HP11%202AG%2C%20United%20Kingdom!5e0!3m2!1sen!2suk!4v1713981234567" width="100%" height="100%" style="border:none;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </section>
 
             <!-- Features -->
             <div class="features-section">
